@@ -20,7 +20,7 @@ $script = "<script src=\"http://kudobux.com/assets/javascripts/kudos/widget.js\"
 
 function register_my_kudobux_menu_page(){
     
-    add_menu_page(__('Kudobux_menu','Kudobux'), __('  Kudobux','kudos-menu'), 'manage_options', 'Kudobux', 'kudobux_plugin_default',plugins_url( 'Kudos-Testimonials/img/kudo_logo1.png' ) );
+    add_menu_page(__('Kudobux_menu','Kudobux'), __('  Kudobux','kudos-menu'), 'manage_options', 'Kudobux', 'kudobux_plugin_default',plugins_url( 'kudobux-testimonial-widget/img/icon.png' ) );
 }
 
 function add_widget(){
