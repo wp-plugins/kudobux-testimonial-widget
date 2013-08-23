@@ -8,7 +8,7 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Start amazing your web visitors with social proof of your product or service. Let Kudobux do the job for you
+Start amazing your web visitors with social proof of your product or service. Let Kudobux do the job for you.
 == Description ==
 										--Beta--
 Kudobux Testimonial Widget plugin allows you to display social testimonials  or selected quotes on your WordPress blog. 
