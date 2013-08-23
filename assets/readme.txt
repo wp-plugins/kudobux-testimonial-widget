@@ -38,12 +38,14 @@ It is easy to setup and 100% free.
 
 == Screenshots ==
 
-1.Screenshot-1.png is the signup screen where you start your registration process by signing in with Facebook or Twitter
-2.Screenshot-2.png is your dashboard area where you select which social feeds you want to show on your website
-3.Screenshot-3.png is your widget customization area where you customize the look and feel of your widget
-3.Screenshot-4.png the widget on your wp-blog
+1.Signup screen where you start your registration process by signing in with Facebook or Twitter
+2.Dashboard area where you select which social feeds you want to show on your website
+3.Widget customization area where you customize the look and feel of your widget
+3.Sample Demo on your blog
+
 == Upgrade Notice ==
 We will always alert you via email or your dashboard when there are new updates and awesome improvements to the product
+- Just do a normal upgrade.
 
 == Changelog ==
 
