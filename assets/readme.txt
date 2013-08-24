@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Start amazing your web visitors with social proof of your product or service. Let Kudobux do the job for you.
 == Description ==
-										<p> <h2> --Beta-- </h2></p>
+										<p> <b> --Beta-- </b></p>
 <p>Kudobux Testimonial Widget plugin allows you to display social testimonials  or selected quotes on your WordPress blog.</p> 
 <p>Kudobux grabs all the positive and great things people are saying about you on social media(Facebook,Twitter,Blogs,G+,Emails...),
 filters them and display it on your website with an easy to customize clean widget.</p>
@@ -24,16 +24,16 @@ It is easy to setup and 100% free.</p>
 3. Visit the Kudobux Menu and start to customize your Kudos
 
 == Frequently Asked Questions ==
-1. How do I customize my widget </ br>
+<p>1. How do I customize my widget </p>
 	Ans - You can start customization right from your wordpress admin are under the Kudobux Menu
 	
-2. When I need help who should I contact </ br>
+<p>2. When I need help who should I contact </p>
 	Ans - We are always more than happy to help. Reach us at support@kudobux.com
 
-3. How many social accounts can I add </ br>
+<p>3.How many social accounts can I add </p>
 	Ans - You can add as many social accounts as you want at you cost
 
-4. Is the plugin free </ br>
+<p>4.Is the plugin free</p>
 	Ans - Yes this plugin is 100% free
 
 == Screenshots ==
