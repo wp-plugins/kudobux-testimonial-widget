@@ -38,10 +38,10 @@ Ans- Yes this plugin is 100% free
 
 == Screenshots ==
 
-<p>1.Signup screen where you start your registration process by signing in with Facebook or Twitter</p>
-<p>2.Dashboard area where you select which social feeds you want to show on your website</p>
-<p>3.Widget customization area where you customize the look and feel of your widget</p>
-<p>3.Sample Demo on your blog</p>
+<p>screenshot-1.jpg Signup screen where you start your registration process by signing in with Facebook or Twitter</p>
+<p>screenshot-2.jpg Dashboard area where you select which social feeds you want to show on your website</p>
+<p>screenshot-3.jpg Widget customization area where you customize the look and feel of your widget</p>
+<p>screenshot-4.jpg Sample Demo on your blog</p>
 
 == Upgrade Notice ==
 We will always alert you via email or your dashboard when there are new updates and awesome improvements to the product
