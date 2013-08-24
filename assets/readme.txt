@@ -25,16 +25,16 @@ It is easy to setup and 100% free.</p>
 
 == Frequently Asked Questions ==
 <p>1. How do I customize my widget </p>
-	Ans - You can start customization right from your wordpress admin are under the Kudobux Menu
+You can start customization right from wordpress admin, under the Kudobux Menu
 	
 <p>2. When I need help who should I contact </p>
-	Ans - We are always more than happy to help. Reach us at support@kudobux.com
+We are always more than happy to help. Reach us at support@kudobux.com
 
 <p>3.How many social accounts can I add </p>
-	Ans - You can add as many social accounts as you want at you cost
+You can add as many social accounts as you want at you cost
 
 <p>4.Is the plugin free</p>
-	Ans - Yes this plugin is 100% free
+Yes this plugin is 100% free
 
 == Screenshots ==
 
