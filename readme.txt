@@ -31,7 +31,7 @@ It is easy to setup and 100% free.</p>
 **We are always more than happy to help. Reach us at support@kudobux.com
 
 <p>3.How many social accounts can I add </p>
-**You can add as many social accounts as you want at you cost
+**You can add as many social accounts as you want
 
 <p>4.Is the plugin free</p>
 **Yes this plugin is 100% free
