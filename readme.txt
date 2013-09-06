@@ -1,7 +1,7 @@
 === Kudobag ===
 Contributors: Kudobag
 Donate link: http://Kudobag.com
-Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag
+Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux
 Requires at least: 3.0.1
 Tested up to: 3.6
 Stable tag: 1.0.1
@@ -50,13 +50,6 @@ It is easy to setup and 100% free.</p>
 
 <p>4.Is the plugin free</p>
 **Yes this plugin is 100% free
-
-== Screenshots ==
-
-<p>1.Signup screen where you start your registration process by signing in with Facebook or Twitter</p>
-<p>2.Dashboard area where you select which social feeds you want to show on your website</p>
-<p>3.Widget customization area where you customize the look and feel of your widget</p>
-<p>4.Sample Demo on your blog</p>
 
 == Upgrade Notice ==
 We will always alert you via email or your dashboard when there are new updates and awesome improvements to the product
