@@ -17,7 +17,7 @@ filters them and display it on your website with an easy to customize clean widg
 <p>With Kudobag you always get upto date testimonials on your website, this will wow your web visitors and improve your SEO drastically. 
 It is easy to setup and 100% free.</p>
 
-== Main Features ==
+= Main Features =
 1. Collecting testimonials from
 	- Facebook
 	- Twitter
