@@ -4,18 +4,33 @@ Donate link: http://Kudobag.com
 Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag
 Requires at least: 3.0.1
 Tested up to: 3.6
-Stable tag: 4.3
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Start amazing your web visitors with social proof of your product or service. Let Kudobag do the job for you.
 == Description ==
-										<p> <b> --Beta-- </b></p>
+										<p> <b> ==Beta==</b></p>
 <p>Kudobag Testimonial Widget plugin allows you to display social testimonials  or selected quotes on your WordPress blog.</p> 
 <p>Kudobag grabs all the positive and great things people are saying about you on social media(Facebook,Twitter,Blogs,G+,Emails...),
 filters them and display it on your website with an easy to customize clean widget.</p>
 <p>With Kudobag you always get upto date testimonials on your website, this will wow your web visitors and improve your SEO drastically. 
 It is easy to setup and 100% free.</p>
+
+= Main Features =
+1. Collecting testimonials from
+	- Facebook
+	- Twitter
+	- Blogs
+	- Emails
+	
+2. Add personal testimonials
+
+3. Publish your testimonials to search engines and business directories to improve SEO
+
+4. Reward brand advocates
+
+5 . Easy share and display testimonials on your website
 
 == Installation ==
 
@@ -48,8 +63,10 @@ We will always alert you via email or your dashboard when there are new updates 
 - Just do a normal upgrade.
 
 == Changelog ==
-
 = 1.0.1 =
+ - Registration issues fixed
+ - Ability to install and start collecting kudos before displaying plugin fixed
+= 1.0 =
 * None
 
 
