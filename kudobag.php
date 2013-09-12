@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Kudobag
-Plugin URI: http://kudobag.com/
+Plugin URI: https://kudobag.com/
 Description: A simple Social Testimonial Widget
 Version: 1.0
 Author: Kudobag
@@ -16,7 +16,7 @@ add_action('admin_menu', 'register_my_kudobag_submenu_page');
 add_action('wp_footer', 'add_widget');
 add_action('admin_head', 'get_id');
 add_action('admin_footer', 'signup_listener');
-$script = "<script src=\"http://kudobag.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".get_option( 'kudobag_uid' )."'});</script>"; 
+$script = "<script src=\"https://kudobag.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".get_option( 'kudobag_uid' )."'});</script>"; 
 
 function register_my_kudobag_menu_page(){
     
@@ -43,7 +43,7 @@ function kudobag_plugin_default() {
 	
 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	echo '<div class="wrap">';
-	echo '<iframe src="http://kudobag.com/signup/add_channel?platform=1&url='.urlencode($url).'" width="1100" height="900"></iframe>';
+	echo '<iframe src="https://kudobag.com/signup/add_channel?platform=1&url='.urlencode($url).'" width="1100" height="900"></iframe>';
 	echo '</div>';
 }
 
@@ -53,7 +53,7 @@ function kudobag_customize_widget() {
 	}
 	
 	echo '<div class="wrap">';
-	echo '<iframe src="http://kudobag.com/dashboard#customize" width="1020" height="800"></iframe>';
+	echo '<iframe src="https://kudobag.com/dashboard#customize" width="1020" height="800"></iframe>';
 	echo '</div>';
 }
 
@@ -65,7 +65,7 @@ function kudobag_sign_in() {
 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	echo '<div class="wrap">';
 	echo '<input hidden="input"  id="kudos_id" >';
-echo '<iframe src="http://kudobag.com/login?platform=1&url='.urlencode($url).'" width="1020" height="800"></iframe>';
+echo '<iframe src="https://kudobag.com/login?platform=1&url='.urlencode($url).'" width="1020" height="800"></iframe>';
 	echo '</div>';
 }
 
@@ -86,7 +86,7 @@ function update_kudos_key( ) {
 
   // If we successfully update the uid ...
   if( update_option( "kudobag_uid", $new_value ) ) {
- $GLOBALS['script'] = "<script src=\"http://kudobag.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".$new_value ."'});</script>"; 
+ $GLOBALS['script'] = "<script src=\"https://kudobag.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".$new_value ."'});</script>"; 
   	add_action('wp_footer', 'add_widget');
     //print_r(1);
     exit();
@@ -102,7 +102,7 @@ function signup_listener(){
 echo '<script>
         window.addEventListener( "message",
           function (e) {
-                if(e.origin !== "http://kudobag.com"){ return; } 
+                if(e.origin !== "https://kudobag.com"){ return; } 
                 $ = jQuery.noConflict();
  $( document ).ready( function() {
   $.post( ajaxurl, 
