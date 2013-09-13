@@ -41,7 +41,13 @@ function kudobag_plugin_default() {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 	
-	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'|| $_SERVER['SERVER_PORT'] == 443) {
+
+         	$url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}else{
+		$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}
+	
 	echo '<div class="wrap">';
 	echo '<iframe src="https://kudobag.com/signup/add_channel?platform=1&url='.urlencode($url).'" width="1100" height="900"></iframe>';
 	echo '</div>';
@@ -53,7 +59,7 @@ function kudobag_customize_widget() {
 	}
 	
 	echo '<div class="wrap">';
-	echo '<iframe src="https://kudobag.com/dashboard#customize" width="1020" height="800"></iframe>';
+	echo '<iframe src="https://kudobag.com/dashboard/customize" width="1020" height="800"></iframe>';
 	echo '</div>';
 }
 
@@ -91,7 +97,7 @@ function update_kudos_key( ) {
     //print_r(1);
     exit();
   } 
-  print_r(0);
+  //print_r(0);
   exit();
 }
 
