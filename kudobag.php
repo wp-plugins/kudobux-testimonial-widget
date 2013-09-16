@@ -1,42 +1,95 @@
 <?php
 
 /*
-Plugin Name: Kudobag
-Plugin URI: https://kudobag.com/
-Description: A simple Social Testimonial Widget
+Plugin Name: Kudobuzz
+Plugin URI: https://kudobuzz.com
+Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Kudubag makes your website more customer-centric while improving your SEO.
 Version: 1.0
-Author: Kudobag
-Author URI: https://kudobag.com
+Author: Kudobuzz
+Author URI: https://kudobuzz.com
 License: GPL
 */
 
+
 //Adding the Menu Block
-add_action( 'admin_menu', 'register_my_kudobag_menu_page' );
-add_action('admin_menu', 'register_my_kudobag_submenu_page');
+add_action( 'admin_menu', 'register_kudobuzz_menu_page' );
+add_action('admin_menu', 'register_kudobuzz_submenu_page');
 add_action('wp_footer', 'add_widget');
 add_action('admin_head', 'get_id');
 add_action('admin_footer', 'signup_listener');
-$script = "<script src=\"https://kudobag.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".get_option( 'kudobag_uid' )."'});</script>"; 
 
-function register_my_kudobag_menu_page(){
+add_action('init', 'sessionStart', 1);
+add_action('wp_logout', 'sessionEnd');
+
+function sessionStart() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+
+function sessionEnd() {
+    session_destroy ();
+}
+
+//action hook for plugin activation
+register_activation_hook(__FILE__, 'activate_kudobuzz_plugin');
+//action hook for plugin activation
+register_deactivation_hook(__FILE__, 'deactivate_kudobuzz_plugin');
+
+//Deactivate plugin
+function deactivate_kudobuzz_plugin() {
+delete_option('kudobuzz_uid', '');
+delete_option('kudobuzz_div','');
+}
+
+//Activate plugin
+function activate_kudobuzz_plugin() {
+ add_option ('kudobuzz_div', '<div id="kudobuzz_widget"></div>');
+ add_option('kudobuzz_uid', '');
+ delete_option('kudobux','');
+ delete_option('kudobag','');
+}
+
+
+$script = "<script src=\"https://kudobuzz.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".get_option( 'kudobuzz_uid' )."'});</script>"; 
+
+
+
+function set_shortcode($atts) {
+
+    $our_div = "";
     
-    add_menu_page(__('Kudobag_menu','Kudobag'), __('  Kudobag','kudos-menu'), 'manage_options', 'Kudobag', 'kudobag_plugin_default',plugins_url( 'kudobux-testimonial-widget/img/icon.png' ) );
+    $our_div .= get_option( 'kudobuzz_div' );
+
+    return  $our_div;
+}
+
+//Add shortcode 
+add_shortcode("kudobuzz", 'set_shortcode');
+
+function register_kudobuzz_menu_page(){
+    
+    add_menu_page(__('Kudobuzz_menu','Kudobuzz'), __('  Kudobuzz','kudos-menu'), 'manage_options', 'Kudobuzz', 'kudobuzz_plugin_default',plugins_url( 'kudobux-testimonial-widget/img/icon.png' ) );
 }
 
 function add_widget(){
-  try{add_option('kudobag_uid', '');}catch(Exception $e){}
+  
   echo  $GLOBALS['script'];
 }
 
-function register_my_kudobag_submenu_page() {
-add_submenu_page('Kudobag', __('Kudobag-Customize','Sign in'), __('Sign in','kudos-signin'), 'manage_options', 'Sign_in', 'kudobag_sign_in');
-add_submenu_page('Kudobag', __('Kudobag-Customize','Customize Widget'), __('Customize Widget','kudos-widget'), 'manage_options', 'customize-widget', 'kudobag_customize_widget');
-add_submenu_page('Kudobag', __('Kudobag-Customize','Help'), __('Help','kudos-help'), 'manage_options', 'help', 'kudobag_help');
+function register_kudobuzz_submenu_page() {
+add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Sign up'), __('Sign up','kudos-signup'), 'manage_options', 'Sign_up', 'kudobuzz_sign_up');
+add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Customize Widget'), __('Customize Widget','kudos-widget'), 'manage_options', 'customize-widget', 'kudobuzz_customize_widget');
+add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Help'), __('Help','kudos-help'), 'manage_options', 'help', 'kudobuzz_help');
 }
 
 
 //Loading a page in Ifram to help customize the widget
-function kudobag_plugin_default() {
+function kudobuzz_plugin_default() {
+ 
+ 
+ if(!isset($_SESSION['first_time'])) {
+   $_SESSION['first_time'] = "first_time";
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
@@ -47,31 +100,55 @@ function kudobag_plugin_default() {
 	}else{
 		$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	}
-	
 	echo '<div class="wrap">';
-	echo '<iframe src="https://kudobag.com/signup/add_channel?platform=1&url='.urlencode($url).'" width="1100" height="900"></iframe>';
+	echo'<iframe src="https://kudobuzz.com/logout?platform=1&url='.urlencode($url).'" width="1020" height="800"></iframe>';
+	echo '</div>';
+} else {
+    if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
+	if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'|| $_SERVER['SERVER_PORT'] == 443) {
+
+         	$url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}else{
+		$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}
+	echo '<div class="wrap">';
+	echo '<iframe src="https://kudobuzz.com/login?platform=1&url='.urlencode($url).'" width="1020" height="800"></iframe>';
 	echo '</div>';
 }
+ 
+	
+}
 
-function kudobag_customize_widget() {
-	if ( !current_user_can( 'manage_options' ) )  {
+function kudobuzz_sign_up(){
+if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 	
-	echo '<div class="wrap">';
-	echo '<iframe src="https://kudobag.com/dashboard/customize" width="1020" height="800"></iframe>';
+	if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'|| $_SERVER['SERVER_PORT'] == 443) {
+
+         	$url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}else{
+		$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}
+echo '<div class="wrap">';
+	echo '<iframe src="https://kudobuzz.com/signup/add_channel?platform=1&url='.urlencode($url).'" width="1100" height="900"></iframe>';
 	echo '</div>';
 }
 
-function kudobag_sign_in() {
+function kudobuzz_customize_widget() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
-	
-	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'|| $_SERVER['SERVER_PORT'] == 443) {
+
+         	$url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}else{
+		$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}
 	echo '<div class="wrap">';
-	echo '<input hidden="input"  id="kudos_id" >';
-echo '<iframe src="https://kudobag.com/login?platform=1&url='.urlencode($url).'" width="1020" height="800"></iframe>';
+	echo '<iframe src="https://kudobuzz.com/dashboard/customize" width="1020" height="800"></iframe>';
 	echo '</div>';
 }
 
@@ -91,8 +168,8 @@ function update_kudos_key( ) {
   $new_value = $_POST['uid'];
 
   // If we successfully update the uid ...
-  if( update_option( "kudobag_uid", $new_value ) ) {
- $GLOBALS['script'] = "<script src=\"https://kudobag.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".$new_value ."'});</script>"; 
+  if( update_option( "kudobuzz_uid", $new_value ) ) {
+ $GLOBALS['script'] = "<script src=\"https://kudobuzz.com/assets/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".$new_value ."'});</script>"; 
   	add_action('wp_footer', 'add_widget');
     //print_r(1);
     exit();
@@ -108,7 +185,7 @@ function signup_listener(){
 echo '<script>
         window.addEventListener( "message",
           function (e) {
-                if(e.origin !== "https://kudobag.com"){ return; } 
+                if(e.origin !== "https://kudobuzz.com"){ return; } 
                 $ = jQuery.noConflict();
  $( document ).ready( function() {
   $.post( ajaxurl, 
@@ -133,9 +210,5 @@ echo '<script>
     
     
 }
-
-
-
-
 
 ?>
