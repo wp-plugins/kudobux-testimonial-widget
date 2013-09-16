@@ -4,7 +4,7 @@
 Plugin Name: Kudobuzz
 Plugin URI: https://kudobuzz.com
 Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Kudubag makes your website more customer-centric while improving your SEO.
-Version: 1.0
+Version: 1.1
 Author: Kudobuzz
 Author URI: https://kudobuzz.com
 License: GPL
@@ -80,7 +80,7 @@ function add_widget(){
 function register_kudobuzz_submenu_page() {
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Sign up'), __('Sign up','kudos-signup'), 'manage_options', 'Sign_up', 'kudobuzz_sign_up');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Customize Widget'), __('Customize Widget','kudos-widget'), 'manage_options', 'customize-widget', 'kudobuzz_customize_widget');
-add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Help'), __('Help','kudos-help'), 'manage_options', 'help', 'kudobuzz_help');
+add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Setup'), __('Setup','kudos-setup'), 'manage_options', 'setup', 'kudobuzz_setup');
 }
 
 
@@ -149,6 +149,31 @@ function kudobuzz_customize_widget() {
 	}
 	echo '<div class="wrap">';
 	echo '<iframe src="https://kudobuzz.com/dashboard/customize" width="1020" height="800"></iframe>';
+	echo '</div>';
+}
+
+function kudobuzz_setup(){
+if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
+	echo '<div class="wrap">';
+	echo '<h1>How to Setup Kudobuzz Wp-plugin</h1>
+
+<ol>
+<li>You will need to create a Kudobuzz Account using the sign-up menu</li>
+<li><p>Confirm your email address afterwards and login to your dashboard.</p>
+<p>
+<li><p>Connect the Facebook and/or the Twitter account you want to collect testimonials(Kudos) from. Mostly your business account.
+Within a few seconds Kudobuzz will start pulling all the postive things people have said about you if any.</p>
+<p>If you don\'t have any social account or no kudos in there. Don\'t worry use the Customer Kudos button to add personal Kudos.
+Click on the Kudos you want to feature on from the left hand-side they will show up in your kudo bag.</p></li>
+<li><p>To use wordpress shortcode choose template 3 or 4 (embedable widget), for floating go for 1 or 2.
+Next customize the look and feel of the template to much your blog theme. Click on save or Next to continue
+If you selected template 1 or 2 you are done. You don\'t need to do any other thing</li>
+<li>If you selected template 3 or 4 grab this code and paste it anywhere you want to show the testimonials</p></li>
+<h2><blockquote><b>[kudobuzz] </b> </blockquote></h2>
+</p>
+<li>  You are ready to rock-n-roll :)</li></ol>';
 	echo '</div>';
 }
 
