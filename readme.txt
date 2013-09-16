@@ -1,4 +1,4 @@
-=== Kudobag ===
+=== Kudobuzz ===
 Contributors: Kudobuzz
 Donate link: http://Kudobuzz.com
 Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux,Kudobuzz
@@ -8,7 +8,7 @@ Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Start amazing your web visitors with social proof of your product or service. Let Kudobag do the job for you.
+Start amazing your web visitors with social proof of your product or service. Let Kudobuzz do the job for you.
 
 == Description ==
 
