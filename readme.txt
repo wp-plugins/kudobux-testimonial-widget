@@ -1,6 +1,6 @@
 === Kudobuzz ===
 Contributors: Kudobuzz
-Donate link: http://Kudobuzz.com
+Donate link: https://kudobuzz.com
 Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux,Kudobuzz
 Requires at least: 3.0.1
 Tested up to: 3.6.1
@@ -8,7 +8,7 @@ Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Start amazing your web visitors with social proof of your product or service. Let Kudobuzz do the job for you.
+Simple widget that displays selected positive social buzz, or custom “kudos”, on your website.
 
 == Description ==
 
