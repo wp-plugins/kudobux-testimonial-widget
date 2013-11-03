@@ -1,10 +1,9 @@
 <?php
-
 /*
 Plugin Name: Kudobuzz
 Plugin URI: https://kudobuzz.com
 Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Kudubuzz makes your website more customer-centric while improving your SEO.
-Version: 1.2.1
+Version: 1.2.2
 Author: Kudobuzz
 Author URI: https://kudobuzz.com
 License: GPL
@@ -64,8 +63,9 @@ $script = "<!--Start Kudobuzz --> <script src=\"https://kudobuzz.com/public/java
 
 function register_kudobuzz_submenu_page() {
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Sign up'), __('Sign up','kudos-signup'), 'manage_options', 'Sign_up', 'kudobuzz_sign_up');
-add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Activate'), __('Activate','kudos-widget'), 'manage_options', 'Activate', 'activate');
+add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Activate'), __('Activate Account','kudos-widget'), 'manage_options', 'Activate', 'activate');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Resend'), __('','kudos-Resend'), 'manage_options', 'Resend', 'resend');
+add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','AfterLogin'), __('','kudos-AfterLogin'), 'manage_options', 'AfterLogin', 'AfterLogin');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step0'), __('','kudos-step0'), 'manage_options', 'Step0', 'step0');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step1'), __('','kudos-step1'), 'manage_options', 'Step1', 'step1');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step2'), __('','kudos-step2'), 'manage_options', 'Step2', 'step2');
@@ -124,7 +124,7 @@ function kudobuzz_sign_up(){
     line-height: 0.95em;
     margin-bottom: 100px;
     padding-left: 20px;
-    width: auto;">Signup Page -> Get Confirmation Code(via email)  -> Activate Account</span>
+    width: auto;"></span>
     </div>
     </div>
 </div>';
@@ -159,88 +159,8 @@ function step4(){
 function step5(){
     include( plugin_dir_path( __FILE__ ) . '/includes/step5.php');  
 }
-/**
- * Adds Foo_Widget widget.
- */
-/**
- * Adds kudobuzz_Widget widget.
- */
-class kudobuzz_Widget extends WP_Widget {
-
-	/**
-	 * Register Kudobuzz widget with WordPress.
-	 */
-	function __construct() {
-		parent::__construct(
-			'kudobuzz_widget', // Base ID
-			__('Kudobuzz Testimonials', 'text_domain'), // Name
-			array( 'description' => __( 'Kudobuzz Testimonial Widget', 'text_domain' ), ) // Args
-		);
-	}
-
-	/**
-	 * Front-end display of widget.
-	 *
-	 * @see WP_Widget::widget()
-	 *
-	 * @param array $args     Widget arguments.
-	 * @param array $instance Saved values from database.
-	 */
-	public function widget( $args, $instance ) {
-		$title = apply_filters( 'widget_title', $instance['title'] );
-                $embed = get_option( 'kudobuzz_div' );
-		echo $args['before_widget'];
-		if ( ! empty( $title ) )
-			echo $args['before_title'] . $title . $args['after_title'];
-		echo '<html>'.$embed.'</html>';
-		echo $args['after_widget'];
-	}
-
-	/**
-	 * Back-end widget form.
-	 *
-	 * @see WP_Widget::form()
-	 *
-	 * @param array $instance Previously saved values from database.
-	 */
-	public function form( $instance ) {
-		if ( isset( $instance[ 'title' ] ) ) {
-			$title = $instance[ 'title' ];
-		}
-		else {
-			$title = __( 'New title', 'text_domain' );
-		}
-		?>
-		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-		</p>
-		<?php 
-	}
-
-	/**
-	 * Sanitize widget form values as they are saved.
-	 *
-	 * @see WP_Widget::update()
-	 *
-	 * @param array $new_instance Values just sent to be saved.
-	 * @param array $old_instance Previously saved values from database.
-	 *
-	 * @return array Updated safe values to be saved.
-	 */
-	public function update( $new_instance, $old_instance ) {
-		$instance = array();
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-
-		return $instance;
-	}
-
-} // class kudobuzz_Widget
-// register kudobuzz_Widget widget
-function register_kudobuzz_widget() {
-    register_widget( 'kudobuzz_Widget' );
+function AfterLogin(){
+ include( plugin_dir_path( __FILE__ ) . '/includes/AfterLogin.php'); 
 }
-add_action( 'widgets_init', 'register_kudobuzz_widget' );
-
 
 ?>

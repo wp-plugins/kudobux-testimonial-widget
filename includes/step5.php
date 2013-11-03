@@ -130,7 +130,7 @@ font-style:normal;font-weight:700;
 
 
 <p> Hurray!!!
- If you selected a floatable widget then we are all set, refresh your website to see the widget.
+ If you selected a floatable widget then you are all set, refresh your website to see the widget.
  If you selected an emdedabble widget then grab the piece of code below and paste it anywhere within your website to start showing the widget.
  
 </p>

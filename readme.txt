@@ -3,8 +3,8 @@ Contributors: Kudobuzz
 Donate link: https://kudobuzz.com
 Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux,Kudobuzz
 Requires at least: 3.0.1
-Tested up to: 3.6.1
-Stable tag: 1.2.1
+Tested up to: 3.7.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,7 +45,7 @@ It is easy to setup and 100% free.</p>
 **You can start customization right from wordpress admin, under the Kudobag Menu
 	
 <p>2. When I need help who should I contact </p>
-**We are always more than happy to help. Reach us at hello@kudobuzz.com
+**We are always more than happy to help. Reach us at support@kudobuzz.com
 
 <p>3.How many social accounts can I add </p>
 **You can add as many social accounts as you want
@@ -58,6 +58,10 @@ We will always alert you via email or your dashboard when there are new updates 
 - Just do a normal upgrade.
 
 == Changelog ==
+= 1.2.2 =
+Activation issue fixed
+Installation Instructions have been improved
+
 = 1.2.1 =
 - More widget themes have been added
 - Bugs with customizing widgets is fixed

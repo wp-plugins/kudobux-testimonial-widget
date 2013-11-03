@@ -87,7 +87,7 @@ src:url('data:font/opentype;base64,d09GRgABAAAAAES8ABIAAAAAijwAAAAAAAAAAAAAAAAAA
 font-style:normal;font-weight:700;
 }
       </style>
-   <a class="signup-button" target="_blank" href="<?php echo get_option('kudobuzz_login_url'); ?>" id="kudobuzz_login_account">Login to Kudobuzz</a>  <span style="color:#8B99A3;"> Or </span>  
+   <a class="signup-button" target="_blank" href="<?php echo get_option('kudobuzz_login_url'); ?>" id="kudobuzz_login_account">Goto Dashboard</a>  <span style="color:#8B99A3;"> Or </span>  
    <a class="signup-button" target="_self" href="<?php echo get_site_url().'/wp-admin/admin.php?page=Sign_up'; ?>" id="kudobuzz_login_account">Sign Up</a></p> 
    
                    

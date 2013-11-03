@@ -30,7 +30,7 @@ if (isset($_POST['kudobuzz_uid']) && $_POST['kudobuzz_uid'] != "") {
 if(isset($_POST['kudobuzz_resend_email']) && $_POST['kudobuzz_resend_email']=""){
     send_confirmation_code();
 }else{
-    $conf_message = 'Error : Enter email address';
+    $conf_message = '';
 }
 ?>  
 <style type="text/css">
@@ -141,8 +141,7 @@ function validate_code($code){
         return $result;
         }
         
-        function get_account_id($code){
-    
+function get_account_id($code){
     $url = 'https://kudobuzz.com/';
 	$sent_to = $url ."get_account_id/".$code;
         $results = wp_remote_fopen($sent_to);

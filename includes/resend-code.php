@@ -118,16 +118,3 @@ function send_confirmation_code($to,$user_id){
    }
         
 ?>
-
- <?php 
- /*
-$to = $_SESSION['email'];
-   $userid= $_SESSION['user_id'];
-   $subject = "Confirmation Code";
-   $message = 'Thank you for signing up on Kudobuzz.'."\n".'Your Confirmation Code is '.$userid."\n".'The Kudobuzz Team';
-   $headers = 'From: Kudobuzz <hello@kudobuzz.com>' . "\r\n";
-   $kena = wp_mail($to, $subject, $message, $headers);
-   echo $kena;
-  * 
-  */
- ?> 
