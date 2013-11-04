@@ -30,8 +30,6 @@ It is easy to setup and 100% free.</p>
 
 3. Publish your testimonials to search engines and business directories to improve SEO
 
-4. Reward brand advocates
-
 5 . Easy share and display testimonials on your website
 
 == Installation ==
@@ -59,8 +57,8 @@ We will always alert you via email or your dashboard when there are new updates 
 
 == Changelog ==
 = 1.2.2 =
-Activation issue fixed
-Installation Instructions have been improved
+- Activation issue fixed
+- Installation Instructions updated
 
 = 1.2.1 =
 - More widget themes have been added
