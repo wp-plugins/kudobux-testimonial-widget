@@ -103,11 +103,12 @@ font-style:normal;font-weight:700;
 	border:1px solid #8B99A3;font-family: museo-sans, Helvetica, Arial, sans-serif;">
     <div style="padding:10px;font-size:14px;color: #8B99A3;">
     <p style="text-align: center;color: #8B99A3;font-size: 16px;line-height: 22px;">
-        <strong>You've successfully installed Kudobuzz Testimonial Widget. Kudobuzz makes your website more customer-centric & improves your SEO.</strong></p>
+        <strong>Do more with Kudobuzz...</strong></p>
  <ol>
-<p><span style="font-style:bold;color:black"> You can at anytime login to your dashboard to add more kudos or customize your widget</span></p>
-<p><span style="font-style:bold;color:black"> Remember to use the "ask for kudos" link to collect more kudos from your contacts</span></p>
-
+<p><span style="font-style:bold;color:black"> Use Kudobuzz to collect your social testimonials, product, service and site reviews.</span></p>
+<p><span style="font-style:bold;color:black"> With the smart inbuilt SEO tools, Kudobuzz will help you 
+        
+        <ul><li>Improve your brand's online reputation</li> <li>Increase your website traffic </li> <li>& Drive sales using the power of reviews.</li></ul> </span></p>
 
 </ol>
 <p>If you are facing any challenges send us an email <a href="mailto:hello@kudobuzz.com" style="color:#d35400;">hello@kudobuzz.com</a> or check out our  <a href="https://groups.google.com/forum/?hl=en#!forum/kudobuzz" target="_blank" style="color:#d35400;">forum</a> for community help</p>

@@ -108,15 +108,14 @@ font-style:normal;font-weight:700;
 	border:1px solid #8B99A3;font-family: museo-sans, Helvetica, Arial, sans-serif;">
     <div style="padding:10px;font-size:14px;color: #8B99A3;">
     <p style="text-align: center;color: #8B99A3;font-size: 16px;line-height: 22px;">
-<strong>Logging into dashboard</strong></p>
+<strong>You've successfully finished the installation</strong></p>
     
-
-<p>Click on the login button above. It will open a new tab with the login form. Login with the username and password you choose during sign up.</p>
-
+<p>Kudobuzz is super packed with a lot of features help you collect & display your social reviews. You should see the review widget on your website now, just refresh your page or sometimes clear your cache first.</p>
+<p>Now Login to your Kudobuzz dashboard to customize your widget and start adding your testimonials. If you did not see the widget reach-out to support team for free custom installation.[hello@kudobuzz.com]</p>
 <p style="text-align: center;"><img src="<?php echo plugins_url().'/kudobux-testimonial-widget/assets/img/step0.jpg'; ?>" alt="connect_img" style="width: 20%;">
 </p>
 
-<p style="text-align:center;"><a class="signup-button" href="<?php echo site_url() ?>/wp-admin/admin.php?page=Step1">Next</a></p>
+<!--<p style="text-align:center;"><a class="signup-button" href="<?php //echo site_url() ?>/wp-admin/admin.php?page=Step1">Next</a></p>-->
 
 </div>
     </div>

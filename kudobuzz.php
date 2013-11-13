@@ -3,7 +3,7 @@
 Plugin Name: Kudobuzz
 Plugin URI: https://kudobuzz.com
 Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Kudubuzz makes your website more customer-centric while improving your SEO.
-Version: 1.2.2
+Version: 1.2.3
 Author: Kudobuzz
 Author URI: https://kudobuzz.com
 License: GPL
@@ -68,11 +68,11 @@ add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Activate'), __('Activate A
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Resend'), __('','kudos-Resend'), 'manage_options', 'Resend', 'resend');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','AfterLogin'), __('','kudos-AfterLogin'), 'manage_options', 'AfterLogin', 'AfterLogin');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step0'), __('','kudos-step0'), 'manage_options', 'Step0', 'step0');
-add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step1'), __('','kudos-step1'), 'manage_options', 'Step1', 'step1');
+/*add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step1'), __('','kudos-step1'), 'manage_options', 'Step1', 'step1');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step2'), __('','kudos-step2'), 'manage_options', 'Step2', 'step2');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step3'), __('','kudos-step3'), 'manage_options', 'Step3', 'step3');
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step4'), __('','kudos-step4'), 'manage_options', 'Step4', 'step4');
-add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step5'), __('','kudos-step5'), 'manage_options', 'Step5', 'step5');
+add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step5'), __('','kudos-step5'), 'manage_options', 'Step5', 'step5');*/
 }
 
 function set_shortcode($atts) {
@@ -144,7 +144,10 @@ function resend(){
 function step0(){
     include( plugin_dir_path( __FILE__ ) . '/includes/step0.php');  
 }
-function step1(){
+function AfterLogin(){
+ include( plugin_dir_path( __FILE__ ) . '/includes/AfterLogin.php'); 
+}
+/*function step1(){
     include( plugin_dir_path( __FILE__ ) . '/includes/step1.php');
 
 }
@@ -159,9 +162,7 @@ function step4(){
 }
 function step5(){
     include( plugin_dir_path( __FILE__ ) . '/includes/step5.php');  
-}
-function AfterLogin(){
- include( plugin_dir_path( __FILE__ ) . '/includes/AfterLogin.php'); 
-}
+}*/
+
 
 ?>

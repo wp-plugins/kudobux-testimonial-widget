@@ -4,11 +4,11 @@ Donate link: https://kudobuzz.com
 Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux,Kudobuzz
 Requires at least: 3.0.1
 Tested up to: 3.7.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple widget that displays selected positive social buzz, or custom “kudos”, on your website.
+Simple widget that displays selected positive social buzz, or custom “kudos” & product or site reviews on your website.
 
 == Description ==
 
@@ -28,9 +28,25 @@ It is easy to setup and 100% free.</p>
 	
 2. Add personal testimonials
 
-3. Publish your testimonials to search engines and business directories to improve SEO
+3. Setting up an SEO Page
 
-5 . Easy share and display testimonials on your website
+4. Publish your testimonials to search engines and business directories to improve SEO
+
+5. Reward brand advocates
+
+6. Easy share and display testimonials on your website
+
+= Support =
+Email us at [hello@kudobuzz.com] or join our community at [http://bit.ly/kudobuzz]for any kind of support. We promise to get back to you ASAP.
+
+== Screenshots ==
+
+1. Kudobuzz Testimonial Widget in action on a website (Classic)
+2. Kudobuzz Testimonial Widget in action on a website (Neptune)
+3. User's welcome dashboard
+4. Connecting Social accounts and adding Reviews
+5. Select a Widget
+6. Customizing a Widget
 
 == Installation ==
 
@@ -40,25 +56,30 @@ It is easy to setup and 100% free.</p>
 
 == Frequently Asked Questions ==
 <p>1. How do I customize my widget </p>
-**You can start customization right from wordpress admin, under the Kudobag Menu
+**You can start customization by logging into your Kudobuzz dashboard after plugin activation
 	
 <p>2. When I need help who should I contact </p>
-**We are always more than happy to help. Reach us at support@kudobuzz.com
+**We are always more than happy to help. Reach us at hello@kudobuzz.com
 
 <p>3.How many social accounts can I add </p>
 **You can add as many social accounts as you want
 
-<p>4.Is the plugin free</p>
-**Yes this plugin is 100% free
+<p>4.Do you offer custom installation</p>
+**Yes we do a free custom installation email is at [hello@kudobuzz.com]
 
 == Upgrade Notice ==
 We will always alert you via email or your dashboard when there are new updates and awesome improvements to the product
 - Just do a normal upgrade.
 
 == Changelog ==
+= 1.2.3 =
+- Installation error fixed
+- Session error fixed
+
+
 = 1.2.2 =
 - Activation issue fixed
-- Installation Instructions updated
+- Installation Instructions have been improved
 
 = 1.2.1 =
 - More widget themes have been added

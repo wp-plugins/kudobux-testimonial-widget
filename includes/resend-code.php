@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 $to = $_SESSION['email'];
 $user_id= $_SESSION['user_id'];
 
@@ -117,4 +117,7 @@ function send_confirmation_code($to,$user_id){
    return $results;
    }
         
+<<<<<<< .mine
+?>=======
 ?>
+>>>>>>> .r804080
