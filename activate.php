@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        @session_start(); 
+    }
 if (isset($_POST['kudobuzz_uid']) && $_POST['kudobuzz_uid'] != "") {
     $conf_code = $_POST['kudobuzz_uid'];
   
