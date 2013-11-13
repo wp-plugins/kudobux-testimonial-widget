@@ -8,6 +8,7 @@ Author: Kudobuzz
 Author URI: https://kudobuzz.com
 License: GPL
 */
+
 if ( !function_exists( 'add_action' ) ) {
 	echo "Hi there!  You are in a wrong place"; 
 	exit(); 
@@ -15,13 +16,13 @@ if ( !function_exists( 'add_action' ) ) {
 //Plugin Directory Link
 define('Kudobuzz_Plugin_DIR', plugin_dir_path(__FILE__));
 define('Kudobuzz_Plugin_URL', plugin_dir_url(__FILE__));
-add_action('init', 'header_init');
+//add_action('init', 'header_init');
 //Adding the Menu Block
 add_action( 'admin_menu', 'register_kudobuzz_menu_page' );
 add_action('admin_menu', 'register_kudobuzz_submenu_page');
 add_action('wp_head', 'add_widget');
-add_action('admin_head', 'get_id');
-add_action('admin_footer', 'signup_listener');
+//add_action('admin_head', 'get_id');
+//add_action('admin_footer', 'signup_listener');
 
 
 //Add shortcode 
