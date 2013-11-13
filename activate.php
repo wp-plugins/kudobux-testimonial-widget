@@ -16,9 +16,8 @@ if (isset($_POST['kudobuzz_uid']) && $_POST['kudobuzz_uid'] != "") {
     $uid = $user_id_dec."-".$account_id_dec;
     if($output==1 && $account_id != 0){
     update_option('kudobuzz_uid', $uid);
-   
     echo ("<SCRIPT LANGUAGE='JavaScript'>
-    window.alert('Hurray your account is activated. You will be redirected to the setup page to start showing your Kudos')
+    window.alert('Hurray your account is activated. You will be redirected now')
     window.location='./admin.php?page=Step0';
     </SCRIPT>");
     }else{
