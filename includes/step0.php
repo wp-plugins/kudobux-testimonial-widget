@@ -17,8 +17,7 @@
     width: 70px;
     position: relative;
     top: -4px;
-"/>
-    <span style="top:-7px; position:relative;color: #FFFFFF;
+"/><span style="top:-7px; position:relative;color: #FFFFFF;
     font-size: 2.0em;
     font-weight: bold;
     height: auto;
@@ -27,20 +26,43 @@
     padding-left: 20px;
     width: auto;">Start amazing your customers with Kudobuzz </span>
     </div>
-    
-    <div id="dropifi_after_header" style="
-         min-height: 32px;
-background-color: #ECF0F1;
-padding: 1px 10px;
-	-webkit-border-radius: 0px 0px 5px 5px;
-    -moz-border-radius: 0px 0px 5px 5px;
-    border-radius: 0px 0px 5px 5px;
-	border: 1px solid #8B99A3;
-border-width: 0px 1px 1px 1px;
-font-family: museo-sans, Helvetica, Arial, sans-serif;">
-    
-  <p style="text-align: center;"> 
       <style type="text/css">
+          #kudobuzz_uid_textarea{
+              width: 450px!important;
+height: 64px !important;
+    border: 2px solid #bdc3c7;
+color: #34495e;
+font-family: 'Lato', sans-serif;
+font-size: 14px;
+padding: 8px 5px;
+height: 41px;
+text-indent: 6px;
+-webkit-appearance: none;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+border:2px solid transparent;
+-webkit-transition: border .25s linear, color .25s linear;
+-moz-transition: border .25s linear, color .25s linear;
+-o-transition: border .25s linear, color .25s linear;
+transition: border .25s linear, color .25s linear;
+-webkit-backface-visibility: hidden;
+    
+    }
+    #kudobuzz_uid_textarea:hover{
+        border:2px solid #8b99a3;
+    }
+    #kudobuzz_uid_textarea:focus{
+        border:2px solid #d35400;
+    }
+          .btn_pair{
+             float: right;
+             position:relative;
+             top:-15px;
+         }
           .signup-button:hover{
              color: #fff !important;
 background: #e87e04 !important;
@@ -92,35 +114,29 @@ src:url('data:font/opentype;base64,d09GRgABAAAAAES8ABIAAAAAijwAAAAAAAAAAAAAAAAAA
 font-style:normal;font-weight:700;
 }
       </style>
-   <a class="signup-button" target="_blank" href="<?php echo get_option('kudobuzz_login_url'); ?>" id="kudobuzz_login_account">Login to Kudobuzz</a>  <span style="color:#8B99A3;"> Or </span>  
-   <a class="signup-button" target="_self" href="<?php echo get_site_url().'/wp-admin/admin.php?page=Sign_up'; ?>" id="kudobuzz_login_account">Sign Up</a></p> 
-   
-                   
-    </div>
-    
-    
-    <div id="kudobuzz_content" style="-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+  <div id="kudobuzz_content" style="-webkit-border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0px 0px 5px 5px;
+    border-radius:  0px 0px 5px 5px;
 	background-color:#ECF0F1;
-	height:400px;
-	margin-top:20px;
-	border:1px solid #8B99A3;font-family: museo-sans, Helvetica, Arial, sans-serif;">
+	margin-top:0px;font-family: museo-sans, Helvetica, Arial, sans-serif;">
     <div style="padding:10px;font-size:14px;color: #8B99A3;">
     <p style="text-align: center;color: #8B99A3;font-size: 16px;line-height: 22px;">
-<strong>You've successfully finished the installation</strong></p>
-    
-<p>Kudobuzz is super packed with a lot of features help you collect & display your social reviews. You should see the review widget on your website now, just refresh your page or sometimes clear your cache first.</p>
-<p>Now Login to your Kudobuzz dashboard to customize your widget and start adding your testimonials. If you did not see the widget reach-out to support team for free custom installation.[hello@kudobuzz.com]</p>
-<p style="text-align: center;"><img src="<?php echo plugins_url().'/kudobux-testimonial-widget/assets/img/step0.jpg'; ?>" alt="connect_img" style="width: 20%;">
+        <strong>Now lets setup our review collection page</strong>
+    <a class="signup-button btn_pair" href="<?php echo site_url() ?>/wp-admin/admin.php?page=Kudobuzz">Done</a> 
+    </p>
+
+
+<p> 
+   <p> 1) Create a new page</p>
+    <p>2) Give it a title "Submit a review"</p>
+    <p>3) Copy and paste the short code below in the content area and click on save.</p>
+    <p>4) Preview the page to see the review form</p>
 </p>
-
-<!--<p style="text-align:center;"><a class="signup-button" href="<?php //echo site_url() ?>/wp-admin/admin.php?page=Step1">Next</a></p>-->
-
+<p style="text-align: center;"><textarea id="kudobuzz_uid_textarea"> [kudobuzz_review] </textarea></p>
+<p style="text-align: center;"><img src="<?php echo plugins_url().'/kudobux-testimonial-widget/assets/img/reviews.png'; ?>" alt="connect_img" style="width: 50%;">
+<p>If you are facing any challenges send us an email <a href="mailto:hello@kudobuzz.com" style="color:#d35400;">hello@kudobuzz.com</a> or check out our  <a href="https://groups.google.com/forum/?hl=en#!forum/kudobuzz" target="_blank" style="color:#d35400;">forum</a> for community help</p>
 </div>
     </div>
-    
-     
     </div>
 
     

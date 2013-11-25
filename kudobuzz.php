@@ -16,17 +16,13 @@ if ( !function_exists( 'add_action' ) ) {
 //Plugin Directory Link
 define('Kudobuzz_Plugin_DIR', plugin_dir_path(__FILE__));
 define('Kudobuzz_Plugin_URL', plugin_dir_url(__FILE__));
-//add_action('init', 'header_init');
-//Adding the Menu Block
 add_action( 'admin_menu', 'register_kudobuzz_menu_page' );
 add_action('admin_menu', 'register_kudobuzz_submenu_page');
 add_action('wp_head', 'add_widget');
-//add_action('admin_head', 'get_id');
-//add_action('admin_footer', 'signup_listener');
 
 
 //Add shortcode 
-add_shortcode("kudobuzz", 'set_shortcode');
+add_shortcode("kudobuzz_review", 'set_shortcode');
 
   
 register_activation_hook(__FILE__, 'activate_kudobuzz_plugin');
@@ -50,17 +46,18 @@ function deactivate_kudobuzz_plugin() {
 //delete_option('kudobuzz_uid', '');
 delete_option('kudobuzz_div');
 delete_option ('kudobuzz_login_url');
+delete_option('kudobuzz_review_form');
 }
 
 //Activate plugin
 function activate_kudobuzz_plugin() {
  add_option('kudobuzz_activation_redirect', true);
  add_option ('kudobuzz_login_url','https://kudobuzz.com/login');
- add_option ('kudobuzz_div', '<div id="kudobuzz_widget"></div>');
+ add_option ('kudobuzz_review_form', '<div id="kudobuzz-review-widget"></div>');
  add_option('kudobuzz_uid', '');
 }
 
-$script = "<!--Start Kudobuzz --> <script src=\"https://kudobuzz.com/public/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".get_option( 'kudobuzz_uid' )."'});</script><!--End Kudobuzz -->"; 
+$script = "<!--Start Kudobuzz Here --> <script src=\"https://kudobuzz.com/public/javascripts/kudos/widget.js\"></script><script> Kudos.Widget({uid: '".get_option( 'kudobuzz_uid' )."'});</script><!--End Kudobuzz Here -->"; 
 
 function register_kudobuzz_submenu_page() {
 add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Sign up'), __('Sign up','kudos-signup'), 'manage_options', 'Sign_up', 'kudobuzz_sign_up');
@@ -77,11 +74,11 @@ add_submenu_page('Kudobuzz', __('Kudobuzz-Customize','Step5'), __('','kudos-step
 
 function set_shortcode($atts) {
 
-    $our_div = "";
+    $kudobuzz_review_form = "";
     
-    $our_div .= get_option( 'kudobuzz_div' );
+    $kudobuzz_review_form .= get_option( 'kudobuzz_review_form' );
 
-    return  $our_div;
+    return  $kudobuzz_review_form;
 }
 
 

@@ -103,7 +103,7 @@ font-style:normal;font-weight:700;
 	border:1px solid #8B99A3;font-family: museo-sans, Helvetica, Arial, sans-serif;">
     <div style="padding:10px;font-size:14px;color: #8B99A3;">
     <p style="text-align: center;color: #8B99A3;font-size: 16px;line-height: 22px;">
-        <strong>Do more with Kudobuzz...</strong></p>
+        <strong>Login to your dashboard to customize your widget and review from</strong></p>
  <ol>
 <p><span style="font-style:bold;color:black"> Use Kudobuzz to collect your social testimonials, product, service and site reviews.</span></p>
 <p><span style="font-style:bold;color:black"> With the smart inbuilt SEO tools, Kudobuzz will help you 

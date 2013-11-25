@@ -116,8 +116,5 @@ function send_confirmation_code($to,$user_id){
    $results = wp_mail($to, $subject, $message, $headers);
    return $results;
    }
-        
-<<<<<<< .mine
-?>=======
+
 ?>
->>>>>>> .r804080
