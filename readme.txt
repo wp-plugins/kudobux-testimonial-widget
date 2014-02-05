@@ -1,5 +1,5 @@
 === Kudobuzz ===
-Contributors: Kudobuzz
+Contributors: Kudobuzz Testimonial Widget
 Donate link: https://kudobuzz.com
 Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux,Kudobuzz,Site Reviews,Reviews,Social Reviews
 Requires at least: 3.0.1
