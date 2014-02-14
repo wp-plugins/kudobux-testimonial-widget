@@ -12,7 +12,7 @@ require_once( $parse_uri[0] . 'wp-load.php' );
 
 $user_id = $_GET['user_id'];
 
-$url = MAIN_HOST .'get-user-account-details?user_id='.$user_id;
+$url = MAIN_HOST .'user/get_user?user_id='.$user_id.'&include_entities=1';
 
 //Get the user account id
 $user_account_details = json_decode(file_get_contents($url));
