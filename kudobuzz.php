@@ -116,16 +116,17 @@ $admin_email = get_settings("admin_email");
 
 
 $user_details_url = MAIN_HOST . 'user/get_user?email=' . $admin_email.'&include_entities=1';
-
+ 
 $user_details = json_decode(file_get_contents($user_details_url));
 
-if (isset($user_details[0])) {
 
-    $user_id = $user_details[0]->user_id;
-    $account_id = $user_details[0]->account_id;
-    $email = $user_details[0]->email;
-    $account_name = $user_details[0]->account_name;
-    $widget_type_id = $user_details[0]->widget_type_id;
+if (count($user_details) > 0) {
+
+    $user_id = $user_details->user_id;
+    $account_id = $user_details->account_id;
+    $email = $user_details->email;
+    $account_name = $user_details->account_name;
+    $widget_type_id = $user_details->widget_type_id;
 
     //Get uid
     $url_uid = MAIN_HOST . 'user/get_uid?user_id=' . $user_id . '&account_id=' . $account_id;
