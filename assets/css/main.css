@@ -1,0 +1,76 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 30, 2014, 8:21:26 AM
+    Author     : selom
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Amaranth:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+body{
+    background: #fefefe
+}
+.wrap {
+    margin-bottom: 20px;
+}
+.content-div, .long-content-div {
+    margin-top: 20px;
+    width: 100%;
+}
+.long-content-div {
+    width: 100%;
+}
+.no-border {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+form div.form-control {
+    padding: 3px 8px !important;
+}
+.widget-type {
+    width: 200px;
+    height: 315px;
+    border: 2px solid transparent;
+    margin-right: 20px;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer
+}
+.widget-type:hover {
+    border: 2px solid #949494;
+}
+.widget-type img {
+    width: 90% !important
+}
+.active-wdg-id {
+    border: 2px solid green !important;
+}
+.button-div {
+    padding-top: 10px
+}
+.img-div {
+    height: 208px !important
+}
+#new-user-form input[type=text], #new-user-form input[type=password] {
+    width: 350px;
+}
+.form-group {
+    position: relative !important;    
+}
+.form-group .feedback {
+    position: absolute;
+    top: 30px;
+    left: 365px;
+    font-size: 12px;
+    display: none
+}
+form .container {
+    padding: 0px !important
+}
+#fd-choose {
+    font-size: 12px;
+}
