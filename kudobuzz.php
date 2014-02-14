@@ -235,7 +235,7 @@ function configuration() {
     <ul class="nav nav-tabs" id="myTab">
         <li id="form-li" <?php echo (isset($user_id) && $user_id != NULL) ? 'class="hide"' : '' ?> <?php echo !(isset($user_id)) ? 'class="active"' : '' ?>><a href="#home" <?php echo (isset($user_id) && !empty($user_id)) ? '' : 'data-toggle="tab"' ?>>Create an Account</a></li>
         <li id="widgets-li" <?php echo (isset($user_id) && $user_id != NULL) ? 'class="active"' : '' ?>><a href="#profile" <?php echo (isset($user_id) && !empty($user_id)) ? 'data-toggle="tab"' : '' ?>>Choose a Widget</a></li>
-        <li id="instructions-li"><a href="#messages" <?php //echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Installation Instruction</a></li>
+        <li id="instructions-li" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>><a href="#messages" <?php //echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Installation Instruction</a></li>
     </ul>
 
     <!-- Tab panes -->
