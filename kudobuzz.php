@@ -202,7 +202,7 @@ function render_tabs() {
 
 function register_kudobuzz_menu_page() {
 
-    add_menu_page(__('kudobuzz_menu', 'Kudobuzz'), __('Kudobuzz', 'kudos-menu'), 'manage_options', 'Kudobuzz', 'configuration', plugins_url('/kudobuzz/assets/img/kudo_head.png'));
+    add_menu_page(__('kudobuzz_menu', 'Kudobuzz'), __('Kudobuzz', 'kudos-menu'), 'manage_options', 'Kudobuzz', 'configuration', plugins_url('/kudobux-testimonial-widget/assets/img/kudo_head.png'));
 }
 
 function configuration() {
