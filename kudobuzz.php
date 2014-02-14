@@ -164,13 +164,13 @@ define('ACFPATH', WP_PLUGIN_DIR . "/" . dirname(plugin_basename(__FILE__)));
 
 function wpd_add_kudobuzz_javascript_files() {
     //Jquery
-    wp_enqueue_script('jquery-js', plugins_url('kudobuzz/assets/js/jquery-1.7.2.min.js', dirname(__FILE__)));
+    wp_enqueue_script('jquery-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery-1.7.2.min.js', dirname(__FILE__)));
 
     //Bootstrap
-    wp_enqueue_script('bootstrap-js', plugins_url('kudobuzz/assets/js/bootstrap.min.js', dirname(__FILE__)));
+    wp_enqueue_script('bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap.min.js', dirname(__FILE__)));
 
     //Bootbox
-    wp_enqueue_script('bootbox-js', plugins_url('kudobuzz/assets/js/bootbox.min.js', dirname(__FILE__)));
+    wp_enqueue_script('bootbox-js', plugins_url('kudobux-testimonial-widget/assets/js/bootbox.min.js', dirname(__FILE__)));
 }
 
 add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_javascript_files');
@@ -181,11 +181,11 @@ add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_javascript_files');
 
 function wpd_add_kudobuzz_css_files() {
     //Main css file
-    wp_register_style('main-css', plugins_url('kudobuzz/assets/css/main.css', dirname(__FILE__)), false, '1.0.0');
+    wp_register_style('main-css', plugins_url('kudobux-testimonial-widget/assets/css/main.css', dirname(__FILE__)), false, '1.0.0');
     wp_enqueue_style('main-css');
 
     //bootstrap css file
-    wp_register_style('bootstrap-css', plugins_url('kudobuzz/assets/css/bootstrap.css', dirname(__FILE__)), false, '1.0.0');
+    wp_register_style('bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap.css', dirname(__FILE__)), false, '1.0.0');
     wp_enqueue_style('bootstrap-css');
 }
 

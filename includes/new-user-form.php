@@ -94,7 +94,7 @@
                 $("#widgets-li a").tab('show');
 
                 //Insert code in the header
-                $.get("<?php echo plugins_url() ?>/kudobuzz/includes/after-user-registration.php?user_id=" + user_id, function(data) {
+                $.get("<?php echo plugins_url() ?>/kudobux-testimonial-widget/includes/after-user-registration.php?user_id=" + user_id, function(data) {
                     console.log(data);
                 });
             });
@@ -113,13 +113,13 @@
             $("#account-name").closest(".form-group").addClass('has-error');
             $("#account-name").closest(".form-group").find("span").fadeIn();
             $("#account-name").closest(".container").find("span").css({'color': 'crimson'});
-            $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > Choose a site name");
+            $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Choose a site name");
             site_name_is_valid = 0;
         }
         else {
             $("#account-name").closest(".container").find("span").fadeIn();
             $("#account-name").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
-            $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/loader.gif' style='margin-right: 5px'> Checking site name. Please wait...");
+            $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking site name. Please wait...");
             $.get("<?php echo MAIN_HOST ?>account/check_vanity?vanity=" + account_name, function(data) {
 
                 if (data == 0) { // existing url
@@ -127,14 +127,14 @@
                     $("#account-name").closest(".form-group").addClass('has-error');
                     $("#account-name").closest(".form-group").find("span").fadeIn();
                     $("#account-name").closest(".container").find("span").css({'color': 'crimson'});
-                    $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > This site name is already in use.");
+                    $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This site name is already in use.");
                     site_name_is_valid = 0;
                 }
                 else if (data == 1) { //Cool
                     $("#account-name").closest(".form-group").addClass('has-success');
                     $("#account-name").closest(".form-group").find("span").fadeIn();
                     $("#account-name").closest(".container").find("span").css({'color': 'green'});
-                    $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
+                    $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
                     site_name_is_valid = 1;
                 }
 
@@ -151,20 +151,20 @@
             $("#url").closest(".form-group").addClass('has-error');
             $("#url").closest(".form-group").find("span").fadeIn();
             $("#url").closest(".container").find("span").css({'color': 'crimson'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > Enter your website URL");
+            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter your website URL");
             url_is_valid = 0;
         }
         else if (validURL(url) === false) {
             $("#url").closest(".form-group").addClass('has-error');
             $("#url").closest(".form-group").find("span").fadeIn();
             $("#url").closest(".container").find("span").css({'color': 'crimson'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
+            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
             url_is_valid = 0;
         }
         else if (validURL(url) === true) {
 
             $("#url").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/loader.gif' style='margin-right: 5px'> Checking url. Please wait...");
+            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking url. Please wait...");
             $("#url").closest(".container").find("span").fadeIn();
             $.get('<?php echo MAIN_HOST ?>account/check_url?url=' + encodeURIComponent(url), function(data) {
 
@@ -173,14 +173,14 @@
                     $("#url").closest(".form-group").addClass('has-error');
                     $("#url").closest(".form-group").find("span").fadeIn();
                     $("#url").closest(".container").find("span").css({'color': 'crimson'});
-                    $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > This URL is already in use.");
+                    $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This URL is already in use.");
                     url_is_valid = 0;
                 }
                 else if (data == 1) { //Cool
                     $("#url").closest(".form-group").addClass('has-success');
                     $("#url").closest(".form-group").find("span").fadeIn();
                     $("#url").closest(".container").find("span").css({'color': 'green'});
-                    $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
+                    $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
                     url_is_valid = 1;
                 }
             });
@@ -198,7 +198,7 @@
             $("#password").closest(".form-group").addClass('has-error');
             $("#password").closest(".form-group").find("span").fadeIn();
             $("#password").closest(".container").find("span").css({'color': 'crimson'});
-            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > Enter a password.");
+            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a password.");
             pass_is_valid = 0;
         }
         else if (pass.length < 5) {
@@ -206,14 +206,14 @@
             $("#password").closest(".form-group").addClass('has-error');
             $("#password").closest(".form-group").find("span").fadeIn();
             $("#password").closest(".container").find("span").css({'color': 'crimson'});
-            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > Password should have 5 characters minimum.");
+            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Password should have 5 characters minimum.");
             pass_is_valid = 0;
         }
         else {
             $("#password").closest(".form-group").addClass('has-success');
             $("#password").closest(".form-group").find("span").fadeIn();
             $("#password").closest(".container").find("span").css({'color': 'green'});
-            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/ok.png' style='margin-right: 5px' > Yay!");
+            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Yay!");
             pass_is_valid = 1;
         }
 
@@ -226,14 +226,14 @@
 
         if (email == '') {
             $("#email").closest(".form-group").addClass('has-error');
-            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > Enter your email.");
+            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter your email.");
             $("#email").closest(".container").find("span").fadeIn();
             $("#email").closest(".container").find("span").css({'color': 'crimson'});
             email_is_valid = 0;
         }
         else if (validateEmail(email) === false) {
             $("#email").closest(".form-group").addClass('has-error');
-            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > Enter a valid email.");
+            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid email.");
             $("#email").closest(".container").find("span").fadeIn();
             $("#email").closest(".container").find("span").css({'color': 'crimson'});
             email_is_valid = 0;
@@ -242,20 +242,20 @@
 
             //Check if this email is already registered
             $("#email").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
-            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/loader.gif' style='margin-right: 5px'> Checking email. Please wait...");
+            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking email. Please wait...");
             $("#email").closest(".container").find("span").fadeIn();
             $.post("<?php echo MAIN_HOST ?>check-email", {'email': email}, function(data) {
 
                 if (data == 1) {
                     $("#email").closest(".form-group").addClass('has-error');
-                    $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/w.png' style='margin-right: 5px' > This email is in use.");
+                    $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This email is in use.");
                     $("#email").closest(".container").find("span").fadeIn();
                     $("#email").closest(".container").find("span").css({'color': 'crimson'});
                     email_is_valid = 0;
                 }
                 else if (data == 0) {
                     $("#email").closest(".form-group").addClass('has-success');
-                    $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobuzz/assets/img/ok.png' style='margin-right: 5px'> Awesome!");
+                    $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px'> Awesome!");
                     $("#email").closest(".container").find("span").fadeIn();
                     $("#email").closest(".container").find("span").css({'color': 'green'});
                     email_is_valid = 1;
@@ -300,7 +300,7 @@
         $('.choose-wdg-type').closest(".button-div").find("#fd-choose").html("");
         $(".widget-type").removeClass('active-wdg-id');
 
-        $(this).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobuzz/assets/img/loader.gif' style='margin-right: 5px; width: 16px !important;'> Please wait...");
+        $(this).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px; width: 16px !important;'> Please wait...");
         $(this).hide();
         
         $(".next-to-code").addClass("hide");
@@ -308,7 +308,7 @@
         var update_widget_type_url = '';
         if(widget_type_id == '8' || widget_type_id == '9'){
             
-            update_widget_type_url = "<?php echo plugins_url() ?>/kudobuzz/includes/update_embedable_widget.php";
+            update_widget_type_url = "<?php echo plugins_url() ?>/kudobux-testimonial-widget/includes/update_embedable_widget.php";
         }
         else if(widget_type_id == '3' || widget_type_id == '12'){
             
@@ -317,7 +317,7 @@
 		$.post(update_widget_type_url, {'user_id': user_id, "widget_type_id": widget_type_id}, function(data) {
             //console.log(data); return false;
             $("#" + btn_id).show();
-            $("#" + btn_id).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobuzz/assets/img/ok.png' style='margin-right: 5px; width: 16px !important;'> You may refresh your frontend");
+            $("#" + btn_id).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px; width: 16px !important;'> You may refresh your frontend");
             $(".widget-type").css("border", "2px solid transparent");
             $("#" + btn_id).closest(".widget-type").css("border", "2px solid green");
             //$(".next-to-code").removeClass("hide");
