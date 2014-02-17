@@ -119,7 +119,6 @@ $user_details_url = MAIN_HOST . 'user/get_user?email=' . $admin_email.'&include_
  
 $user_details = json_decode(file_get_contents($user_details_url));
 
-
 if (count($user_details) > 0) {
 
     $user_id = $user_details->user_id;
@@ -218,7 +217,7 @@ function configuration() {
         <h2>Kudobuzz Testimonial Widget - Configuration Page</h2> 
     </div>
 
-<div class="alert alert-info <?php echo isset($user_id) && !empty($user_id)?'':'hide'?>" style="font-size: 12px; width: 50%">
+<div class="alert alert-info hide<?php echo isset($user_id) && !empty($user_id)?'':''?>" style="font-size: 12px; width: 50%">
     <p style="text-transform: uppercase; font-size: 11px">Welcome back!</p>
     <p>
         You may login to dashboard and add more kudos to your basket.
@@ -233,21 +232,22 @@ function configuration() {
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab">
-        <li id="form-li" <?php echo (isset($user_id) && $user_id != NULL) ? 'class="hide"' : '' ?> <?php echo !(isset($user_id)) ? 'class="active"' : '' ?>><a href="#home" <?php echo (isset($user_id) && !empty($user_id)) ? '' : 'data-toggle="tab"' ?>>Create an Account</a></li>
-        <li id="widgets-li" <?php echo (isset($user_id) && $user_id != NULL) ? 'class="active"' : '' ?>><a href="#profile" <?php echo (isset($user_id) && !empty($user_id)) ? 'data-toggle="tab"' : '' ?>>Choose a Widget</a></li>
-        <li id="instructions-li" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>><a href="#messages" <?php //echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Installation Instruction</a></li>
+        <li id="form-li" class="active"<?php echo (isset($user_id) && $user_id != NULL) ? '' : '' ?> <?php echo !(isset($user_id)) ? 'class="active"' : '' ?>><a href="#home" <?php echo (isset($user_id) && !empty($user_id)) ? '' : '' ?> data-toggle="tab">Create an Account</a></li>
+        <li id="widgets-li" <?php echo (isset($user_id) && $user_id != NULL) ? '' : '' ?>><a href="#profile" <?php echo (isset($user_id) && !empty($user_id)) ? 'data-toggle="tab"' : '' ?>>Choose a Widget</a></li>
+        <li id="instructions-li" ><a href="#messages" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Installation Instruction</a></li>
+        <li id="custom-msg-li"><a href="#cs-msg" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Add Testimonials</a></li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane <?php echo (isset($user_id) && $user_id != NULL) ? '' : 'active' ?>" id="home">
+        <div class="tab-pane active" id="home">
 
             <!-- New user form -->
             <div class="content-div">
                 <?php require_once plugin_dir_path(__FILE__) . 'includes/new-user-form.php' ?>
             </div>
         </div>
-        <div class="tab-pane <?php echo (isset($user_id) && !empty($user_id)) ? ' active' : '' ?>" id="profile">
+        <div class="tab-pane <?php echo (isset($user_id) && !empty($user_id)) ? ' ' : '' ?>" id="profile">
 
             <!-- Choose a widget type -->
             <div class="long-content-div">
@@ -262,6 +262,13 @@ function configuration() {
                 <?php require_once plugin_dir_path(__FILE__) . 'includes/installation-instruction.php' ?>
             </div>
 
+        </div>
+        
+        <div class="tab-pane" id="cs-msg">
+        	<!-- Add a custom feed -->
+        	<div class="content-div">
+        		<?php require_once plugin_dir_path(__FILE__) . 'includes/cs-feed-form.php'?>
+        	</div>
         </div>
     </div>
     <?php

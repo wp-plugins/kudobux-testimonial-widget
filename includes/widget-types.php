@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="widget-type pull-left <?php echo isset($GLOBALS['widget_type_id']) && $GLOBALS['widget_type_id'] == 3 ? 'active-wdg-id':''?>">
+    <div class="hide widget-type pull-left <?php echo isset($GLOBALS['widget_type_id']) && $GLOBALS['widget_type_id'] == 3 ? 'active-wdg-id':''?>">
          <p> Classic Review Tab </p>
         <div class="img-div">
             <img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/templates/classic.jpg" style="margin-top: 45px;" />

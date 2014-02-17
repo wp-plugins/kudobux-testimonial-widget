@@ -1,4 +1,15 @@
-<form role="form" id="new-user-form">
+<div class="alert alert-info <?php echo isset($user_id) && !empty($user_id)?'':'hide'?>" style="font-size: 12px; width: 50%">
+    <p style="text-transform: uppercase; font-size: 11px">Welcome back!</p>
+    <p>
+        You may login to dashboard and add more kudos to your basket.
+    </p>
+    <p>
+        <a href="<?PHP echo MAIN_HOST?>login" target="_blank" class="btn btn-sm btn-default">Click to login</a>
+    </p>
+    
+</div>
+
+<form role="form" id="new-user-form" class="<?php echo isset($user_id) && !empty($user_id)?'hide':''?>">
     <!-- Email -->
     
     <div class="container">
