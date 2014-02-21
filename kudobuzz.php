@@ -113,9 +113,8 @@ $kd_uid = get_option('kudobuzz_uid');
 
 $site_url = site_url();
 $admin_email = get_settings("admin_email");
-var_dump($admin_email); exit();
 
-$user_details_url = MAIN_HOST . 'user/get_user?email=' . $admin_email.'&include_entities=1';
+$user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email).'&include_entities=1';
  
 $user_details = json_decode(file_get_contents($user_details_url));
 
