@@ -113,7 +113,7 @@ $kd_uid = get_option('kudobuzz_uid');
 
 $site_url = site_url();
 $admin_email = get_settings("admin_email");
-
+var_dump($admin_email); exit();
 
 $user_details_url = MAIN_HOST . 'user/get_user?email=' . $admin_email.'&include_entities=1';
  
@@ -232,7 +232,7 @@ function configuration() {
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab">
-        <li id="form-li" class="active"<?php echo (isset($user_id) && $user_id != NULL) ? '' : '' ?> <?php echo !(isset($user_id)) ? 'class="active"' : '' ?>><a href="#home" <?php echo (isset($user_id) && !empty($user_id)) ? '' : '' ?> data-toggle="tab">Create an Account</a></li>
+        <li id="form-li" class="active"><a href="#home" <?php echo (isset($user_id) && !empty($user_id)) ? '' : '' ?> data-toggle="tab">Create an Account</a></li>
         <li id="widgets-li" <?php echo (isset($user_id) && $user_id != NULL) ? '' : '' ?>><a href="#profile" <?php echo (isset($user_id) && !empty($user_id)) ? 'data-toggle="tab"' : '' ?>>Choose a Widget</a></li>
         <li id="instructions-li" ><a href="#messages" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Installation Instruction</a></li>
         <li id="custom-msg-li"><a href="#cs-msg" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Add Testimonials</a></li>
