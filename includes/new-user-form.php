@@ -79,7 +79,7 @@
             validate_pass(this.value);
         }
         else if (this.id === 'url') {
-            validate_url(this.value);
+            //validate_url(this.value);
         }
         else if (this.id === 'account-name') {
             validate_account_name(this.value);
