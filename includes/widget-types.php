@@ -9,7 +9,7 @@
 <br />
 
 <div class="btn-group" data-toggle="buttons-radio">
-    <div class="widget-type pull-left <?php echo isset($GLOBALS['widget_type_id']) && $GLOBALS['widget_type_id'] == 12 ? 'active-wdg-id':''?>">
+    <div class="widget-type pull-left hide <?php echo isset($GLOBALS['widget_type_id']) && $GLOBALS['widget_type_id'] == 12 ? 'active-wdg-id':''?>">
         <p> Neptune Review Tab </p>
         <div class="img-div">
             <img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/templates/neptune.jpg" />
@@ -34,7 +34,8 @@
     <div class="widget-type pull-left <?php echo isset($GLOBALS['slider_widget_added']) && $GLOBALS['slider_widget_added'] == 9 ? 'active-wdg-id':''?>">
         <p> Embedable Slider Widget </p>
         <div class="img-div">
-            <img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/templates/slider.jpg" style="margin-top: 70px;" />
+            <img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/templates/slider.jpg" style="margin-top: 70px; margin-bottom: 45px" />
+       		<a href="http://kudobuzz.com/demo/slider.html" target="_blank">See Demo</a>
         </div>
         <div class="button-div">
             <button type="button" name="att" value="9" id="btn-9" class="btn btn-default btn-sm choose-wdg-type">Choose</button>
@@ -45,7 +46,8 @@
     <div class="widget-type pull-left <?php echo isset($GLOBALS['full_page_widget_added']) && $GLOBALS['full_page_widget_added'] == 8 ? 'active-wdg-id':''?>">
          <p> Full Page Widget </p>
         <div class="img-div">
-            <img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/templates/full-page.jpg"  style="margin-top:50px;" />
+            <img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/templates/full-page.jpg"  style="margin-top:50px; margin-bottom: 20px" />
+        	<a href="http://kudobuzz.com/demo/full_page.html" target="_blank">See Demo</a>
         </div>
         <div class="button-div">
             <button type="button" name="att" value="8" id="btn-8" class="btn btn-default btn-sm choose-wdg-type">Choose</button>
