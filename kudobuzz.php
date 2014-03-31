@@ -4,7 +4,7 @@
   Plugin Name: Kudobuzz
   Plugin URI: https://kudobuzz.com
   Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Collect reviews from your visits. Kudubuzz makes your website more customer-centric while improving your SEO.
-  Version: 1.2.5
+  Version: 1.2.4
   Author: Kudobuzz
   Author URI: https://kudobuzz.com
   License: GPL
@@ -179,7 +179,7 @@ function update_uid() {
 
     //Get uid
     $url_uid = MAIN_HOST . 'user/get_uid?user_id=' . $user_id . '&account_id=' . $account_id;
-
+    
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url_uid);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -187,7 +187,9 @@ function update_uid() {
     curl_setopt($ch, CURLOPT_SSLVERSION, 3);
 
     $uid = json_decode(curl_exec($ch));
+  
     curl_close($ch);
+    
     update_option('kudobuzz_uid', $uid);
 }
 
@@ -205,11 +207,12 @@ function update_account() {
  */
 
 function customize_widget() {
-    $admin_email = get_settings("admin_email");
-    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
-    $user_details = json_decode(file_get_contents($user_details_url));
+//    $admin_email = get_settings("admin_email");
+//    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
+//    $user_details = json_decode(file_get_contents($user_details_url));
+    $possible_existing_uid = get_option('kudobuzz_uid');
 
-    if (count($user_details) > 0) {
+    if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
         include( plugin_dir_path(__FILE__) . '/includes/customize-widget.php');
     } else {
         include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
@@ -221,11 +224,9 @@ function customize_widget() {
  */
 
 function add_custom_review() {
-    $admin_email = get_settings("admin_email");
-    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
-    $user_details = json_decode(file_get_contents($user_details_url));
+    $possible_existing_uid = get_option('kudobuzz_uid');
 
-    if (count($user_details) > 0) {
+    if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
         include( plugin_dir_path(__FILE__) . '/includes/add-custom-reviews.php');
     } else {
         include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
@@ -237,11 +238,8 @@ function add_custom_review() {
  */
 
 function connect_social_account() {
-    $admin_email = get_settings("admin_email");
-    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
-    $user_details = json_decode(file_get_contents($user_details_url));
-
-    if (count($user_details) > 0) {
+  $possible_existing_uid = get_option('kudobuzz_uid');
+    if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
         include( plugin_dir_path(__FILE__) . '/includes/connects-social-account.php');
     } else {
         include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
@@ -253,12 +251,10 @@ function connect_social_account() {
  */
 
 function social_reviews() {
+    
+    $possible_existing_uid = get_option('kudobuzz_uid');
 
-    $admin_email = get_settings("admin_email");
-    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
-    $user_details = json_decode(file_get_contents($user_details_url));
-
-    if (count($user_details) > 0) {
+    if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
         $account_name = $user_details->account_name;
         include( plugin_dir_path(__FILE__) . '/includes/social_reviews.php');
     } else {
@@ -279,11 +275,10 @@ function signup_now() {
  */
 
 function signin_now() {//returnin_user
-    $admin_email = get_settings("admin_email");
-    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
-    $user_details = json_decode(file_get_contents($user_details_url));
-
-    if (count($user_details) > 0) {
+    
+    $possible_existing_uid = get_option('kudobuzz_uid');
+    
+    if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
         include( plugin_dir_path(__FILE__) . '/includes/login.php');
     } else {
         include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
