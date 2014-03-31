@@ -1,6 +1,6 @@
 <div style="width: 1000px; background: #fff; overflow: hidden" >
-	<!--<iframe src="https://kudobuzz.com/wp-share/<?php echo $GLOBALS['account_name']?>" style="width: 1000px; height: 700px; margin-top: -105px; margin-left: -130px" scrolling="no"></iframe>
-	<form role="form">
+	<iframe src="https://kudobuzz.com/share/<?php echo $GLOBALS['account_name']?>" style="width: 1000px; height: 700px; margin-top: -105px; margin-left: -130px" scrolling="no"></iframe>
+	<!--<form role="form">
   		<div class="form-group">
     		<label for="name">Name</label>
     		<input type="text" class="form-control" id="name" placeholder="User Name">
@@ -15,5 +15,4 @@
   		</div>
   		<button type="button" class="btn btn-default">Submit</button>
 	</form>-->
-	<b><a href="https://kudobuzz.com/login" target="_blank">Login</a> to your Kudobuzz dashboard to add testimonials to your website </b>
 </div>

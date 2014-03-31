@@ -1,9 +1,10 @@
 <?php
+
 /*
   Plugin Name: Kudobuzz
   Plugin URI: https://kudobuzz.com
   Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Collect reviews from your visits. Kudubuzz makes your website more customer-centric while improving your SEO.
-  Version: 1.2.4
+  Version: 1.2.5
   Author: Kudobuzz
   Author URI: https://kudobuzz.com
   License: GPL
@@ -17,79 +18,33 @@ if (!function_exists('add_action')) {
 //Required config file 
 require_once plugin_dir_path(__FILE__) . 'includes/config.php';
 
+//Check if the user has
+$kd_uid = get_option('kudobuzz_uid');
 
-/*
+/* * ******************************
  * When user activate the plugin
- */
-register_activation_hook(__FILE__, 'activate_kudobuzz_plugin');
-add_action('admin_init', 'kudobuzz_plugin_redirect');
+ * ***************************** */
 
-/*
- * 
- */
+register_activation_hook(__FILE__, 'activate_kudobuzz_plugin');
+
+add_action('admin_init', 'kudobuzz_plugin_redirect');
 
 function kudobuzz_plugin_redirect() {
     if (get_option('kudobuzz_activation_redirect', false)) {
         delete_option('kudobuzz_activation_redirect');
-        wp_redirect('admin.php?page=Kudobuzz');
+
+        //Checkin if we should initialize the kudobuzz_uid to 0 or not
+        $possible_existing_uid = get_option('kudobuzz_uid');
+
+        if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
+            wp_redirect('admin.php?page=Returning-user');
+            exit();
+        } else {
+            //CREATE A NEW EMPTY uid
+            wp_redirect('admin.php?page=Signup');
+            exit();
+        }
     }
-}
-
-/*
- * When user deactivate the plugin
- */
-register_deactivation_hook(__FILE__, 'deactivate_kudobuzz_plugin');
-
-/*
- * Trigger function when user deactivate plugin
- */
-
-function deactivate_kudobuzz_plugin() {
-    delete_option('kudobuzz_uid');
-    delete_option('kudobuzz_div');
-    delete_option('kudobuzz_login_url');
-
-    delete_option('kudobuzz_fullpage_widget');
-    delete_option('kudobuzz_slider_widget');
-    delete_option('kudobuzz_contact_widget');
-    delete_option('slider_widget_added');
-    delete_option('full_page_widget_added');
-}
-
-/**
- * Set code review
- */
-add_shortcode("kudobuzz_review", 'set_review_shortcode');
-
-function set_review_shortcode($atts) {
-
-    $kudobuzz_review_tag = "";
-
-    $kudobuzz_review_tag .= get_option('kudobuzz_contact_widget');
-
-    return $kudobuzz_review_tag;
-}
-
-/**
- * Set code full page
- */
-add_shortcode("kudobuzz-fullpage", 'set_fullpage_shortcode');
-
-function set_fullpage_shortcode($atts) {
-    $kudobuzz_fullpage_tag = "";
-    $kudobuzz_fullpage_tag .= get_option("kudobuzz_fullpage_widget");
-    return $kudobuzz_fullpage_tag;
-}
-
-/**
- * Set code slider
- */
-add_shortcode("kudobuzz-slider", "set_slider_shortcode");
-
-function set_slider_shortcode($atts) {
-    $kudobuzz_slider_tag = "";
-    $kudobuzz_slider_tag .= get_option("kudobuzz_slider_widget");
-    return $kudobuzz_slider_tag;
 }
 
 /*
@@ -101,51 +56,35 @@ function activate_kudobuzz_plugin() {
     add_option('kudobuzz_slider_widget', '<div id="kudobuzz-slider-widget"></div>');
     add_option('kudobuzz_contact_widget', '<div id="kudobuzz-contact-widget"></div>');
 
-    add_option('kudobuzz_login_url', 'https://kudobuzz.com/login');
+    add_option('kudobuzz_login_url', MAIN_HOST . 'login');
     add_option('kudobuzz_activation_redirect', true);
     add_option('kudobuzz_uid', '');
     add_option('slider_widget_added', 0);
     add_option('full_page_widget_added', 0);
+    add_action('signin_form', 'sign_up');
+    add_action('admin_menu', 'add_submenu_page');
 }
 
-$kd_uid = get_option('kudobuzz_uid');
+/* * ********************************
+ * When user deactivate the plugin
+ * ******************************* */
+register_deactivation_hook(__FILE__, 'deactivate_kudobuzz_plugin');
 
+/*
+ * Trigger function when user deactivate plugin
+ */
 
-$site_url = site_url();
-$admin_email = get_settings("admin_email");
-
-$user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email).'&include_entities=1';
- 
-$user_details = json_decode(file_get_contents($user_details_url));
-
-if (count($user_details) > 0) {
-
-    $user_id = $user_details->user_id;
-    $account_id = $user_details->account_id;
-    $email = $user_details->email;
-    $account_name = $user_details->account_name;
-    $widget_type_id = $user_details->widget_type_id;
-
-    //Get uid
-    $url_uid = MAIN_HOST . 'user/get_uid?user_id=' . $user_id . '&account_id=' . $account_id;
-
-    $uid = json_decode(file_get_contents($url_uid));
-    
-    update_option('kudobuzz_uid', $uid);
-
-    $script = "<!--Start Kudobuzz Here --> <script src='" . MAIN_HOST . "public/javascripts/kudos/widget.js'></script><script> Kudos.Widget({uid: '" . get_option('kudobuzz_uid') . "'});</script><!--End Kudobuzz Here -->";
-    
-    //Get embedable widgets
-    $slider_widget_added = get_option('slider_widget_added');
-    $full_page_widget_added = get_option('full_page_widget_added');
+function deactivate_kudobuzz_plugin() {
+    //delete_option('kudobuzz_uid');
+    delete_option('kudobuzz_div');
+    delete_option('kudobuzz_login_url');
+    delete_option('kudobuzz_activation_redirect');
+    delete_option('kudobuzz_fullpage_widget');
+    delete_option('kudobuzz_slider_widget');
+    delete_option('kudobuzz_contact_widget');
+    delete_option('slider_widget_added');
+    delete_option('full_page_widget_added');
 }
-
-function add_widget() {
-
-    echo $GLOBALS['script'];
-}
-
-add_action('wp_head', 'add_widget');
 
 //Plugin Directory Link
 define('Kudobuzz_Plugin_DIR', plugin_dir_path(__FILE__));
@@ -154,7 +93,6 @@ add_action('admin_menu', 'register_kudobuzz_menu_page');
 
 //Define some basic variables
 define('ACFSURL', WP_PLUGIN_URL . "/" . dirname(plugin_basename(__FILE__)));
-
 define('ACFPATH', WP_PLUGIN_DIR . "/" . dirname(plugin_basename(__FILE__)));
 
 /*
@@ -190,85 +128,227 @@ function wpd_add_kudobuzz_css_files() {
 
 add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_css_files');
 
-//Now let us render the tabs
-function render_tabs() {
-    
-}
 
 /*
  * Set menu
  */
 
 function register_kudobuzz_menu_page() {
+    add_menu_page(__('kudobuzz_menu', 'Kudobuzz'), __('Kudobuzz', 'kudos-menu'), 'manage_options', 'Kudobuzz', 'signin_now', plugins_url('kudobux-testimonial-widget/assets/img/kudo_head.png'));
 
-    add_menu_page(__('kudobuzz_menu', 'Kudobuzz'), __('Kudobuzz', 'kudos-menu'), 'manage_options', 'Kudobuzz', 'configuration', plugins_url('/kudobux-testimonial-widget/assets/img/kudo_head.png'));
+    //Sign up
+    add_submenu_page('kudobuzz_menu', 'Signup', 'Signup', 'manage_options', 'Signup', 'signup_now');
+
+    //Signin
+    add_submenu_page('kudobuzz_menu', 'Login', 'Login', 'manage_options', 'Signin', 'signin_now');
+
+    //A returning user 
+    add_submenu_page('kudobuzz_menu', 'Returning user', 'Returning user', 'manage_options', 'Returning-user', 'returnin_user');
+
+    //After registration
+    add_submenu_page('kudobuzz_menu', 'Success Page', 'Success Page', 'manage_options', 'Success', 'go_success_page');
+
+    //Inject code in the head tag
+    add_submenu_page('kudobuzz_menu', 'Inject code in the head tag', 'Inject code in the head tag', 'manage_options', 'Inject_code', 'inject_code');
+
+    //Go to dashboard
+    add_submenu_page('Kudobuzz', 'Dashboard', 'Dashboard', 'manage_options', 'Kudobuzz');
+
+    //Update uid
+    add_submenu_page('kudobuzz_menu', 'Update account', 'Update account', 'manage_options', 'ReconnectYourAccount', 'update_account');
+
+    //Udpate uid script
+    add_submenu_page('kudobuzz_menu', 'Update Uid', 'Update Uid', 'manage_options', 'updateUid', 'update_uid');
+
+    //Other links
+    add_submenu_page('Kudobuzz', 'Connect Social Accounts', 'Add Social Accounts', 'manage_options', 'ConnectSocialAccount', 'connect_social_account');
+    add_submenu_page('Kudobuzz', 'Add Custom Review', 'Add Custom Review', 'manage_options', 'AddCustomReview', 'add_custom_review');
+    add_submenu_page('Kudobuzz', 'Moderate Reviews', 'Moderate Reviews', 'manage_options', 'ModerateReviews', 'social_reviews');
+    add_submenu_page('Kudobuzz', 'Customize Widget', 'Customize Widgets', 'manage_options', 'CustomizeWidget', 'customize_widget');
+    add_submenu_page('Kudobuzz', 'Short Codes', 'Short Codes', 'manage_options', 'ShortCodes', 'short_codes');
 }
 
-function configuration() {
-    $user_id = $GLOBALS['user_id'];
+function short_codes() {
 
-    if (!current_user_can('manage_options')) {
-        wp_die(__('You do not have sufficient permissions to access this page.'));
+    include( plugin_dir_path(__FILE__) . '/includes/shortcodes.php');
+}
+
+function update_uid() {
+    $user_id = $_GET['user_id'];
+    $account_id = $_GET['account_id'];
+
+    //Get uid
+    $url_uid = MAIN_HOST . 'user/get_uid?user_id=' . $user_id . '&account_id=' . $account_id;
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url_uid);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+
+    $uid = json_decode(curl_exec($ch));
+    curl_close($ch);
+    update_option('kudobuzz_uid', $uid);
+}
+
+/*
+ * Update account
+ */
+
+function update_account() {
+
+    include( plugin_dir_path(__FILE__) . '/includes/update-account.php');
+}
+
+/*
+ * Customize widget
+ */
+
+function customize_widget() {
+    $admin_email = get_settings("admin_email");
+    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
+    $user_details = json_decode(file_get_contents($user_details_url));
+
+    if (count($user_details) > 0) {
+        include( plugin_dir_path(__FILE__) . '/includes/customize-widget.php');
+    } else {
+        include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
     }
-    ?>
-    <div class="wrap">        
-        <div class="icon32" id="icon-options-general"></div>
-        <h2>Kudobuzz Testimonial Widget - Configuration Page</h2> 
-    </div>
+}
 
-<div class="alert alert-info hide<?php echo isset($user_id) && !empty($user_id)?'':''?>" style="font-size: 12px; width: 50%">
-    <p style="text-transform: uppercase; font-size: 11px">Welcome back!</p>
-    <p>
-        You may login to dashboard and add more kudos to your basket.
-    </p>
-    <p>
-        <a href="<?PHP echo MAIN_HOST?>login" target="_blank" class="btn btn-sm btn-default">Click to login</a>
-    </p>
-    
-</div>
+/*
+ * Add custom review
+ */
 
-    <!-- Start tabs here -->
+function add_custom_review() {
+    $admin_email = get_settings("admin_email");
+    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
+    $user_details = json_decode(file_get_contents($user_details_url));
 
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" id="myTab">
-        <li id="form-li" class="active"><a href="#home" <?php echo (isset($user_id) && !empty($user_id)) ? '' : '' ?> data-toggle="tab">Create an Account</a></li>
-        <li id="widgets-li" <?php echo (isset($user_id) && $user_id != NULL) ? '' : '' ?>><a href="#profile" <?php echo (isset($user_id) && !empty($user_id)) ? 'data-toggle="tab"' : '' ?>>Choose a Widget</a></li>
-        <li id="instructions-li" ><a href="#messages" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Installation Instruction</a></li>
-        <li id="custom-msg-li"><a href="#cs-msg" <?php echo (isset($user_id) && $user_id != NULL) ? 'data-toggle="tab"' : '' ?>>Add Testimonials</a></li>
-    </ul>
+    if (count($user_details) > 0) {
+        include( plugin_dir_path(__FILE__) . '/includes/add-custom-reviews.php');
+    } else {
+        include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
+    }
+}
 
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane active" id="home">
+/*
+ * Connect social account
+ */
 
-            <!-- New user form -->
-            <div class="content-div">
-                <?php require_once plugin_dir_path(__FILE__) . 'includes/new-user-form.php' ?>
-            </div>
-        </div>
-        <div class="tab-pane <?php echo (isset($user_id) && !empty($user_id)) ? ' ' : '' ?>" id="profile">
+function connect_social_account() {
+    $admin_email = get_settings("admin_email");
+    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
+    $user_details = json_decode(file_get_contents($user_details_url));
 
-            <!-- Choose a widget type -->
-            <div class="long-content-div">
-                <?php require_once plugin_dir_path(__FILE__) . 'includes/widget-types.php' ?>
-            </div>
+    if (count($user_details) > 0) {
+        include( plugin_dir_path(__FILE__) . '/includes/connects-social-account.php');
+    } else {
+        include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
+    }
+}
 
-        </div>
-        <div class="tab-pane" id="messages">
+/*
+ * 
+ */
 
-            <!-- Choose a widget type -->
-            <div class="content-div">
-                <?php require_once plugin_dir_path(__FILE__) . 'includes/installation-instruction.php' ?>
-            </div>
+function social_reviews() {
 
-        </div>
-        
-        <div class="tab-pane" id="cs-msg">
-        	<!-- Add a custom feed -->
-        	<div class="content-div">
-        		<?php require_once plugin_dir_path(__FILE__) . 'includes/cs-feed-form.php'?>
-        	</div>
-        </div>
-    </div>
-    <?php
+    $admin_email = get_settings("admin_email");
+    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
+    $user_details = json_decode(file_get_contents($user_details_url));
+
+    if (count($user_details) > 0) {
+        $account_name = $user_details->account_name;
+        include( plugin_dir_path(__FILE__) . '/includes/social_reviews.php');
+    } else {
+        include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
+    }
+}
+
+/*
+ * Signup form
+ */
+
+function signup_now() {
+    include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
+}
+
+/*
+ * Signin form
+ */
+
+function signin_now() {//returnin_user
+    $admin_email = get_settings("admin_email");
+    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
+    $user_details = json_decode(file_get_contents($user_details_url));
+
+    if (count($user_details) > 0) {
+        include( plugin_dir_path(__FILE__) . '/includes/login.php');
+    } else {
+        include( plugin_dir_path(__FILE__) . '/includes/new-user-form.php');
+    }
+}
+
+/*
+ * Returning user
+ */
+
+function returnin_user() {
+    include( plugin_dir_path(__FILE__) . '/includes/returning_user.php');
+}
+
+/*
+ * Success page
+ */
+
+function go_success_page() {
+    include( plugin_dir_path(__FILE__) . '/includes/success.php');
+}
+
+/*
+ * Inject code
+ */
+
+function inject_code() {
+    include( plugin_dir_path(__FILE__) . '/includes/after-user-registration.php');
+}
+
+$uid2 = get_option('kudobuzz_uid');
+
+if (isset($uid2) && $uid2 !== FALSE && !empty($uid2)) {
+    $script = "<!--Start Kudobuzz Here --> <script src='" . MAIN_HOST . "public/javascripts/kudos/widget.js'></script><script> Kudos.Widget({uid: '" . get_option('kudobuzz_uid') . "'});</script><!--End Kudobuzz Here -->";
+
+//Get embedable widgets
+    $slider_widget_added = get_option('slider_widget_added');
+    $full_page_widget_added = get_option('full_page_widget_added');
+
+    function add_widget() {
+
+        echo $GLOBALS['script'];
+    }
+
+    add_action('wp_head', 'add_widget');
+}
+
+/**
+ * Set code full page
+ */
+add_shortcode("kudobuzz-fullpage", 'set_fullpage_shortcode');
+
+function set_fullpage_shortcode($atts) {
+    $kudobuzz_fullpage_tag = "";
+    $kudobuzz_fullpage_tag .= get_option("kudobuzz_fullpage_widget");
+    return $kudobuzz_fullpage_tag;
+}
+
+/**
+ * Set code slider
+ */
+add_shortcode("kudobuzz-slider", "set_slider_shortcode");
+
+function set_slider_shortcode($atts) {
+    $kudobuzz_slider_tag = "";
+    $kudobuzz_slider_tag .= get_option("kudobuzz_slider_widget");
+    return $kudobuzz_slider_tag;
 }

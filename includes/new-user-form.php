@@ -1,70 +1,97 @@
-<div class="alert alert-info <?php echo isset($user_id) && !empty($user_id)?'':'hide'?>" style="font-size: 12px; width: 50%">
-    <p style="text-transform: uppercase; font-size: 11px">Welcome back!</p>
-    <p>
-        You may login to dashboard and add more kudos to your basket.
-    </p>
-    <p>
-        <a href="<?PHP echo MAIN_HOST?>login" target="_blank" class="btn btn-sm btn-default">Click to login</a>
-    </p>
-    
+<div class="main-wrapper">
+
+
+    <div class="alert alert-info <?php echo isset($user_id) && !empty($user_id) ? '' : 'hide' ?>" style="font-size: 12px; width: 50%">
+        <p style="text-transform: uppercase; font-size: 11px">Welcome back!</p>
+        <p>
+            You may login to dashboard and add more kudos to your basket.
+        </p>
+        <p>
+            <a href="<?PHP echo MAIN_HOST ?>login" target="_blank" class="btn btn-sm btn-default">Click to login</a>
+        </p>
+
+    </div>
+
+    <div style="margin: 30px auto 10px auto; width: 820px; overflow: hidden">
+        <h2 style="text-align: center; margin-right: 150px; margin-top: 0px; margin-bottom: 35px">Create an Account</h2>
+        <div class="pull-left" style="width: 300px; margin-right: 20px">
+            <h2 style="color: #d35400">
+                Collecting Social Testimonials made simple
+            </h2>
+            <p>
+                People are talking about your brand, start showing off positive social buzz easily on your website.
+            </p>
+            <ul>
+                <li>Easy to setup</li>
+                <li>Real-time testimonial updates</li>
+                <li>Clean &amp; easy to customize widget</li>
+            </ul>
+        </div>
+
+        <div class="pull-left" style="width: 500px">
+
+            <form role="form" id="new-user-form" class="<?php echo isset($user_id) && !empty($user_id) ? 'hide' : '' ?>">
+                <!-- Email -->
+
+                <div class="container">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="text" class="form-control input-sm" id="email" value="<?php echo get_settings('admin_email'); ?>" maxlength="50">
+                        <br><span class="feedback"></span>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="container">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control input-sm" id="password" placeholder="Password" maxlength="10">
+                        <br><span class="feedback"></span>
+                    </div>
+                </div>
+
+                <!-- Account name -->
+                <div class="container">
+                    <div class="form-group" style="width: 352px;">
+                        <label for="account-name">Site Name</label>
+                        <div class="form-control input-sm" style="color: #000; font-weight: bold;">
+                            https://kudobuzz.com/<input type="text" id="account-name" placeholder="site_name" class="no-border" maxlength="30" style="width:195px;">
+                        </div>
+                        <br><span class="feedback" style="width: 225px;"></span>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="form-group" style="width: 352px;">
+                        <label for="url">Website URL</label>
+                        <div style="color: #000; font-weight: bold;">
+                            <input type="text" id="url" placeholder="http://mywebsite.com" class="form-control" value="<?php echo get_site_url(); ?>" />
+                            <span class="feedback" style="width: 180px"></span>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" id="create-user-btn" onclick="create_account()" style="margin-left: 8px;">Create Account</button>
+                <span id="fb" class="hide" style="margin-left: 10px;"></span>
+            </form>
+            
+            <p style="margin-top: 20px">Already have an account? <a href="<?php echo get_admin_url()?>admin.php?page=ReconnectYourAccount" style="font-weight: bold; color: #d35400">Login</a></p>
+        </div>
+       
+
+    </div>
 </div>
 
-<form role="form" id="new-user-form" class="<?php echo isset($user_id) && !empty($user_id)?'hide':''?>">
-    <!-- Email -->
-    
-    <div class="container">
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="text" class="form-control input-sm" id="email" value="<?php echo get_settings('admin_email');?>" maxlength="50">
-            <br><span class="feedback"></span>
-        </div>
-    </div>
 
-    <!-- Password -->
-    <div class="container">
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control input-sm" id="password" placeholder="Password" maxlength="10">
-            <br><span class="feedback"></span>
-        </div>
-    </div>
-
-    <!-- Account name -->
-    <div class="container">
-        <div class="form-group" style="width: 352px;">
-            <label for="account-name">Site Name</label>
-            <div class="form-control input-sm" style="color: #000; font-weight: bold;">
-                https://kudobuzz.com/<input type="text" id="account-name" placeholder="site_name" class="no-border" maxlength="30" style="width:195px;">
-            </div>
-            <br><span class="feedback" style="width: 225px;"></span>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="form-group" style="width: 352px;">
-            <label for="url">Website URL</label>
-            <div style="color: #000; font-weight: bold;">
-                <input type="text" id="url" class="form-control" value="<?php echo get_site_url(); ?>" />
-                <span class="feedback" style="width: 180px"></span>
-            </div>
-        </div>
-    </div>
-
-    
-
-
-    <button type="button" class="btn btn-success btn-sm" onclick="create_account()" style="margin-left: 8px;">Next Step</button>
-</form>
 
 <script>
     var user_id;
 <?php
-    if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
-?>
-    user_id = <?php echo $GLOBALS['user_id']?>;
-    //$('#myTab a[href="#profile"]').tab('show');
-<?php
-    }
+if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
+    ?>
+        user_id = <?php echo $GLOBALS['user_id'] ?>;
+        //$('#myTab a[href="#profile"]').tab('show');
+    <?php
+}
 ?>
 
     var email_is_valid = 0;
@@ -79,18 +106,28 @@
             validate_pass(this.value);
         }
         else if (this.id === 'url') {
-            //validate_url(this.value);
+            validate_url(this.value);
         }
         else if (this.id === 'account-name') {
             validate_account_name(this.value);
         }
     });
     function create_account() {
+
         var email = $("#email").val();
         var pass = $("#password").val();
         var url = $("#url").val();
         var account_name = $("#account-name").val();
+
+
         if (email_is_valid == 1 && pass_is_valid == 1 && url_is_valid == 1 && site_name_is_valid == 1) {
+
+            $("#fb").css({'color': 'green'});
+            $("#fb").removeClass('hide');
+            $("#fb").html('<img src="<?php echo plugins_url() ?>/kudobux-testimonial-widget/assets/img/loader.gif" /> <span>Please wait...</span>');
+
+            $("#create-user-btn").addClass('hide');
+            $("input").prop("disabled", true);
 
             var dataSet = {
                 'email': email,
@@ -100,18 +137,23 @@
                 'platform_type': 1
             };
             $.post("<?php echo MAIN_HOST ?>user/create", dataSet, function(data) {
+
                 user_id = data;
                 $("#form-li a").removeAttr('data-toggle');
                 $("#widgets-li a").tab('show');
 
+                window.location.href = "admin.php?page=Inject_code&user_id=" + user_id;
+
                 //Insert code in the header
-                $.get("<?php echo plugins_url() ?>/kudobux-testimonial-widget/includes/after-user-registration.php?user_id=" + user_id, function(data) {
-                    console.log(data);
-                });
+//                $.get("<?php echo plugins_url() ?>/kudobux-testimonial-widget/includes/after-user-registration.php?user_id=" + user_id, function(data) {
+//                    console.log(data);
+//                });
             });
         }
         else {
-            //alert('not ready');
+            $("#fb").removeClass('hide');
+            $("#fb").css({'color': 'red'});
+            $("#fb").html('Please enter appropriate data.');
         }
     }
 
@@ -157,7 +199,10 @@
      * Validate url
      */
     function validate_url(url) {
-
+        
+        var url_without_protocol = url.replace(/.*?:\/\//g, "");
+        var url_without_trailing_slash = url_without_protocol.replace(/\/$/, "");
+        
         if (url === '') {
             $("#url").closest(".form-group").addClass('has-error');
             $("#url").closest(".form-group").find("span").fadeIn();
@@ -172,31 +217,32 @@
             $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
             url_is_valid = 0;
         }
+        else if (url.indexOf("localhost") >= 0) {
+            $("#url").closest(".form-group").addClass('has-error');
+            $("#url").closest(".form-group").find("span").fadeIn();
+            $("#url").closest(".container").find("span").css({'color': 'crimson'});
+            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
+            url_is_valid = 0;
+        }
+        else if(url_without_trailing_slash == '127.0.0.1'){
+            $("#url").closest(".form-group").addClass('has-error');
+            $("#url").closest(".form-group").find("span").fadeIn();
+            $("#url").closest(".container").find("span").css({'color': 'crimson'});
+            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
+            url_is_valid = 0;
+        }
         else if (validURL(url) === true) {
 
             $("#url").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
             $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking url. Please wait...");
             $("#url").closest(".container").find("span").fadeIn();
-            $.get('<?php echo MAIN_HOST ?>account/check_url?url=' + encodeURIComponent(url), function(data) {
 
-                if (data == 0) { // existing url
-
-                    $("#url").closest(".form-group").addClass('has-error');
-                    $("#url").closest(".form-group").find("span").fadeIn();
-                    $("#url").closest(".container").find("span").css({'color': 'crimson'});
-                    $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This URL is already in use.");
-                    url_is_valid = 0;
-                }
-                else if (data == 1) { //Cool
-                    $("#url").closest(".form-group").addClass('has-success');
-                    $("#url").closest(".form-group").find("span").fadeIn();
-                    $("#url").closest(".container").find("span").css({'color': 'green'});
-                    $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
-                    url_is_valid = 1;
-                }
-            });
+            $("#url").closest(".form-group").addClass('has-success');
+            $("#url").closest(".form-group").find("span").fadeIn();
+            $("#url").closest(".container").find("span").css({'color': 'green'});
+            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
+            url_is_valid = 1;
         }
-
     }
 
     /*
@@ -305,68 +351,69 @@
 
         var widget_type_id = this.value;
         var btn_id = this.id;
-        
+
         show_widget_type(widget_type_id);
-        
+
         $('.choose-wdg-type').closest(".button-div").find("#fd-choose").html("");
         $(".widget-type").removeClass('active-wdg-id');
 
         $(this).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px; width: 16px !important;'> Please wait...");
         $(this).hide();
-        
+
         $(".next-to-code").addClass("hide");
-        
+
         var update_widget_type_url = '';
-        if(widget_type_id == '8' || widget_type_id == '9'){
-            
+        if (widget_type_id == '8' || widget_type_id == '9') {
+
             update_widget_type_url = "<?php echo plugins_url() ?>/kudobux-testimonial-widget/includes/update_embedable_widget.php";
         }
-        else if(widget_type_id == '3' || widget_type_id == '12'){
-            
+        else if (widget_type_id == '3' || widget_type_id == '12') {
+
             update_widget_type_url = "<?php echo MAIN_HOST ?>widget/update";
         }
-		$.post(update_widget_type_url, {'user_id': user_id, "widget_type_id": widget_type_id}, function(data) {
-            //console.log(data); return false;
+        $.post(update_widget_type_url, {'user_id': user_id, "widget_type_id": widget_type_id}, function(data) {
+
             $("#" + btn_id).show();
             $("#" + btn_id).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px; width: 16px !important;'> You may refresh your frontend");
             $(".widget-type").css("border", "2px solid transparent");
             $("#" + btn_id).closest(".widget-type").css("border", "2px solid green");
             //$(".next-to-code").removeClass("hide");
-            
-            setTimeout(function(){
+
+            setTimeout(function() {
                 $("#instructions-li a").tab('show');
             }, 700);
         });
     });
-    
-    function show_widget_type(widget_type_id){
-        
+
+    function show_widget_type(widget_type_id) {
+
         $("#kudobuzz-slider-widget-div").addClass("hide");
         $("#kudobuzz-fullpage-widget-div").addClass("hide");
-        
-        switch(widget_type_id){
+
+        switch (widget_type_id) {
             case '9':
                 $("#kudobuzz-slider-widget-div").removeClass("hide");
                 $("#normal-widget-div").addClass("hide");
                 break;
-                
+
             case '8':
                 $("#kudobuzz-fullpage-widget-div").removeClass("hide");
                 $("#normal-widget-div").addClass("hide");
                 break;
-                
+
             default :
                 $("#kudobuzz-slider-widget-div").addClass("hide");
                 $("#kudobuzz-fullpage-widget-div").addClass("hide");
                 $("#normal-widget-div").removeClass("hide");
                 break;
         }
-        
-    
+
+
     }
-    
-    $(document).ready(function(){
-        $("#next-btn").live("click", function(){
+
+    $(document).ready(function() {
+        $("#email").focus();
+        $("#next-btn").live("click", function() {
             $("#instructions-li a").tab('show');
         });
     });

@@ -11,6 +11,9 @@ and open the template in the editor.
 @import url(http://fonts.googleapis.com/css?family=Amaranth:400,700);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
+html, body {
+    height: 100% !important;
+}
 body{
     background: #fefefe
 }
@@ -73,4 +76,16 @@ form .container {
 }
 #fd-choose {
     font-size: 12px;
+}
+.main-title {
+    font-family: 'Amaranth', sans-serif;
+    font-size: 20px;
+}
+.main-wrapper, .login iframe {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
 }
