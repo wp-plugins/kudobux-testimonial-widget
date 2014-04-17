@@ -1,3 +1,4 @@
+<?php include 'check-browser-version.php'?>
 <div class="active item">
 
    

@@ -1,3 +1,4 @@
+<?php include 'check-browser-version.php'?>
 <div style="height: 34px;" class="hide">
     <div style="width: 847px; overflow: hidden; " class="next-to-code hide">   
         <a href="javascript:void(0);" class="btn btn-success pull-right" id="next-btn">Next</a>

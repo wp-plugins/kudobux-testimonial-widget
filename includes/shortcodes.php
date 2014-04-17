@@ -1,3 +1,4 @@
+<?php include 'check-browser-version.php'?>
 <div class="main-wrapper login" style="padding-top: 30px">
     <p class="main-title">Short Codes</p>
     

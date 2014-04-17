@@ -1,3 +1,4 @@
+<?php include 'check-browser-version.php'?>
 <div class="main-wrapper login">
     <div style="width: 500px; margin: 30px auto; text-align: center">
         <p class="main-title">Reconnect Your Account</p>

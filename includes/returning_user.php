@@ -1,3 +1,4 @@
+<?php include 'check-browser-version.php'?>
 <div class="main-wrapper login" style="margin : 30px auto; width: 500px;">
     <p class="main-title">Success</p>
     <p>You already have an account on Kudobuzz. Please login to go dashboard.</p>

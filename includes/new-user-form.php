@@ -1,7 +1,6 @@
+<?php include 'check-browser-version.php'?>
 <div class="main-wrapper">
-
-
-    <div class="alert alert-info <?php echo isset($user_id) && !empty($user_id) ? '' : 'hide' ?>" style="font-size: 12px; width: 50%">
+<div class="alert alert-info <?php echo isset($user_id) && !empty($user_id) ? '' : 'hide' ?>" style="font-size: 12px; width: 50%">
         <p style="text-transform: uppercase; font-size: 11px">Welcome back!</p>
         <p>
             You may login to dashboard and add more kudos to your basket.

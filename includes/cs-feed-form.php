@@ -1,3 +1,4 @@
+<?php include 'check-browser-version.php'?>
 <div style="width: 1000px; background: #fff; overflow: hidden" >
 	<iframe src="https://kudobuzz.com/share/<?php echo $GLOBALS['account_name']?>" style="width: 1000px; height: 700px; margin-top: -105px; margin-left: -130px" scrolling="no"></iframe>
 	<!--<form role="form">

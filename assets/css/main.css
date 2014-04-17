@@ -81,10 +81,16 @@ form .container {
     font-family: 'Amaranth', sans-serif;
     font-size: 20px;
 }
-.main-wrapper, .login iframe {
+.main-wrapper{
     min-height: 100%;
     height: 720px !important;
     position: relative;
     overflow: hidden;
     width: 1070px;
 }
+.main-wrapper iframe {
+	position: absolute; height: 100% !important;
+	width: 100% !important;
+	background: #fff !important
+}
+html, body, iframe { height: 100%; }
