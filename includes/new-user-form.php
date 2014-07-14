@@ -1,82 +1,81 @@
-<?php include 'check-browser-version.php'?>
+<?php //include 'check-browser-version.php' ?>
 <div class="main-wrapper">
-<div class="alert alert-info <?php echo isset($user_id) && !empty($user_id) ? '' : 'hide' ?>" style="font-size: 12px; width: 50%">
-        <p style="text-transform: uppercase; font-size: 11px">Welcome back!</p>
-        <p>
-            You may login to dashboard and add more kudos to your basket.
-        </p>
-        <p>
-            <a href="<?PHP echo MAIN_HOST ?>login" target="_blank" class="btn btn-sm btn-default">Click to login</a>
-        </p>
-
-    </div>
-
-    <div style="margin: 30px auto 10px auto; width: 820px; overflow: hidden">
-        <h2 style="text-align: center; margin-right: 150px; margin-top: 0px; margin-bottom: 35px">Create an Account</h2>
-        <div class="pull-left" style="width: 300px; margin-right: 20px">
-            <h2 style="color: #d35400">
-                Collecting Social Testimonials made simple
-            </h2>
-            <p>
-                People are talking about your brand, start showing off positive social buzz easily on your website.
-            </p>
-            <ul>
-                <li>Easy to setup</li>
-                <li>Real-time testimonial updates</li>
-                <li>Clean &amp; easy to customize widget</li>
-            </ul>
+    <div class="main-app-wrapper">
+        <div id="title-div">
+            KUDOBUZZ
         </div>
+        <div class="main-app-content">
 
-        <div class="pull-left" style="width: 500px">
+            <div style="margin: 0px auto 10px auto; width: 100%; overflow: hidden; padding: 0 20px;">
+                <div class="pull-left" style="width: 420px;">
 
-            <form role="form" id="new-user-form" class="<?php echo isset($user_id) && !empty($user_id) ? 'hide' : '' ?>">
-                <!-- Email -->
-
-                <div class="container">
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="text" class="form-control input-sm" id="email" value="<?php echo get_settings('admin_email'); ?>" maxlength="50">
-                        <br><span class="feedback"></span>
+                    <h2 style="margin-top: 50px; font-size: 30px" class="main-title">Create an Account</h2>
+                    <div class="pull-left" style="width: 400px; margin-right: 20px">
+                        <h3 style="color: #d35400">
+                            Collecting Social Testimonials made simple
+                        </h3>
+                        <p style="margin-top: 30px">
+                            People are talking about your brand, start showing off positive social buzz easily on your website.
+                        </p>
+                        <ul>
+                            <li>Easy to setup</li>
+                            <li>Real-time testimonial updates</li>
+                            <li>Clean &amp; easy to customize widget</li>
+                        </ul>
                     </div>
                 </div>
+                <div class="pull-left" style="width: 410px; padding: 40px 20px;">
 
-                <!-- Password -->
-                <div class="container">
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control input-sm" id="password" placeholder="Password" maxlength="10">
-                        <br><span class="feedback"></span>
-                    </div>
-                </div>
+                    <form role="form" id="new-user-form" class="<?php echo isset($user_id) && !empty($user_id) ? 'hide' : '' ?>">
+                        <!-- Email -->
 
-                <!-- Account name -->
-                <div class="container">
-                    <div class="form-group" style="width: 352px;">
-                        <label for="account-name">Site Name</label>
-                        <div class="form-control input-sm" style="color: #000; font-weight: bold;">
-                            https://kudobuzz.com/<input type="text" id="account-name" placeholder="site_name" class="no-border" maxlength="30" style="width:195px;">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="text" class="form-control input-sm" id="email" value="<?php echo get_settings('admin_email'); ?>" maxlength="50">
+                                <br><span class="feedback"></span>
+                            </div>
                         </div>
-                        <br><span class="feedback" style="width: 225px;"></span>
-                    </div>
-                </div>
 
-                <div class="container">
-                    <div class="form-group" style="width: 352px;">
-                        <label for="url">Website URL</label>
-                        <div style="color: #000; font-weight: bold;">
-                            <input type="text" id="url" placeholder="http://mywebsite.com" class="form-control" value="<?php echo get_site_url(); ?>" />
-                            <span class="feedback" style="width: 180px"></span>
+                        <!-- Password -->
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control input-sm" id="password" placeholder="Password" maxlength="10">
+                                <br><span class="feedback"></span>
+                            </div>
                         </div>
-                    </div>
+
+                        <!-- Account name -->
+                        <div class="container">
+                            <div class="form-group" style="width: 352px;">
+                                <label for="account-name">Site Name</label>
+                                <div class="form-control input-sm" style="color: #000; font-weight: bold;">
+                                    https://kudobuzz.com/<input type="text" id="account-name" placeholder="site_name" class="no-border" maxlength="30" style="width:195px;">
+                                </div>
+                                <br><span class="feedback" style="width: 225px; font-weight: normal"></span>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="form-group" style="width: 352px;">
+                                <label for="url">Website URL</label>
+                                <div style="color: #000; font-weight: bold;">
+                                    <input type="text" id="url" placeholder="http://mywebsite.com" class="form-control" value="<?php echo get_site_url(); ?>" />
+                                    <span class="feedback" style="width: 180px; font-weight: normal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-info btn-sm" id="create-user-btn" onclick="create_account()">Create Account</button>
+                        <span id="fb" class="hide" style="margin-left: 10px;"></span>
+                    </form>
+
                 </div>
-                <button type="button" class="btn btn-success btn-sm" id="create-user-btn" onclick="create_account()" style="margin-left: 8px;">Create Account</button>
-                <span id="fb" class="hide" style="margin-left: 10px;"></span>
-            </form>
-            
-            <p style="margin-top: 20px">Already have an account? <a href="<?php echo get_admin_url()?>admin.php?page=ReconnectYourAccount" style="font-weight: bold; color: #d35400">Login</a></p>
+            </div>
         </div>
-       
-
+        <div id="copyright-div">
+            &copy; 2014 Kudobuzz
+        </div>
     </div>
 </div>
 
@@ -136,17 +135,11 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
                 'platform_type': 1
             };
             $.post("<?php echo MAIN_HOST ?>user/create", dataSet, function(data) {
-
                 user_id = data;
                 $("#form-li a").removeAttr('data-toggle');
                 $("#widgets-li a").tab('show');
 
                 window.location.href = "admin.php?page=Inject_code&user_id=" + user_id;
-
-                //Insert code in the header
-//                $.get("<?php echo plugins_url() ?>/kudobux-testimonial-widget/includes/after-user-registration.php?user_id=" + user_id, function(data) {
-//                    console.log(data);
-//                });
             });
         }
         else {
@@ -198,10 +191,10 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
      * Validate url
      */
     function validate_url(url) {
-        
+
         var url_without_protocol = url.replace(/.*?:\/\//g, "");
         var url_without_trailing_slash = url_without_protocol.replace(/\/$/, "");
-        
+
         if (url === '') {
             $("#url").closest(".form-group").addClass('has-error');
             $("#url").closest(".form-group").find("span").fadeIn();
@@ -223,7 +216,7 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
             $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
             url_is_valid = 0;
         }
-        else if(url_without_trailing_slash == '127.0.0.1'){
+        else if (url_without_trailing_slash == '127.0.0.1') {
             $("#url").closest(".form-group").addClass('has-error');
             $("#url").closest(".form-group").find("span").fadeIn();
             $("#url").closest(".container").find("span").css({'color': 'crimson'});
@@ -262,7 +255,7 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
             $("#password").closest(".form-group").addClass('has-error');
             $("#password").closest(".form-group").find("span").fadeIn();
             $("#password").closest(".container").find("span").css({'color': 'crimson'});
-            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Password should have 5 characters minimum.");
+            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > 5 characters minimum");
             pass_is_valid = 0;
         }
         else {
@@ -409,11 +402,11 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
 
 
     }
-
-    $(document).ready(function() {
-        $("#email").focus();
+    jQuery(document).ready(function($) {
+        
+       $("#email").focus();
         $("#next-btn").live("click", function() {
             $("#instructions-li a").tab('show');
-        });
+        }); 
     });
 </script>

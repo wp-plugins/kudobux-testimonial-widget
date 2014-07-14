@@ -1,0 +1,1 @@
+<iframe id="parent-iframe" style="width: 0px !important; height: 0px !important; display: none; visibility: hidden" src="<?php echo IFRAME_PARENT_DOMAIN ?>wordpress/views/connect-account-upgrade.php"></iframe>

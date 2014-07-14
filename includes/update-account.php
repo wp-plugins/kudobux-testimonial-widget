@@ -1,4 +1,4 @@
-<?php include 'check-browser-version.php'?>
+<?php include 'check-browser-version.php' ?>
 <div class="main-wrapper login">
     <div style="width: 500px; margin: 30px auto; text-align: center">
         <p class="main-title">Reconnect Your Account</p>
@@ -24,9 +24,10 @@
 
 <script>
     var message;
-    $(document).ready(function() {
-
-        $("#update_account").live("click", function() {
+    
+    jQuery(document).ready(function($) {
+        
+       $("#update_account").live("click", function() {
 
             var email = $("#email").val();
             if (email == '') {
@@ -44,10 +45,10 @@
                 $("#update_account").addClass("hide");
                 $.get("<?php echo MAIN_HOST ?>user/get_user?email=" + encodeURIComponent(email) + "&include_entities=1", function(data) {
                     var obj = JSON.parse(data);
-                    
+
                     var user_id = obj.user_id;
                     var account_id = obj.account_id;
-                    
+
                     if (isEmpty(obj)) {
                         message = "Sorry this email is not in our system";
                         show_error(message);
@@ -60,15 +61,15 @@
                         $('#email').closest('.form-group').addClass('has-success');
                         $('#email').closest('.form-group').removeClass('has-error');
                         $(".loading").html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif"> Updating, Please wait...');
-                        $(".loading").css({'color':'green'});
-                        
-                        $.get("<?php echo get_admin_url()?>admin.php?page=updateUid", {'user_id':user_id, 'account_id':account_id}, function(){
-                            window.location.href="<?php echo get_admin_url();?>admin.php?page=Signin";
+                        $(".loading").css({'color': 'green'});
+
+                        $.get("<?php echo get_admin_url() ?>admin.php?page=updateUid", {'user_id': user_id, 'account_id': account_id}, function() {
+                            window.location.href = "<?php echo get_admin_url(); ?>admin.php?page=Signin";
                         });
                     }
                 });
             }
-        });
+        }); 
     });
 
     function show_error(message) {

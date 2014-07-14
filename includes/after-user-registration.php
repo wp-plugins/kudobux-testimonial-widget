@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
  * insert the kudobuzz javascript in the front head
  */
 
+require_once PLUGIN_DIR. 'kudobuzzwp.php';
+
 $user_id = $_GET['user_id'];
 
 $url = MAIN_HOST . 'user/get_user?user_id=' . $user_id . '&include_entities=1';
@@ -17,22 +19,45 @@ $account_id = $user_account_details->account_id;
 //Get uid
 $url_uid = MAIN_HOST . 'user/get_uid?user_id=' . $user_id . '&account_id=' . $account_id;
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url_uid);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+$kwp = new Kudobuzzwp();
 
-$uid = json_decode(curl_exec($ch));
-curl_close($ch);
+$result = $kwp->run_curl($url_uid, "GET");
 
-//$uid = json_decode(file_get_contents($url_uid));
+$uid = json_decode($result);
 
 update_option('kudobuzz_uid', $uid);
+
 ?>
 
-<div class="main-wrapper" style="padding-top: 30px">
-    <p class="main-title">Success</p>
-    <p>Your registration has been successfull. Please login to the dashboard now.</p>
-    <a href="<?php echo MAIN_HOST ?>login" class="btn btn-info">Login to Dashboard</a>
+<div class="main-wrapper">
+    <div class="main-app-wrapper">
+        <div id="title-div">
+            KUDOBUZZ
+        </div>
+        <div class="main-app-content" style="min-height: 440px; margin-bottom: 10px;">
+
+            <div style="margin: 0px auto 10px auto; width: 820px; overflow: hidden;">
+                
+                <div  style="padding: 0px 20px; margin: 30px auto">
+
+                    <p class="main-title" style="margin-top: 45px; font-size: 30px; color: #585858">Registration Completed Successfully</p>
+                    <p>We have sent you an email. Please follow the simple steps below to get started.</p>
+                    <ul class="ul-with-bullet">
+                        <li>We have created a testimonial page for you (<a href="<?php echo get_site_url()?>?page_id=<?php echo get_page_by_title('Testimonials')->ID ?>" target="_blank">View</a>). A Kudobuzz widget has been embedded on your website (<a href="<?php echo get_site_url();?>" target="_blank">View</a>). You can customize the look & feel later.</li>
+                        <li>Don't worry if your testimonial page is blank, testimonials will start showing when you publish them from your dashboard.</li>
+                        <li>From your dashboard, connect your Social Account to start collecting testimonials using [ Add Social Account ] button.</li>
+                        <li>Add your existing testimonials using [ Add Custom Reviews ] button.</li>
+                        <li>Reviews from your website will be listed under [ Website Reviews ] menu</li>
+                        <li>Choose and customize your preferred testimonial widget the [ Customize Widget ] menu.</li>
+                    </ul>
+                    <p>If you need any help reach us at [ hello@kudobuzz.com ]</p>
+                    <a style="margin-top: 30px" href="<?php echo get_admin_url() ?>admin.php?page=ModerateReviews" class="btn btn-info btn-lg">Start Publishing Your Testimonials Now</a>
+
+                </div>
+            </div>
+        </div>
+        <div id="copyright-div">
+            &copy; 2014 Kudobuzz
+        </div>
+    </div>
 </div>
