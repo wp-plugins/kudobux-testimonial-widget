@@ -37,4 +37,5 @@ $total_connected = count($fb_num_accounts) + count($tw_num_accounts) + count($in
 
 $total_connected = (int) $total_connected;
 //Kudos
-$total_kudos = json_decode(file_get_contents(API_DOMAIN . 'api/kudos/count?account_id=' . $account_id))[0]->total_kudos;
+ $result = json_decode(file_get_contents(API_DOMAIN . 'api/kudos/count?account_id=' . $account_id));
+ $total_kudos = $result[0]->total_kudos;
