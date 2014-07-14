@@ -4,22 +4,25 @@
   Plugin Name: Kudobuzz
   Plugin URI: https://kudobuzz.com
   Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Collect reviews from your visits. Kudubuzz makes your website more customer-centric while improving your SEO.
-  Version: 1.2.7
+  Version: 1.2.8
   Author: Kudobuzz
   Author URI: https://kudobuzz.com
   License: GPL
  */
 
 if (!function_exists('add_action')) {
-    echo "Hi there!  You are in a wrong place";
+    echo "Are you kidding me?";
     exit();
 }
 
-//Required config file 
-require_once plugin_dir_path(__FILE__) . 'includes/config.php';
 
+//Required config file 
+require_once plugin_dir_path(__FILE__) . 'config.php';
+require_once plugin_dir_path(__FILE__) . 'kudobuzzwp.php';
+$kwp = new Kudobuzzwp();
 //Check if the user has
 $kd_uid = get_option('kudobuzz_uid');
+
 
 /* * ******************************
  * When user activate the plugin
@@ -30,6 +33,7 @@ register_activation_hook(__FILE__, 'activate_kudobuzz_plugin');
 add_action('admin_init', 'kudobuzz_plugin_redirect');
 
 function kudobuzz_plugin_redirect() {
+
     if (get_option('kudobuzz_activation_redirect', false)) {
         delete_option('kudobuzz_activation_redirect');
 
@@ -57,12 +61,15 @@ function activate_kudobuzz_plugin() {
     add_option('kudobuzz_contact_widget', '<div id="kudobuzz-contact-widget"></div>');
 
     add_option('kudobuzz_login_url', MAIN_HOST . 'login');
+    add_option('kudobuzz_test_url', MAIN_HOST . 'test');
     add_option('kudobuzz_activation_redirect', true);
     add_option('kudobuzz_uid', '');
     add_option('slider_widget_added', 0);
     add_option('full_page_widget_added', 0);
     add_action('signin_form', 'sign_up');
     add_action('admin_menu', 'add_submenu_page');
+    
+    create_full_page();
 }
 
 /* * ********************************
@@ -84,6 +91,21 @@ function deactivate_kudobuzz_plugin() {
     delete_option('kudobuzz_contact_widget');
     delete_option('slider_widget_added');
     delete_option('full_page_widget_added');
+    
+    $kudobuzz_page_title = get_option( "kudobuzz_page_title" );
+    $kudobuzz_page_name = get_option( "kudobuzz_page_name" );
+
+    //  the id of our page...
+    $kudobuzz_page_id = get_option( 'kudobuzz_plugin_page_id' );
+    if( $kudobuzz_page_id ) {
+
+        wp_delete_post( $kudobuzz_page_id ); // this will trash, not delete
+
+    }
+
+    delete_option("kudobuzz_page_title");
+    delete_option("kudobuzz_page_name");
+    delete_option("kudobuzz_plugin_page_id");
 }
 
 //Plugin Directory Link
@@ -102,18 +124,55 @@ define('ACFPATH', WP_PLUGIN_DIR . "/" . dirname(plugin_basename(__FILE__)));
 function wpd_add_kudobuzz_javascript_files() {
     //Jquery
     wp_enqueue_script('jquery-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery-1.7.2.min.js', dirname(__FILE__)));
+    wp_enqueue_script('jquery-js');
 
     //Bootstrap
     wp_enqueue_script('bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap.min.js', dirname(__FILE__)));
 
+    //Jany Bootstrap
+    wp_enqueue_script('jany-bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/jasny-bootstrap.min.js', dirname(__FILE__)));
+
     //Bootbox
     wp_enqueue_script('bootbox-js', plugins_url('kudobux-testimonial-widget/assets/js/bootbox.min.js', dirname(__FILE__)));
+
+    //Nano scroller
+    wp_enqueue_script('nano-scroller-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.nanoscroller.js', dirname(__FILE__)));
+
+    //Rateit
+    wp_enqueue_script('rateit-js', plugins_url('kudobux-testimonial-widget/assets/rateit/jquery.rateit.min.js', dirname(__FILE__)));
+
+    //Bootstrap file upload
+    wp_enqueue_script('bootstrap-file-upload-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-fileupload.min.js', dirname(__FILE__)));
+
+    //Jquery form
+    wp_enqueue_script('jquery-form-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.form.js', dirname(__FILE__)));
+
+    //Jquery form
+    wp_enqueue_script('user-update-js', plugins_url('kudobux-testimonial-widget/assets/js/user-update.js', dirname(__FILE__)));
+
+    //Flat ui radio
+    wp_enqueue_script('flatui-radio-js', plugins_url('kudobux-testimonial-widget/assets/js/flatui-radio.js', dirname(__FILE__)));
+
+    //Flat ui checkbox
+    wp_enqueue_script('flatui-checkbox-js', plugins_url('kudobux-testimonial-widget/assets/js/flatui-checkbox.js', dirname(__FILE__)));
+
+    //Mini color
+    wp_enqueue_script('mini-color-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.minicolors.js', dirname(__FILE__)));
+
+    //bootstrap-switch
+    wp_enqueue_script('bootstrap-switch-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-switch.js', dirname(__FILE__)));
+
+    //bootstrap-switch
+    wp_enqueue_script('bootstrap-tooltip-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-tooltip.js', dirname(__FILE__)));
+
+    //manage_wdg
+    wp_enqueue_script('manage_wdg-js', plugins_url('kudobux-testimonial-widget/assets/js/manage_wdg.js', dirname(__FILE__)));
 }
 
 add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_javascript_files');
 
 /*
- * Add the css files to the admin header
+ * Add the css files to the admin header bootstrap-switch
  */
 
 function wpd_add_kudobuzz_css_files() {
@@ -124,6 +183,30 @@ function wpd_add_kudobuzz_css_files() {
     //bootstrap css file
     wp_register_style('bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap.css', dirname(__FILE__)), false, '1.0.0');
     wp_enqueue_style('bootstrap-css');
+
+    //Jany bootstrap css file
+    wp_register_style('jany-bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/jasny-bootstrap.css', dirname(__FILE__)), false, '1.0.0');
+    wp_enqueue_style('jany-bootstrap-css');
+
+    //Nano scroller
+    wp_register_style('nanoscroller-css', plugins_url('kudobux-testimonial-widget/assets/css/nanoscroller.css', dirname(__FILE__)), false, '1.0.0');
+    wp_enqueue_style('nanoscroller-css');
+
+    //Rateit
+    wp_register_style('rateit-css', plugins_url('kudobux-testimonial-widget/assets/rateit/rateit.css', dirname(__FILE__)), false, '1.0.0');
+    wp_enqueue_style('rateit-css');
+
+    //Rateit
+    wp_register_style('bootstrap-file-upload', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap-fileupload.min.css', dirname(__FILE__)), false, '1.0.0');
+    wp_enqueue_style('bootstrap-file-upload');
+
+    //Rateit
+    wp_register_style('flat-ui', plugins_url('kudobux-testimonial-widget/assets/css/flat-ui.min.css', dirname(__FILE__)), false, '1.0.0');
+    wp_enqueue_style('flat-ui');
+
+    //Mini color
+    wp_register_style('mini-color', plugins_url('kudobux-testimonial-widget/assets/css/jquery.minicolors.css', dirname(__FILE__)), false, '1.0.0');
+    wp_enqueue_style('mini-color');
 }
 
 add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_css_files');
@@ -134,13 +217,34 @@ add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_css_files');
  */
 
 function register_kudobuzz_menu_page() {
-    add_menu_page(__('kudobuzz_menu', 'Kudobuzz'), __('Kudobuzz', 'kudos-menu'), 'manage_options', 'Kudobuzz', 'signin_now', plugins_url('kudobux-testimonial-widget/assets/img/kudo_head.png'));
+    add_menu_page(__('kudobuzz_menu', 'Kudobuzz'), __('Kudobuzz', 'kudos-menu'), 'manage_options', 'Kudobuzz', 'moderate_reviews', plugins_url('kudobux-testimonial-widget/assets/img/kudo_head.png'));
 
     //Sign up
     add_submenu_page('kudobuzz_menu', 'Signup', 'Signup', 'manage_options', 'Signup', 'signup_now');
 
     //Signin
     add_submenu_page('kudobuzz_menu', 'Login', 'Login', 'manage_options', 'Signin', 'signin_now');
+
+    //Test page
+    add_submenu_page('kudobuzz_menu', 'Test', 'Test', 'manage_options', 'Test', 'test_page');
+
+    //Moderate review page
+    add_submenu_page('kudobuzz_menu', 'ModerateReviews', 'ModerateReviews', 'manage_options', 'ModerateReviews', 'moderate_reviews');
+
+    //Moderate review page
+    add_submenu_page('kudobuzz_menu', 'CustomizeTheme', 'CustomizeTheme', 'manage_options', 'CustomizeTheme', 'customize_theme');
+
+    //Full page review page
+    add_submenu_page('kudobuzz_menu', 'FullPageWidget', 'FullPageWidget', 'manage_options', 'FullPageWidget', 'full_page_wdg');
+
+    //Add custom page page
+    add_submenu_page('kudobuzz_menu', 'AddCustomReview', 'AddCustomReview', 'manage_options', 'AddCustomReview', 'add_custom_review');
+
+    //Add SEO
+    add_submenu_page('kudobuzz_menu', 'Seo', 'Seo', 'manage_options', 'Seo', 'seo_page');
+
+    //Add SEO
+    add_submenu_page('kudobuzz_menu', 'Settings', 'Settings', 'manage_options', 'Settings', 'settings_page');
 
     //A returning user 
     add_submenu_page('kudobuzz_menu', 'Returning user', 'Returning user', 'manage_options', 'Returning-user', 'returnin_user');
@@ -152,7 +256,7 @@ function register_kudobuzz_menu_page() {
     add_submenu_page('kudobuzz_menu', 'Inject code in the head tag', 'Inject code in the head tag', 'manage_options', 'Inject_code', 'inject_code');
 
     //Go to dashboard
-    add_submenu_page('Kudobuzz', 'Dashboard', 'Dashboard', 'manage_options', 'Kudobuzz');
+    add_submenu_page('Kudobuzz', 'Moderate Review', 'Moderate Review', 'manage_options', 'Kudobuzz');
 
     //Update uid
     add_submenu_page('kudobuzz_menu', 'Update account', 'Update account', 'manage_options', 'ReconnectYourAccount', 'update_account');
@@ -161,11 +265,12 @@ function register_kudobuzz_menu_page() {
     add_submenu_page('kudobuzz_menu', 'Update Uid', 'Update Uid', 'manage_options', 'updateUid', 'update_uid');
 
     //Other links
-    add_submenu_page('Kudobuzz', 'Connect Social Accounts', 'Add Social Accounts', 'manage_options', 'ConnectSocialAccount', 'connect_social_account');
+    add_submenu_page('Kudobuzz', 'Connect Social Accounts', 'Customize Theme', 'manage_options', 'CustomizeTheme', 'connect_social_account');
     add_submenu_page('Kudobuzz', 'Add Custom Review', 'Add Custom Review', 'manage_options', 'AddCustomReview', 'add_custom_review');
-    add_submenu_page('Kudobuzz', 'Moderate Reviews', 'Moderate Reviews', 'manage_options', 'ModerateReviews', 'social_reviews');
-    add_submenu_page('Kudobuzz', 'Customize Widget', 'Customize Widgets', 'manage_options', 'CustomizeWidget', 'customize_widget');
-    add_submenu_page('Kudobuzz', 'Short Codes', 'Short Codes', 'manage_options', 'ShortCodes', 'short_codes');
+
+    add_submenu_page('Kudobuzz', 'SEO', 'SEO', 'manage_options', 'SEO', 'seo_page');
+    add_submenu_page('Kudobuzz', 'Settings', 'Settings', 'manage_options', 'Settings', 'settings');
+    add_submenu_page('Kudobuzz', 'Translation', 'Translation', 'manage_options', 'Translation', 'translation');
 }
 
 function short_codes() {
@@ -179,17 +284,12 @@ function update_uid() {
 
     //Get uid
     $url_uid = MAIN_HOST . 'user/get_uid?user_id=' . $user_id . '&account_id=' . $account_id;
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url_uid);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_SSLVERSION, 3);
 
-    $uid = json_decode(curl_exec($ch));
-  
-    curl_close($ch);
-    
+    $kwp = new Kudobuzzwp();
+
+    $result = $kwp->run_curl($url_uid, "GET");
+    $uid = json_decode($result);
+
     update_option('kudobuzz_uid', $uid);
 }
 
@@ -234,11 +334,31 @@ function add_custom_review() {
 }
 
 /*
+ * Add custom review
+ */
+
+function seo_page() {
+    include( plugin_dir_path(__FILE__) . '/includes/seo.php');
+}
+
+/*
+ * Settings
+ */
+
+function settings_page() {
+    include( plugin_dir_path(__FILE__) . '/includes/settings.php');
+}
+
+function translation() {
+    include( plugin_dir_path(__FILE__) . '/includes/translation.php');
+}
+
+/*
  * Connect social account
  */
 
 function connect_social_account() {
-  $possible_existing_uid = get_option('kudobuzz_uid');
+    $possible_existing_uid = get_option('kudobuzz_uid');
     if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
         include( plugin_dir_path(__FILE__) . '/includes/connects-social-account.php');
     } else {
@@ -251,7 +371,7 @@ function connect_social_account() {
  */
 
 function social_reviews() {
-    
+
     $possible_existing_uid = get_option('kudobuzz_uid');
 
     if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
@@ -275,9 +395,8 @@ function signup_now() {
  */
 
 function signin_now() {//returnin_user
-    
     $possible_existing_uid = get_option('kudobuzz_uid');
-    
+
     if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
         include( plugin_dir_path(__FILE__) . '/includes/login.php');
     } else {
@@ -312,8 +431,9 @@ function inject_code() {
 $uid2 = get_option('kudobuzz_uid');
 
 if (isset($uid2) && $uid2 !== FALSE && !empty($uid2)) {
+    
     $script = "<!--Start Kudobuzz Here --> <script src='" . MAIN_HOST . "public/javascripts/kudos/widget.js'></script><script> Kudos.Widget({uid: '" . get_option('kudobuzz_uid') . "'});</script><!--End Kudobuzz Here -->";
-
+    
 //Get embedable widgets
     $slider_widget_added = get_option('slider_widget_added');
     $full_page_widget_added = get_option('full_page_widget_added');
@@ -346,4 +466,139 @@ function set_slider_shortcode($atts) {
     $kudobuzz_slider_tag = "";
     $kudobuzz_slider_tag .= get_option("kudobuzz_slider_widget");
     return $kudobuzz_slider_tag;
+}
+
+/*
+ * Signin form
+ */
+
+function test_page() {//test
+    include( plugin_dir_path(__FILE__) . '/includes/test.php');
+}
+
+/*
+ * Moderate reviews
+ */
+
+function moderate_reviews() {
+    
+    include( plugin_dir_path(__FILE__) . '/includes/moderate_reviews.php');
+}
+
+/*
+ * Customize theme
+ */
+
+function customize_theme() {
+
+    include( plugin_dir_path(__FILE__) . '/includes/customize_theme.php');
+}
+
+/*
+ * full page
+ */
+
+function full_page_wdg() {
+
+    include( plugin_dir_path(__FILE__) . '/includes/full_page.php');
+}
+
+//Get Feeds
+function get_feeds_options() {
+
+    $kdwp = new Kudobuzzwp();
+
+    $type = $_GET["type"];
+    $page = $_GET["page"];
+    $category = $_GET["category"];
+    $social_filter = $_GET["social_filter"];
+    $uid = $_GET["uid"];
+    $total_connected = $_GET['total_connected'];
+
+    $feeds = $kdwp->get_feeds($type, $page, $category, $social_filter, $uid);
+	//var_dump($category);
+	//var_dump($type);
+    if (isset($feeds->result)) {
+        $feeds = $feeds->result;
+    }
+    include( plugin_dir_path(__FILE__) . '/includes/feeds-list.php');
+    die();
+}
+
+add_action('wp_ajax_get_feeds_options', 'get_feeds_options');
+
+function post_publish_action() {
+
+    $kdwp = new Kudobuzzwp();
+
+    $uid = $_POST['uid'];
+    $entity_id = $_POST['entity_id'];
+    $channel = $_POST['channel'];
+    $from_user_name = $_POST['from_user_name'];
+    $from_user_img = $_POST['from_user_img'];
+    $from_twitter_message = $_POST['from_twitter_message'];
+    $created_at = $_POST['created_at'];
+
+    $params = array(
+        'uid' => $uid,
+        'entity_id' => $entity_id,
+        'channel' => $channel,
+        'from_user_name' => $from_user_name,
+        'from_user_img' => $from_user_img,
+        'from_twitter_message' => $from_twitter_message,
+        'created_at' => $created_at
+    );
+    //print_r($params); exit();
+    $result = $kdwp->publish_feed($params);
+	echo $result;
+}
+
+add_action('wp_ajax_post_publish_action', 'post_publish_action');
+
+function create_full_page() {
+
+    $the_page_title = 'Testimonials';
+    $the_page_name = 'kudobuzz-full-page-widget';
+    
+    // the menu entry...
+    delete_option("kudobuzz_page_title");
+    add_option("kudobuzz_page_title", $the_page_title, '', 'yes');
+    // the slug...
+    delete_option("kudobuzz_page_title");
+    add_option("kudobuzz_page_name", $the_page_name, '', 'yes');
+    // the id...
+    delete_option("kudobuzz_plugin_page_id");
+    add_option("kudobuzz_plugin_page_id", '0', '', 'yes');
+
+    $the_page = get_page_by_title( $the_page_title );
+    
+    if ( ! $the_page ) {
+
+        // Create post object
+        $_p = array();
+        $_p['post_title'] = $the_page_title;
+        $_p['post_content'] = "[kudobuzz-fullpage]";
+        $_p['post_status'] = 'publish';
+        $_p['post_type'] = 'page';
+        $_p['comment_status'] = 'closed';
+        $_p['ping_status'] = 'closed';
+        $_p['post_category'] = array(1); // the default 'Uncatrgorised'
+
+        // Insert the post into the database
+        $the_page_id = wp_insert_post( $_p );
+
+    }
+    else{
+        
+        // the plugin may have been previously active and the page may just be trashed...
+
+        $the_page_id = $the_page->ID;
+
+        //make sure the page is not trashed...
+        $the_page->post_status = 'publish';
+        $the_page_id = wp_update_post( $the_page );
+    }
+    
+    delete_option( 'kudobuzz_plugin_page_id' );
+    add_option( 'kudobuzz_plugin_page_id', $the_page_id );
 }

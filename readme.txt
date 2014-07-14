@@ -4,7 +4,7 @@ Donate link: https://kudobuzz.com
 Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux,Kudobuzz,Site Reviews,Reviews,Social Reviews
 Requires at least: 3.0.1
 Tested up to: 3.9
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,22 @@ We will always alert you via email or your dashboard when there are new updates 
 - Just do a normal upgrade.
 
 == Changelog ==
+= 1.2.8 =
+- Updated for Wordpress New version
+
+
+= 1.2.7 =
+- Bugs fixed
+
+
+= 1.2.6 =
+- Bugs fixed
+
+
+= 1.2.5 =
+- Bugs fixed
+
+
 = 1.2.4 =
 - Review Form Added
 
