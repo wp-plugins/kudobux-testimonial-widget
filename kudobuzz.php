@@ -391,7 +391,7 @@ function seo_page() {
 /*
  * Installation steps
  */
- function installation_steps(){
+ function installation_instruction(){
  	
  	include( plugin_dir_path(__FILE__) . '/includes/installation-instruction.php');
  }
