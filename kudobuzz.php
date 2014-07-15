@@ -303,7 +303,9 @@ function register_kudobuzz_menu_page() {
 
     //Go to dashboard
     add_submenu_page('Kudobuzz', 'Moderate Review', 'Moderate Review', 'manage_options', 'Kudobuzz');
-
+    add_submenu_page('Kudobuzz', 'Moderate Review', 'Moderate Review', 'manage_options', 'Kudobuzz');
+	
+	
     //Update uid
     add_submenu_page('kudobuzz_menu', 'Update account', 'Update account', 'manage_options', 'ReconnectYourAccount', 'update_account');
 
@@ -317,6 +319,7 @@ function register_kudobuzz_menu_page() {
     add_submenu_page('Kudobuzz', 'SEO', 'SEO', 'manage_options', 'SEO', 'seo_page');
     add_submenu_page('Kudobuzz', 'Settings', 'Settings', 'manage_options', 'Settings', 'settings');
     add_submenu_page('Kudobuzz', 'Translation', 'Translation', 'manage_options', 'Translation', 'translation');
+    add_submenu_page('Kudobuzz', 'Installation Instruction', 'Installation Instruction', 'manage_options', 'InstallationInstruction', 'installation_instruction');
 }
 
 function short_codes() {
@@ -384,6 +387,14 @@ function add_custom_review() {
 function seo_page() {
     include( plugin_dir_path(__FILE__) . '/includes/seo.php');
 }
+
+/*
+ * Installation steps
+ */
+ function installation_steps(){
+ 	
+ 	include( plugin_dir_path(__FILE__) . '/includes/installation-instruction.php');
+ }
 
 /*
  * Settings
@@ -563,6 +574,8 @@ function customize_theme() {
 
     include( plugin_dir_path(__FILE__) . '/includes/customize_theme.php');
 }
+
+
 
 /*
  * full page
