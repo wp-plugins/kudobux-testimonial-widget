@@ -11,7 +11,8 @@ if (isset($kd_uid) && $kd_uid != NULL) {
     $company_desc = $user_account->account->description;
 
     $url = API_DOMAIN . "api/widget/product?uid=" . $kd_uid;
-    $form_settings = json_decode(file_get_contents($url));
+    $form_settings = json_decode($kdwp->run_curl($url, "GET"));
+    
     $review_form_settings = $form_settings->result;
 
     $settings_active = "";

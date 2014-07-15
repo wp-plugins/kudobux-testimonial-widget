@@ -47,7 +47,7 @@
             'category': jQuery("#feeds-category").val(),
             'social_filter': "All Reviews",
             'uid': '<?php echo $kd_uid ?>',
-            'total_connected' : $("#total_connected").val()
+            'total_connected' : jQuery("#total_connected").val()
         };
 
         suggested_page_num = 1;
@@ -71,7 +71,7 @@
                 'uid': '<?php echo $kd_uid ?>',
                 'search': search,
                 'social_filter': social_filter,
-                'total_connected' : $("#total_connected").val()
+                'total_connected' : jQuery("#total_connected").val()
             };
 
 
@@ -87,7 +87,7 @@
                 'uid': '<?php echo $kd_uid ?>',
                 'search': search,
                 'social_filter': social_filter,
-                'total_connected' : $("#total_connected").val()
+                'total_connected' : jQuery("#total_connected").val()
             };
 
 
@@ -104,7 +104,7 @@
                 'uid': '<?php echo $kd_uid ?>',
                 'search': search,
                 'social_filter': social_filter,
-                'total_connected' : $("#total_connected").val()
+                'total_connected' : jQuery("#total_connected").val()
             };
 
             fetch_feeds(mydata, 1);
@@ -116,16 +116,16 @@
                 'type': jQuery("#type").val(),
                 'page': unpublished_page_num,
                 'category': category,
-                'uid': '<?php echo $kd_uid ?>',
+                'uid': '<?php echo jqkd_uid ?>',
                 'search': search,
                 'social_filter': social_filter,
-                'total_connected' : $("#total_connected").val()
+                'total_connected' : jQuery("#total_connected").val()
             };
             fetch_feeds(mydata, 1);
         }
     }
     
-    //$.noConflict();
+    //jQuery.noConflict();
     jQuery(document).ready(function($) {
     	
     	jQuery("#feeds-category").val("social");
@@ -162,7 +162,7 @@
             'category': jQuery("#feeds-category").val(),
             'social_filter': "All Reviews",
             'uid': '<?php echo $kd_uid ?>',
-            'total_connected' : $("#total_connected").val()
+            'total_connected' : jQuery("#total_connected").val()
         };
 
         suggested_page_num = 1;
@@ -205,7 +205,7 @@
                 'category': jQuery("#feeds-category").val(),
                 'social_filter': social_filter,
                 'uid': '<?php echo $kd_uid ?>',
-                'total_connected' : $("#total_connected").val()
+                'total_connected' : jQuery("#total_connected").val()
             };
 
             if (!jQuery(target).is(':empty')) {
@@ -368,9 +368,9 @@
         targetFrame.contentWindow.postMessage('tw-<?php echo $user_id ?>-<?php echo $account_id ?>-<?php echo $email ?>', '<?php echo API_DOMAIN ?>');
     });
     
-    $(document).on("click", ".show-upgrade-modal", function(){
-        $(".modal").modal("hide");
-        $(".upgrade-form").modal("show");
+    jQuery(document).on("click", ".show-upgrade-modal", function(){
+        jQuery(".modal").modal("hide");
+        jQuery(".upgrade-form").modal("show");
     });
 
     /*

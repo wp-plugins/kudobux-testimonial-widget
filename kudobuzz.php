@@ -4,12 +4,12 @@
   Plugin Name: Kudobuzz
   Plugin URI: https://kudobuzz.com
   Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Collect reviews from your visits. Kudubuzz makes your website more customer-centric while improving your SEO.
-  Version: 1.2.9
+  Version: 2.0
   Author: Kudobuzz
   Author URI: https://kudobuzz.com
   License: GPL
  */
-
+session_start();
 if (!function_exists('add_action')) {
     echo "Are you kidding me?";
     exit();
@@ -24,6 +24,7 @@ $kwp = new Kudobuzzwp();
 $kd_uid = get_option('kudobuzz_uid');
 
 
+
 /* * ******************************
  * When user activate the plugin
  * ***************************** */
@@ -33,15 +34,50 @@ register_activation_hook(__FILE__, 'activate_kudobuzz_plugin');
 add_action('admin_init', 'kudobuzz_plugin_redirect');
 
 function kudobuzz_plugin_redirect() {
-
+    
+    //Unset sessions
+//    unset($_SESSION['live-uid']);
+//    unset($_SESSION['account-name']);
+//    unset($_SESSION['url']);
+//    unset($_SESSION['email']);
+    
     if (get_option('kudobuzz_activation_redirect', false)) {
         delete_option('kudobuzz_activation_redirect');
 
         //Checkin if we should initialize the kudobuzz_uid to 0 or not
         $possible_existing_uid = get_option('kudobuzz_uid');
+        
 
         if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
-            wp_redirect('admin.php?page=Returning-user');
+
+            require_once plugin_dir_path(__FILE__) . 'kudobuzzwp.php';
+            $kwp = new Kudobuzzwp();
+
+            //Cross check if the UID live is equal to the UID on localhost
+            $admin_email = get_settings('admin_email');
+
+            $user_details = json_decode($kwp->run_curl(API_DOMAIN . "user/get_user?email=" . $admin_email . "&include_entities=1", "GET"));
+
+            $live_uid = $user_details->uid;
+            $account_name = $user_details->account_name;
+            $url = $user_details->url;
+
+            if ($possible_existing_uid != $live_uid) { //update the localhost uid with the live uid
+                
+                //update_option('kudobuzz_uid', $live_uid);
+                //Redirect the user to a page to confirm using the live details or create a new one
+                $_SESSION['live-uid'] = $live_uid;
+                $_SESSION['account-name'] = $account_name;
+                $_SESSION['url'] = $url;
+                $_SESSION['email'] = $admin_email;
+                
+                wp_redirect('admin.php?page=Confirm-account');
+            }
+            else{
+                 wp_redirect('admin.php?page=Returning-user');
+            }
+
+             
             exit();
         } else {
             //CREATE A NEW EMPTY uid
@@ -68,7 +104,7 @@ function activate_kudobuzz_plugin() {
     add_option('full_page_widget_added', 0);
     add_action('signin_form', 'sign_up');
     add_action('admin_menu', 'add_submenu_page');
-    
+
     create_full_page();
 }
 
@@ -91,16 +127,15 @@ function deactivate_kudobuzz_plugin() {
     delete_option('kudobuzz_contact_widget');
     delete_option('slider_widget_added');
     delete_option('full_page_widget_added');
-    
-    $kudobuzz_page_title = get_option( "kudobuzz_page_title" );
-    $kudobuzz_page_name = get_option( "kudobuzz_page_name" );
+
+    $kudobuzz_page_title = get_option("kudobuzz_page_title");
+    $kudobuzz_page_name = get_option("kudobuzz_page_name");
 
     //  the id of our page...
-    $kudobuzz_page_id = get_option( 'kudobuzz_plugin_page_id' );
-    if( $kudobuzz_page_id ) {
+    $kudobuzz_page_id = get_option('kudobuzz_plugin_page_id');
+    if ($kudobuzz_page_id) {
 
-        wp_delete_post( $kudobuzz_page_id ); // this will trash, not delete
-
+        wp_delete_post($kudobuzz_page_id); // this will trash, not delete
     }
 
     delete_option("kudobuzz_page_title");
@@ -123,8 +158,10 @@ define('ACFPATH', WP_PLUGIN_DIR . "/" . dirname(plugin_basename(__FILE__)));
 
 function wpd_add_kudobuzz_javascript_files() {
     //Jquery
-    wp_enqueue_script('jquery-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery-1.7.2.min.js', dirname(__FILE__)));
-    wp_enqueue_script('jquery-js');
+    //wp_enqueue_script('jquery-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery-1.7.2.min.js', dirname(__FILE__)));
+    //wp_enqueue_script('jquery-js');
+    
+    wp_enqueue_script("jquery");
 
     //Bootstrap
     wp_enqueue_script('bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap.min.js', dirname(__FILE__)));
@@ -248,6 +285,15 @@ function register_kudobuzz_menu_page() {
 
     //A returning user 
     add_submenu_page('kudobuzz_menu', 'Returning user', 'Returning user', 'manage_options', 'Returning-user', 'returnin_user');
+    
+    //A returning user without uid
+    add_submenu_page('kudobuzz_menu', 'Returning user', 'Returning user', 'manage_options', 'Returning-user-without-uid', 'returnin_user_without_uid');
+    
+    //I have forgotten my password
+    add_submenu_page('kudobuzz_menu', 'Forgot password', 'Forgot password', 'manage_options', 'Forgot-password', 'forgot_pass');
+    
+    //Confirm account
+    add_submenu_page('kudobuzz_menu', 'Confirm Account', 'Confirm Account', 'manage_options', 'Confirm-account', 'confirm_account');
 
     //After registration
     add_submenu_page('kudobuzz_menu', 'Success Page', 'Success Page', 'manage_options', 'Success', 'go_success_page');
@@ -307,9 +353,7 @@ function update_account() {
  */
 
 function customize_widget() {
-//    $admin_email = get_settings("admin_email");
-//    $user_details_url = MAIN_HOST . 'user/get_user?email=' . urlencode($admin_email) . '&include_entities=1';
-//    $user_details = json_decode(file_get_contents($user_details_url));
+
     $possible_existing_uid = get_option('kudobuzz_uid');
 
     if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
@@ -404,12 +448,38 @@ function signin_now() {//returnin_user
     }
 }
 
+
+
+/*
+ * Confirm account
+ */
+function confirm_account(){ //Another uid found for
+    
+    include( plugin_dir_path(__FILE__) . '/includes/confirm_account.php');
+}
+
 /*
  * Returning user
  */
 
 function returnin_user() {
     include( plugin_dir_path(__FILE__) . '/includes/returning_user.php');
+}
+
+/*
+ * Returning user without uid
+ */
+function returnin_user_without_uid(){
+    
+    include( plugin_dir_path(__FILE__) . '/includes/returning_user_without_uid.php');
+}
+
+/*
+ * Forgot password
+ */
+function forgot_pass(){
+    
+    include( plugin_dir_path(__FILE__) . '/includes/forgot-pass.php');
 }
 
 /*
@@ -431,9 +501,9 @@ function inject_code() {
 $uid2 = get_option('kudobuzz_uid');
 
 if (isset($uid2) && $uid2 !== FALSE && !empty($uid2)) {
-    
+
     $script = "<!--Start Kudobuzz Here --> <script src='" . MAIN_HOST . "public/javascripts/kudos/widget.js'></script><script> Kudos.Widget({uid: '" . get_option('kudobuzz_uid') . "'});</script><!--End Kudobuzz Here -->";
-    
+
 //Get embedable widgets
     $slider_widget_added = get_option('slider_widget_added');
     $full_page_widget_added = get_option('full_page_widget_added');
@@ -481,7 +551,7 @@ function test_page() {//test
  */
 
 function moderate_reviews() {
-    
+
     include( plugin_dir_path(__FILE__) . '/includes/moderate_reviews.php');
 }
 
@@ -516,8 +586,8 @@ function get_feeds_options() {
     $total_connected = $_GET['total_connected'];
 
     $feeds = $kdwp->get_feeds($type, $page, $category, $social_filter, $uid);
-	//var_dump($category);
-	//var_dump($type);
+    //var_dump($category);
+    //var_dump($type);
     if (isset($feeds->result)) {
         $feeds = $feeds->result;
     }
@@ -550,16 +620,66 @@ function post_publish_action() {
     );
     //print_r($params); exit();
     $result = $kdwp->publish_feed($params);
-	echo $result;
+    echo $result;
 }
 
 add_action('wp_ajax_post_publish_action', 'post_publish_action');
+
+/*
+ * update uid
+ */
+function post_confirm_action(){
+    
+    $uid = $_POST['uid'];
+    $local_uid = get_option('kudobuzz_uid');
+    
+    if(isset($local_uid)){
+        
+        update_option('kudobuzz_uid', $uid);
+    }
+    else{
+        add_option('kudobuzz_uid', $uid);
+    }
+    
+}
+add_action('wp_ajax_post_confirm_action', 'post_confirm_action');
+
+/*
+ * Recover pass post_login_with_pass_action
+ */
+function post_recover_pass_action(){
+    
+    $kdwp = new Kudobuzzwp();
+    
+    $email = $_POST['email'];
+    
+    $result = $kdwp->recover_pass($email);
+    echo json_encode($result); die();
+}
+add_action('wp_ajax_post_recover_pass_action', 'post_recover_pass_action');
+
+
+/*
+ * Recover pass 
+ */
+function post_login_with_pass_action(){
+    
+    $kdwp = new Kudobuzzwp();
+    
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+    
+    $result = $kdwp->get_user_with_pass($email, $password);
+    echo json_encode($result); die();
+}
+add_action('wp_ajax_post_login_with_pass_action', 'post_login_with_pass_action');
+
 
 function create_full_page() {
 
     $the_page_title = 'Testimonials';
     $the_page_name = 'kudobuzz-full-page-widget';
-    
+
     // the menu entry...
     delete_option("kudobuzz_page_title");
     add_option("kudobuzz_page_title", $the_page_title, '', 'yes');
@@ -570,9 +690,9 @@ function create_full_page() {
     delete_option("kudobuzz_plugin_page_id");
     add_option("kudobuzz_plugin_page_id", '0', '', 'yes');
 
-    $the_page = get_page_by_title( $the_page_title );
-    
-    if ( ! $the_page ) {
+    $the_page = get_page_by_title($the_page_title);
+
+    if (!$the_page) {
 
         // Create post object
         $_p = array();
@@ -583,22 +703,19 @@ function create_full_page() {
         $_p['comment_status'] = 'closed';
         $_p['ping_status'] = 'closed';
         $_p['post_category'] = array(1); // the default 'Uncatrgorised'
-
         // Insert the post into the database
-        $the_page_id = wp_insert_post( $_p );
+        $the_page_id = wp_insert_post($_p);
+    } else {
 
-    }
-    else{
-        
         // the plugin may have been previously active and the page may just be trashed...
 
         $the_page_id = $the_page->ID;
 
         //make sure the page is not trashed...
         $the_page->post_status = 'publish';
-        $the_page_id = wp_update_post( $the_page );
+        $the_page_id = wp_update_post($the_page);
     }
-    
-    delete_option( 'kudobuzz_plugin_page_id' );
-    add_option( 'kudobuzz_plugin_page_id', $the_page_id );
+
+    delete_option('kudobuzz_plugin_page_id');
+    add_option('kudobuzz_plugin_page_id', $the_page_id);
 }

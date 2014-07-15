@@ -60,8 +60,8 @@ class Kudobuzzwp {
 
 
         $user_details_url = API_DOMAIN . "api/user/user_account?uid=" . $uid;
-
-        $user_account_details = json_decode(file_get_contents($user_details_url));
+        
+        $user_account_details = json_decode($this->run_curl($user_details_url, "GET", NULL));
 
         if (!empty($user_account_details->user) || !empty($user_account_details->user) || !empty($user_account_details->account)) {
             $user = $user_account_details->user;
@@ -84,7 +84,7 @@ class Kudobuzzwp {
             if (isset($search) && !empty($search)) {
                 $url .= "&search=" . $search;
             }
-            return json_decode(file_get_contents($url));
+            return json_decode($this->run_curl($url, "GET"));
         }
     }
 
@@ -107,13 +107,13 @@ class Kudobuzzwp {
 
         $user_details_url = API_DOMAIN . "api/user/user_account?uid=" . $kd_uid;
 
-        $user_account_details = json_decode(@file_get_contents($user_details_url));
+        $user_account_details = json_decode($this->run_curl($user_details_url, "GET"));
 
         $user_id = $user_account_details->user_id;
         $account_id = $user_account_details->account_id;
 
         $url = API_DOMAIN . "social_connected_accounts?user_id=" . $user_id . "&account_id=" . $account_id;
-        return file_get_contents($url);
+        return $this->run_curl($url, "GET");
     }
 
     /*
@@ -124,7 +124,27 @@ class Kudobuzzwp {
         
         $user_details_url = API_DOMAIN . "api/user/user_account?uid=" . $kd_uid;
 
-        return json_decode(@file_get_contents($user_details_url));
+        return json_decode($this->run_curl($user_details_url, "GET"));
+    }
+    
+    /*
+     * Recover pass
+     */
+    function recover_pass($email){
+        
+        $url = API_DOMAIN . "recover-password";
+        
+        return json_decode($this->run_curl($url, "POST", array("email"=>$email)));
+    }
+    
+    /*
+     * Get user details with password
+     */
+    function get_user_with_pass($email, $password){
+        
+        $url = API_DOMAIN . "user/get_user?email=".$email."&password=".$password."&include_entities=1";
+        
+        return json_decode($this->run_curl($url, "GET"));
     }
 
 }

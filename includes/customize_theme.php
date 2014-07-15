@@ -8,7 +8,8 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
     //Get widget settings
     $url = API_DOMAIN . 'api/widget/tab?uid=' . $kd_uid;
-    $widget_settings = json_decode(file_get_contents($url));
+    $widget_settings = json_decode($kdwp->run_curl($url, "GET"));
+    
     $widget_params = $widget_settings->result;
 
     $widget_type_id = $widget_settings->result->widget_id;

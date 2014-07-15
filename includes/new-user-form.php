@@ -12,7 +12,7 @@
                     <h2 style="margin-top: 50px; font-size: 30px" class="main-title">Create an Account</h2>
                     <div class="pull-left" style="width: 400px; margin-right: 20px">
                         <h3 style="color: #d35400">
-                            Collecting Social Testimonials made simple
+                            Collecting Social Testimonials<br> made simple
                         </h3>
                         <p style="margin-top: 30px">
                             People are talking about your brand, start showing off positive social buzz easily on your website.
@@ -68,6 +68,7 @@
                         </div>
                         <button type="button" class="btn btn-info btn-sm" id="create-user-btn" onclick="create_account()">Create Account</button>
                         <span id="fb" class="hide" style="margin-left: 10px;"></span>
+                        <a href="<?php echo get_admin_url() ?>admin.php?page=Returning-user-without-uid" style="margin-left: 20px; font-weight: bold; font-size: 14px;">Are you an existing user?</a>
                     </form>
 
                 </div>

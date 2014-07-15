@@ -1,5 +1,7 @@
 jQuery(document).ready(function() {
 
+
+
     var selected_wdg_id = jQuery("#selected_widget_type_id").val();
 
     //alert(selected_wdg_id);
@@ -17,11 +19,13 @@ jQuery(document).ready(function() {
             arr["type"] = "title";
             arr["title"] = jQuery("#wg-title").val();
             arr['title_width'] = title_width;
+            console.log(arr);
             win.contentWindow.postMessage(arr, template_url);
         }
         else if (this.id === "title-font-color") {
             arr["type"] = "title-font-color";
             arr["title-font-color"] = this.value;
+            
             win.contentWindow.postMessage(arr, template_url);
         }
         else if (this.id === "widget_height") {
@@ -126,7 +130,6 @@ jQuery(document).ready(function() {
             arr['default-state'] = value;
             var title_width = jQuery('#title_width').val();
             arr['title_width'] = title_width;
-            console.log("here");
             win.contentWindow.postMessage(arr, template_url);
         });
 
@@ -134,6 +137,45 @@ jQuery(document).ready(function() {
             jQuery('#wdg-save-feedback').hide();
             jQuery('#wdg-main-frm').fadeIn();
         });
+    });
+
+
+    jQuery('#wg-preview-iframe-2').load(function() {
+        
+        var value = jQuery('input:radio[name=wg]:checked').val();
+        
+        var wgt = [];
+        //Send the widget details to the iframe
+        wgt["title"] = jQuery("#wg-title").val();
+        wgt["title-font"] = jQuery("#title-font").val();
+        wgt["content_font"] = jQuery("#content-font").val();
+        wgt["title_font_color"] = jQuery("#title-font-color").val();
+        wgt["widget_height"] = jQuery("#widget_height").val();
+        wgt["widget_width"] = jQuery("#widget_width").val();
+        wgt["content_font_size"] = jQuery("#content_font_size").val();
+        wgt["title_font_size"] = jQuery("#title_font_size").val();
+        wgt["content-font-color"] = jQuery("#content-font-color").val();
+        wgt["top-border-color"] = jQuery("#hd_color").val();
+        wgt["kb_widget_type"] = value;
+        
+
+        if (jQuery('input:radio[name=alignment]:checked').val()) {
+            wgt["alignment"] = jQuery('input:radio[name=alignment]:checked').val();
+        }
+        else {
+            wgt["alignment"] = "left";
+        }
+
+        if (jQuery('input:radio[name=default_state]:checked').val()) {
+            wgt["default-state"] = jQuery('input:radio[name=default_state]:checked').val();
+        }
+        else {
+            wgt["default-state"] = "expanded";
+        }
+
+        wgt["bg_color"] = jQuery("#bg_color").val();
+        win.contentWindow.postMessage(wgt, template_url);
+        console.log(wgt);
     });
 
 
@@ -154,21 +196,21 @@ function save_wdg_config() {
     save_configurations(account_name, selected_wdg_id);
 
     /*var active_account = jQuery('#active_account').val();
-    var uid = jQuery("#user_id").val();
-    var platform = jQuery("#platform_type").val();
-    var user_email = jQuery("#user_email").val();
-
-    if (jQuery("#widget_status_input").val() > 0) {
-        //personalize_grab_code();
-    }
-    else {
-        var alert_msg = '<h5 style="font-size: 25px; text-align: center; color: #d35400">Widget Deactivated</h5>';
-        alert_msg += '<p>You have successfully deactivated the widget. </p>';
-        alert_msg += '<p>To activate it again, turn the Widget Status on.</p>';
-
-        //Display modal
-        bootbox.alert(alert_msg);
-    }*/
+     var uid = jQuery("#user_id").val();
+     var platform = jQuery("#platform_type").val();
+     var user_email = jQuery("#user_email").val();
+     
+     if (jQuery("#widget_status_input").val() > 0) {
+     //personalize_grab_code();
+     }
+     else {
+     var alert_msg = '<h5 style="font-size: 25px; text-align: center; color: #d35400">Widget Deactivated</h5>';
+     alert_msg += '<p>You have successfully deactivated the widget. </p>';
+     alert_msg += '<p>To activate it again, turn the Widget Status on.</p>';
+     
+     //Display modal
+     bootbox.alert(alert_msg);
+     }*/
 }
 
 function save_configurations(account_name, widget_type_id, show_wdg) {
@@ -226,7 +268,7 @@ function save_configurations(account_name, widget_type_id, show_wdg) {
         jQuery("#wdg-save-btn").removeClass("btn-default");
         jQuery("#wdg-save-btn").addClass("btn-primary");
         jQuery(".ok-span").removeClass("hide");
-        
+
     });
     return 1;
 }

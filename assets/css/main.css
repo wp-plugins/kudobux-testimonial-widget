@@ -145,7 +145,8 @@ img.logo {
     text-align: right
 }
 .main-app-content {
-    background: #F8F8F8
+    background: #F8F8F8;
+    min-height: 445px;
 }
 .left-panel {
     width: 160px; height: 100%; position: absolute; z-index: 99; background: #F3F3F3; top: 60px;

@@ -9,7 +9,8 @@ if (isset($kd_uid) && $kd_uid != NULL) {
     //Get widget settings
     $url = API_DOMAIN . 'api/widget/full_page?uid=' . $kd_uid;
 
-    $params = json_decode(file_get_contents($url));
+    $params = json_decode($kdwp->run_curl($url, "GET"));
+    
 
     $widget_settings = $params->result[0];
 
