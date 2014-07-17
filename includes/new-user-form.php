@@ -88,7 +88,6 @@
 if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
     ?>
         user_id = <?php echo $GLOBALS['user_id'] ?>;
-        //$('#myTab a[href="#profile"]').tab('show');
     <?php
 }
 ?>
@@ -97,7 +96,7 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
     var pass_is_valid = 0;
     var url_is_valid = 1;
     var site_name_is_valid = 0;
-    $("#email, #password, #url, #account-name").live("blur", function() {
+    jQuery("#email, #password, #url, #account-name").live("blur", function() {
         if (this.id === 'email') {
             validate_email(this.value);
         }
@@ -113,20 +112,20 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
     });
     function create_account() {
 
-        var email = $("#email").val();
-        var pass = $("#password").val();
-        var url = $("#url").val();
-        var account_name = $("#account-name").val();
+        var email = jQuery("#email").val();
+        var pass = jQuery("#password").val();
+        var url = jQuery("#url").val();
+        var account_name = jQuery("#account-name").val();
 
 
         if (email_is_valid == 1 && pass_is_valid == 1 && url_is_valid == 1 && site_name_is_valid == 1) {
 
-            $("#fb").css({'color': 'green'});
-            $("#fb").removeClass('hide');
-            $("#fb").html('<img src="<?php echo plugins_url() ?>/kudobux-testimonial-widget/assets/img/loader.gif" /> <span>Please wait...</span>');
+            jQuery("#fb").css({'color': 'green'});
+            jQuery("#fb").removeClass('hide');
+            jQuery("#fb").html('<img src="<?php echo plugins_url() ?>/kudobux-testimonial-widget/assets/img/loader.gif" /> <span>Please wait...</span>');
 
-            $("#create-user-btn").addClass('hide');
-            $("input").prop("disabled", true);
+            jQuery("#create-user-btn").addClass('hide');
+            jQuery("input").prop("disabled", true);
 
             var dataSet = {
                 'email': email,
@@ -135,18 +134,18 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
                 'vanity_name': account_name,
                 'platform_type': 1
             };
-            $.post("<?php echo MAIN_HOST ?>user/create", dataSet, function(data) {
+            jQuery.post("<?php echo MAIN_HOST ?>user/create", dataSet, function(data) {
                 user_id = data;
-                $("#form-li a").removeAttr('data-toggle');
-                $("#widgets-li a").tab('show');
+                jQuery("#form-li a").removeAttr('data-toggle');
+                jQuery("#widgets-li a").tab('show');
 
                 window.location.href = "admin.php?page=Inject_code&user_id=" + user_id;
             });
         }
         else {
-            $("#fb").removeClass('hide');
-            $("#fb").css({'color': 'red'});
-            $("#fb").html('Please enter appropriate data.');
+            jQuery("#fb").removeClass('hide');
+            jQuery("#fb").css({'color': 'red'});
+            jQuery("#fb").html('Please enter appropriate data.');
         }
     }
 
@@ -156,31 +155,31 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
     function validate_account_name(account_name) {
         if (account_name === '') {
 
-            $("#account-name").closest(".form-group").addClass('has-error');
-            $("#account-name").closest(".form-group").find("span").fadeIn();
-            $("#account-name").closest(".container").find("span").css({'color': 'crimson'});
-            $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Choose a site name");
+            jQuery("#account-name").closest(".form-group").addClass('has-error');
+            jQuery("#account-name").closest(".form-group").find("span").fadeIn();
+            jQuery("#account-name").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Choose a site name");
             site_name_is_valid = 0;
         }
         else {
-            $("#account-name").closest(".container").find("span").fadeIn();
-            $("#account-name").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
-            $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking site name. Please wait...");
-            $.get("<?php echo MAIN_HOST ?>account/check_vanity?vanity=" + account_name, function(data) {
+            jQuery("#account-name").closest(".container").find("span").fadeIn();
+            jQuery("#account-name").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
+            jQuery("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking site name. Please wait...");
+            jQuery.get("<?php echo MAIN_HOST ?>account/check_vanity?vanity=" + account_name, function(data) {
 
                 if (data == 0) { // existing url
 
-                    $("#account-name").closest(".form-group").addClass('has-error');
-                    $("#account-name").closest(".form-group").find("span").fadeIn();
-                    $("#account-name").closest(".container").find("span").css({'color': 'crimson'});
-                    $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This site name is already in use.");
+                    jQuery("#account-name").closest(".form-group").addClass('has-error');
+                    jQuery("#account-name").closest(".form-group").find("span").fadeIn();
+                    jQuery("#account-name").closest(".container").find("span").css({'color': 'crimson'});
+                    jQuery("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This site name is already in use.");
                     site_name_is_valid = 0;
                 }
                 else if (data == 1) { //Cool
-                    $("#account-name").closest(".form-group").addClass('has-success');
-                    $("#account-name").closest(".form-group").find("span").fadeIn();
-                    $("#account-name").closest(".container").find("span").css({'color': 'green'});
-                    $("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
+                    jQuery("#account-name").closest(".form-group").addClass('has-success');
+                    jQuery("#account-name").closest(".form-group").find("span").fadeIn();
+                    jQuery("#account-name").closest(".container").find("span").css({'color': 'green'});
+                    jQuery("#account-name").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
                     site_name_is_valid = 1;
                 }
 
@@ -197,43 +196,43 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
         var url_without_trailing_slash = url_without_protocol.replace(/\/$/, "");
 
         if (url === '') {
-            $("#url").closest(".form-group").addClass('has-error');
-            $("#url").closest(".form-group").find("span").fadeIn();
-            $("#url").closest(".container").find("span").css({'color': 'crimson'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter your website URL");
+            jQuery("#url").closest(".form-group").addClass('has-error');
+            jQuery("#url").closest(".form-group").find("span").fadeIn();
+            jQuery("#url").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter your website URL");
             url_is_valid = 0;
         }
         else if (validURL(url) === false) {
-            $("#url").closest(".form-group").addClass('has-error');
-            $("#url").closest(".form-group").find("span").fadeIn();
-            $("#url").closest(".container").find("span").css({'color': 'crimson'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
+            jQuery("#url").closest(".form-group").addClass('has-error');
+            jQuery("#url").closest(".form-group").find("span").fadeIn();
+            jQuery("#url").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
             url_is_valid = 0;
         }
         else if (url.indexOf("localhost") >= 0) {
-            $("#url").closest(".form-group").addClass('has-error');
-            $("#url").closest(".form-group").find("span").fadeIn();
-            $("#url").closest(".container").find("span").css({'color': 'crimson'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
+            jQuery("#url").closest(".form-group").addClass('has-error');
+            jQuery("#url").closest(".form-group").find("span").fadeIn();
+            jQuery("#url").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
             url_is_valid = 0;
         }
         else if (url_without_trailing_slash == '127.0.0.1') {
-            $("#url").closest(".form-group").addClass('has-error');
-            $("#url").closest(".form-group").find("span").fadeIn();
-            $("#url").closest(".container").find("span").css({'color': 'crimson'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
+            jQuery("#url").closest(".form-group").addClass('has-error');
+            jQuery("#url").closest(".form-group").find("span").fadeIn();
+            jQuery("#url").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid website URL");
             url_is_valid = 0;
         }
         else if (validURL(url) === true) {
 
-            $("#url").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking url. Please wait...");
-            $("#url").closest(".container").find("span").fadeIn();
+            jQuery("#url").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
+            jQuery("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking url. Please wait...");
+            jQuery("#url").closest(".container").find("span").fadeIn();
 
-            $("#url").closest(".form-group").addClass('has-success');
-            $("#url").closest(".form-group").find("span").fadeIn();
-            $("#url").closest(".container").find("span").css({'color': 'green'});
-            $("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
+            jQuery("#url").closest(".form-group").addClass('has-success');
+            jQuery("#url").closest(".form-group").find("span").fadeIn();
+            jQuery("#url").closest(".container").find("span").css({'color': 'green'});
+            jQuery("#url").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Awesome!");
             url_is_valid = 1;
         }
     }
@@ -245,25 +244,25 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
 
         if (pass === '') {
 
-            $("#password").closest(".form-group").addClass('has-error');
-            $("#password").closest(".form-group").find("span").fadeIn();
-            $("#password").closest(".container").find("span").css({'color': 'crimson'});
-            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a password.");
+            jQuery("#password").closest(".form-group").addClass('has-error');
+            jQuery("#password").closest(".form-group").find("span").fadeIn();
+            jQuery("#password").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a password.");
             pass_is_valid = 0;
         }
         else if (pass.length < 5) {
 
-            $("#password").closest(".form-group").addClass('has-error');
-            $("#password").closest(".form-group").find("span").fadeIn();
-            $("#password").closest(".container").find("span").css({'color': 'crimson'});
-            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > 5 characters minimum");
+            jQuery("#password").closest(".form-group").addClass('has-error');
+            jQuery("#password").closest(".form-group").find("span").fadeIn();
+            jQuery("#password").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > 5 characters minimum");
             pass_is_valid = 0;
         }
         else {
-            $("#password").closest(".form-group").addClass('has-success');
-            $("#password").closest(".form-group").find("span").fadeIn();
-            $("#password").closest(".container").find("span").css({'color': 'green'});
-            $("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Yay!");
+            jQuery("#password").closest(".form-group").addClass('has-success');
+            jQuery("#password").closest(".form-group").find("span").fadeIn();
+            jQuery("#password").closest(".container").find("span").css({'color': 'green'});
+            jQuery("#password").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px' > Yay!");
             pass_is_valid = 1;
         }
 
@@ -275,39 +274,39 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
     function validate_email(email) {
 
         if (email == '') {
-            $("#email").closest(".form-group").addClass('has-error');
-            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter your email.");
-            $("#email").closest(".container").find("span").fadeIn();
-            $("#email").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#email").closest(".form-group").addClass('has-error');
+            jQuery("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter your email.");
+            jQuery("#email").closest(".container").find("span").fadeIn();
+            jQuery("#email").closest(".container").find("span").css({'color': 'crimson'});
             email_is_valid = 0;
         }
         else if (validateEmail(email) === false) {
-            $("#email").closest(".form-group").addClass('has-error');
-            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid email.");
-            $("#email").closest(".container").find("span").fadeIn();
-            $("#email").closest(".container").find("span").css({'color': 'crimson'});
+            jQuery("#email").closest(".form-group").addClass('has-error');
+            jQuery("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > Enter a valid email.");
+            jQuery("#email").closest(".container").find("span").fadeIn();
+            jQuery("#email").closest(".container").find("span").css({'color': 'crimson'});
             email_is_valid = 0;
         }
         else if (validateEmail(email) === true) {
 
             //Check if this email is already registered
-            $("#email").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
-            $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking email. Please wait...");
-            $("#email").closest(".container").find("span").fadeIn();
-            $.post("<?php echo MAIN_HOST ?>check-email", {'email': email}, function(data) {
+            jQuery("#email").closest(".container").find("span").css({'color': 'rgb(138, 138, 138)'});
+            jQuery("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px'> Checking email. Please wait...");
+            jQuery("#email").closest(".container").find("span").fadeIn();
+            jQuery.post("<?php echo MAIN_HOST ?>check-email", {'email': email}, function(data) {
 
                 if (data == 1) {
-                    $("#email").closest(".form-group").addClass('has-error');
-                    $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This email is in use.");
-                    $("#email").closest(".container").find("span").fadeIn();
-                    $("#email").closest(".container").find("span").css({'color': 'crimson'});
+                    jQuery("#email").closest(".form-group").addClass('has-error');
+                    jQuery("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/w.png' style='margin-right: 5px' > This email is in use.");
+                    jQuery("#email").closest(".container").find("span").fadeIn();
+                    jQuery("#email").closest(".container").find("span").css({'color': 'crimson'});
                     email_is_valid = 0;
                 }
                 else if (data == 0) {
-                    $("#email").closest(".form-group").addClass('has-success');
-                    $("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px'> Awesome!");
-                    $("#email").closest(".container").find("span").fadeIn();
-                    $("#email").closest(".container").find("span").css({'color': 'green'});
+                    jQuery("#email").closest(".form-group").addClass('has-success');
+                    jQuery("#email").closest(".container").find("span").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px'> Awesome!");
+                    jQuery("#email").closest(".container").find("span").fadeIn();
+                    jQuery("#email").closest(".container").find("span").css({'color': 'green'});
                     email_is_valid = 1;
                 }
             });
@@ -340,20 +339,20 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
         }
     }
 
-    $('.choose-wdg-type').live("click", function() {
+    jQuery('.choose-wdg-type').live("click", function() {
 
         var widget_type_id = this.value;
         var btn_id = this.id;
 
         show_widget_type(widget_type_id);
 
-        $('.choose-wdg-type').closest(".button-div").find("#fd-choose").html("");
-        $(".widget-type").removeClass('active-wdg-id');
+        jQuery('.choose-wdg-type').closest(".button-div").find("#fd-choose").html("");
+        jQuery(".widget-type").removeClass('active-wdg-id');
 
-        $(this).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px; width: 16px !important;'> Please wait...");
-        $(this).hide();
+        jQuery(this).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif' style='margin-right: 5px; width: 16px !important;'> Please wait...");
+        jQuery(this).hide();
 
-        $(".next-to-code").addClass("hide");
+        jQuery(".next-to-code").addClass("hide");
 
         var update_widget_type_url = '';
         if (widget_type_id == '8' || widget_type_id == '9') {
@@ -364,40 +363,40 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
 
             update_widget_type_url = "<?php echo MAIN_HOST ?>widget/update";
         }
-        $.post(update_widget_type_url, {'user_id': user_id, "widget_type_id": widget_type_id}, function(data) {
+        jQuery.post(update_widget_type_url, {'user_id': user_id, "widget_type_id": widget_type_id}, function(data) {
 
-            $("#" + btn_id).show();
-            $("#" + btn_id).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px; width: 16px !important;'> You may refresh your frontend");
-            $(".widget-type").css("border", "2px solid transparent");
-            $("#" + btn_id).closest(".widget-type").css("border", "2px solid green");
-            //$(".next-to-code").removeClass("hide");
+            jQuery("#" + btn_id).show();
+            jQuery("#" + btn_id).closest('.button-div').find("#fd-choose").html("<img src='../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png' style='margin-right: 5px; width: 16px !important;'> You may refresh your frontend");
+            jQuery(".widget-type").css("border", "2px solid transparent");
+            jQuery("#" + btn_id).closest(".widget-type").css("border", "2px solid green");
+            //jQuery(".next-to-code").removeClass("hide");
 
             setTimeout(function() {
-                $("#instructions-li a").tab('show');
+                jQuery("#instructions-li a").tab('show');
             }, 700);
         });
     });
 
     function show_widget_type(widget_type_id) {
 
-        $("#kudobuzz-slider-widget-div").addClass("hide");
-        $("#kudobuzz-fullpage-widget-div").addClass("hide");
+        jQuery("#kudobuzz-slider-widget-div").addClass("hide");
+        jQuery("#kudobuzz-fullpage-widget-div").addClass("hide");
 
         switch (widget_type_id) {
             case '9':
-                $("#kudobuzz-slider-widget-div").removeClass("hide");
-                $("#normal-widget-div").addClass("hide");
+                jQuery("#kudobuzz-slider-widget-div").removeClass("hide");
+                jQuery("#normal-widget-div").addClass("hide");
                 break;
 
             case '8':
-                $("#kudobuzz-fullpage-widget-div").removeClass("hide");
-                $("#normal-widget-div").addClass("hide");
+                jQuery("#kudobuzz-fullpage-widget-div").removeClass("hide");
+                jQuery("#normal-widget-div").addClass("hide");
                 break;
 
             default :
-                $("#kudobuzz-slider-widget-div").addClass("hide");
-                $("#kudobuzz-fullpage-widget-div").addClass("hide");
-                $("#normal-widget-div").removeClass("hide");
+                jQuery("#kudobuzz-slider-widget-div").addClass("hide");
+                jQuery("#kudobuzz-fullpage-widget-div").addClass("hide");
+                jQuery("#normal-widget-div").removeClass("hide");
                 break;
         }
 
@@ -405,9 +404,9 @@ if (isset($GLOBALS['user_id']) && !empty($GLOBALS['user_id'])) {
     }
     jQuery(document).ready(function($) {
         
-       $("#email").focus();
-        $("#next-btn").live("click", function() {
-            $("#instructions-li a").tab('show');
+       jQuery("#email").focus();
+        jQuery("#next-btn").live("click", function() {
+            jQuery("#instructions-li a").tab('show');
         }); 
     });
 </script>
