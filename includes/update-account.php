@@ -27,9 +27,9 @@
     
     jQuery(document).ready(function($) {
         
-       $("#update_account").live("click", function() {
+       jQuery("#update_account").live("click", function() {
 
-            var email = $("#email").val();
+            var email = jQuery("#email").val();
             if (email == '') {
                 message = "Please enter a valid email address";
                 show_error(message);
@@ -41,9 +41,9 @@
             else {
 
                 //Check if this email is in our db
-                $(".loading").removeClass("hide");
-                $("#update_account").addClass("hide");
-                $.get("<?php echo MAIN_HOST ?>user/get_user?email=" + encodeURIComponent(email) + "&include_entities=1", function(data) {
+                jQuery(".loading").removeClass("hide");
+                jQuery("#update_account").addClass("hide");
+                jQuery.get("<?php echo MAIN_HOST ?>user/get_user?email=" + encodeURIComponent(email) + "&include_entities=1", function(data) {
                     var obj = JSON.parse(data);
 
                     var user_id = obj.user_id;
@@ -52,18 +52,18 @@
                     if (isEmpty(obj)) {
                         message = "Sorry this email is not in our system";
                         show_error(message);
-                        $(".loading").addClass("hide");
-                        $("#update_account").removeClass("hide");
+                        jQuery(".loading").addClass("hide");
+                        jQuery("#update_account").removeClass("hide");
                     }
                     else {
-                        $('.fb').addClass("hide");
-                        $("#update_account").addClass("hide");
-                        $('#email').closest('.form-group').addClass('has-success');
-                        $('#email').closest('.form-group').removeClass('has-error');
-                        $(".loading").html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif"> Updating, Please wait...');
-                        $(".loading").css({'color': 'green'});
+                        jQuery('.fb').addClass("hide");
+                        jQuery("#update_account").addClass("hide");
+                        jQuery('#email').closest('.form-group').addClass('has-success');
+                        jQuery('#email').closest('.form-group').removeClass('has-error');
+                        jQuery(".loading").html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif"> Updating, Please wait...');
+                        jQuery(".loading").css({'color': 'green'});
 
-                        $.get("<?php echo get_admin_url() ?>admin.php?page=updateUid", {'user_id': user_id, 'account_id': account_id}, function() {
+                        jQuery.get("<?php echo get_admin_url() ?>admin.php?page=updateUid", {'user_id': user_id, 'account_id': account_id}, function() {
                             window.location.href = "<?php echo get_admin_url(); ?>admin.php?page=Signin";
                         });
                     }
@@ -73,11 +73,11 @@
     });
 
     function show_error(message) {
-        $('.fb').removeClass('hide');
-        $('.fb').addClass('alert-danger');
-        $('.fb').html(message);
-        $("#email").closest('.form-group').addClass('has-error');
-        $("#email").focus();
+        jQuery('.fb').removeClass('hide');
+        jQuery('.fb').addClass('alert-danger');
+        jQuery('.fb').html(message);
+        jQuery("#email").closest('.form-group').addClass('has-error');
+        jQuery("#email").focus();
     }
 
     function isEmpty(obj) {

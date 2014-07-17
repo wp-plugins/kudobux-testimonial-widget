@@ -78,8 +78,8 @@ if (isset($kd_uid) && $kd_uid != NULL) {
             </div>
 
             <script>
-                $(document).ready(function() {
-                    $('.fileinput').fileinput();
+                jQuery(document).ready(function() {
+                    jQuery('.fileinput').fileinput();
                 });
             </script>
 
@@ -95,49 +95,49 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                 var rating_is_valid = 0;
                 var message_is_valid = 0;
 
-                $('.rateit').live('rated', function(event, value) {
-                    $("#rating_place_hoder").val(value);
+                jQuery('.rateit').live('rated', function(event, value) {
+                    jQuery("#rating_place_hoder").val(value);
                 });
 
                 //Add new custom review
-                $("#add_custom_review_btn").live("click", function() {
+                jQuery("#add_custom_review_btn").live("click", function() {
                     
                     
-                    fake_path_to_img = $('#myimage').val();
-                    name = $('#name').val();
-                    message = $('#kb-message').val();
-                    rating = $('#k_rating').rateit('value');
-                    my_rating = $("#rating_place_hoder").val();
+                    fake_path_to_img = jQuery('#myimage').val();
+                    name = jQuery('#name').val();
+                    message = jQuery('#kb-message').val();
+                    rating = jQuery('#k_rating').rateit('value');
+                    my_rating = jQuery("#rating_place_hoder").val();
 
                     if (name == '') {
-                        $('#name').css({'border': '1px solid red'});
+                        jQuery('#name').css({'border': '1px solid red'});
                         name_is_valid = 0;
-                        //$("#name").focus();
+                        //jQuery("#name").focus();
                         return false;
                     }
                     else {
-                        $('#name').css({'border': '1px solid #CCC'});
+                        jQuery('#name').css({'border': '1px solid #CCC'});
                         name_is_valid = 1;
                     }
 
                     if (rating == 0) {
-                        $("#required-rating").removeClass("hide");
+                        jQuery("#required-rating").removeClass("hide");
                         rating_is_valid = 0;
                         return false;
                     }
                     else {
                         rating_is_valid = 1;
-                        $("#required-rating").addClass("hide");
+                        jQuery("#required-rating").addClass("hide");
                     }
 
                     if (message == '') {
-                        $("#kb-message").css({'border': '1px solid red'});
-                        //$("#kb-message").focus();
+                        jQuery("#kb-message").css({'border': '1px solid red'});
+                        //jQuery("#kb-message").focus();
                         message_is_valid = 0;
                         return false;
                     }
                     else {
-                        $("#kb-message").css({'border': '1px solid #CCC'});
+                        jQuery("#kb-message").css({'border': '1px solid #CCC'});
                         message_is_valid = 1;
                     }
 
@@ -147,16 +147,16 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                 });
 
                 function add_custom() {
-                    $('#frm2_feed').removeClass("hide");
-                    $('#frm2_feed').html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 5px;"><span style="vertical-align: middle">Please wait...</span>');
-                    $("#add_custom_review_btn").html("Please wait...");
-                    $("#add_custom_review_btn").addClass('disabled');
-                    $("#add_custom_review_btn").removeClass('main');
-                    var bar = $('.bar');
-                    var percent = $('.percent');
-                    var status = $('#status');
+                    jQuery('#frm2_feed').removeClass("hide");
+                    jQuery('#frm2_feed').html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader.gif" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 5px;"><span style="vertical-align: middle">Please wait...</span>');
+                    jQuery("#add_custom_review_btn").html("Please wait...");
+                    jQuery("#add_custom_review_btn").addClass('disabled');
+                    jQuery("#add_custom_review_btn").removeClass('main');
+                    var bar = jQuery('.bar');
+                    var percent = jQuery('.percent');
+                    var status = jQuery('#status');
 
-                    $("#add_cs_review").ajaxForm({
+                    jQuery("#add_cs_review").ajaxForm({
                         beforeSend: function() {
                             status.empty();
                             percentVal = '0%';
@@ -181,15 +181,15 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                             bar.width(percentVal);
                             percent.html(percentVal);
-                            $("input[type!='hidden'], select, textarea").val("");
-                            $('.rateit').live("reset"); //disabled
-                            $("#add_custom_review_btn").html("Add Review");
-                            $("#add_custom_review_btn").removeClass('disabled');
-                            $("#add_custom_review_btn").addClass('main');
-                            $(".fileupload-preview").html('');
-                            $('#frm2_feed').html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 5px;">');
-                            //$(".fileupload-exists .fileupload-new, .fileupload-new .fileupload-exists").css("display","none");
-                            //$(".fileupload-new").css("display","inline-block");
+                            jQuery("input[type!='hidden'], select, textarea").val("");
+                            jQuery('.rateit').live("reset"); //disabled
+                            jQuery("#add_custom_review_btn").html("Add Review");
+                            jQuery("#add_custom_review_btn").removeClass('disabled');
+                            jQuery("#add_custom_review_btn").addClass('main');
+                            jQuery(".fileupload-preview").html('');
+                            jQuery('#frm2_feed').html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 5px;">');
+                            //jQuery(".fileupload-exists .fileupload-new, .fileupload-new .fileupload-exists").css("display","none");
+                            //jQuery(".fileupload-new").css("display","inline-block");
                         }
                     });
 

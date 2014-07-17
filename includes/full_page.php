@@ -135,11 +135,11 @@ if (isset($kd_uid) && $kd_uid != NULL) {
     <script>
 
         (function($) {
-            var id_wdg = $('input:radio[name=wg]:checked').val();
+            var id_wdg = jQuery('input:radio[name=wg]:checked').val();
             show_options(id_wdg);
 
-            $("input:radio[name=wg]").change(function() {
-                var id_wdg = $('input:radio[name=wg]:checked').val();
+            jQuery("input:radio[name=wg]").change(function() {
+                var id_wdg = jQuery('input:radio[name=wg]:checked').val();
 
                 show_options(id_wdg);
                 reload_form();
@@ -147,12 +147,12 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
 
 
-            var template_url = $("#iframe_url").val();
-            var win = $("#kudobuzz_one_page_kudo")[0];
+            var template_url = jQuery("#iframe_url").val();
+            var win = jQuery("#kudobuzz_one_page_kudo")[0];
             var arr = [];
 
-            $("#review_text_color, #background_color, #image_background_color, #name_text_color, #review_link_text").blur(function() {
-                arr["selected_wdg_id"] = $('input:radio[name=wg]:checked').val();
+            jQuery("#review_text_color, #background_color, #image_background_color, #name_text_color, #review_link_text").blur(function() {
+                arr["selected_wdg_id"] = jQuery('input:radio[name=wg]:checked').val();
 
                 if (this.id === "background_color") {
                     arr["type"] = "background_color";
@@ -180,31 +180,31 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
         function show_options(id_wdg) {
             if (id_wdg === '8') {
-                $('#image-background-div').hide();
+                jQuery('#image-background-div').hide();
             }
             else if (id_wdg === '11') {
-                $('#image-background-div').show();
+                jQuery('#image-background-div').show();
             }
         }
 
         function reload_form() {
-            var id_wdg = $('input:radio[name=wg]:checked').val();
-            var review_text_color = $('#review_text_color').val();
-            var background_color = $('#background_color').val();
-            var image_background_color = $('#image_background_color').val();
-            var name_text_color = $('#name_text_color').val();
-            var one_paged_frame = $('#kudobuzz_one_page_kudo');
-            var review_link_text = $('#review_link_text').val();
+            var id_wdg = jQuery('input:radio[name=wg]:checked').val();
+            var review_text_color = jQuery('#review_text_color').val();
+            var background_color = jQuery('#background_color').val();
+            var image_background_color = jQuery('#image_background_color').val();
+            var name_text_color = jQuery('#name_text_color').val();
+            var one_paged_frame = jQuery('#kudobuzz_one_page_kudo');
+            var review_link_text = jQuery('#review_link_text').val();
             var url = "<?php echo API_DOMAIN; ?>reviews/one_page_widget?uid=<?php echo $kd_uid; ?>&preview=1" + "&widget_id=" + id_wdg + "&review_text_color=" + review_text_color + "&background_color=" + background_color + "&image_background_color=" + image_background_color + "&name_text_color=" + name_text_color + "&review_link_text=" + review_link_text;
             one_paged_frame.attr("src", url);
-            $('#kudobuzz_one_page_kudo').load(function() {
-                var template_url = $("#iframe_url").val();
-                var win = $("#kudobuzz_one_page_kudo")[0];
+            jQuery('#kudobuzz_one_page_kudo').load(function() {
+                var template_url = jQuery("#iframe_url").val();
+                var win = jQuery("#kudobuzz_one_page_kudo")[0];
                 var arr = [];
-                arr["selected_wdg_id"] = $('input:radio[name=wg]:checked').val();
-                arr["name_text_color"] = $('#name_text_color').val();
-                arr["review_text_color"] = $('#review_text_color').val();
-                arr["background_color"] = $('#background_color').val();
+                arr["selected_wdg_id"] = jQuery('input:radio[name=wg]:checked').val();
+                arr["name_text_color"] = jQuery('#name_text_color').val();
+                arr["review_text_color"] = jQuery('#review_text_color').val();
+                arr["background_color"] = jQuery('#background_color').val();
                 win.contentWindow.postMessage(arr, template_url);
             });
 
@@ -212,13 +212,13 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
 
         function save_settings() {
-            var id_wdg = $('input:radio[name=wg]:checked').val();
-            var review_text_color = $('#review_text_color').val();
-            var background_color = $('#background_color').val();
-            var image_background_color = $('#image_background_color').val();
-            var name_text_color = $('#name_text_color').val();
-            var max_width = $('#max_width').val();
-            var review_link_text = $('#review_link_text').val();
+            var id_wdg = jQuery('input:radio[name=wg]:checked').val();
+            var review_text_color = jQuery('#review_text_color').val();
+            var background_color = jQuery('#background_color').val();
+            var image_background_color = jQuery('#image_background_color').val();
+            var name_text_color = jQuery('#name_text_color').val();
+            var max_width = jQuery('#max_width').val();
+            var review_link_text = jQuery('#review_link_text').val();
 
             var wdg_params = {
                 'widget_type_id': id_wdg,
@@ -230,9 +230,9 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                 'review_link_text': review_link_text
             };
 
-            $('#save-btn').hide();
-            $('#frm2_feed').fadeIn();
-            var uid = $('#uid').val();
+            jQuery('#save-btn').hide();
+            jQuery('#frm2_feed').fadeIn();
+            var uid = jQuery('#uid').val();
 
             var values = {
                 'wdg_params': wdg_params,
@@ -241,9 +241,9 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                 'uid': '<?php echo $kd_uid; ?>'
             };
 
-            $.post("<?php echo API_DOMAIN ?>widget/save_one_page_widget_settings", values, function(data) {
-                $('#frm2_feed').html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 5px;" /><span style="vertical-align: middle; color: green">Success</span>');
-                $('#save-btn').show();
+            jQuery.post("<?php echo API_DOMAIN ?>widget/save_one_page_widget_settings", values, function(data) {
+                jQuery('#frm2_feed').html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 5px;" /><span style="vertical-align: middle; color: green">Success</span>');
+                jQuery('#save-btn').show();
                 if (data == 1) {
                 }
             });
