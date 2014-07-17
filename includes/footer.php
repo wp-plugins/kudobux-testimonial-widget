@@ -1198,8 +1198,8 @@
                                         var params = {
                                             'token': token,
                                             'uid': '<?php echo $kd_uid ?>',
-                                            'payment_duration': jQuery("#hidden-pricing-duration").val(),
-                                            'payment_plan': jQuery("#hidden-pricing-plan").val(),
+                                            'payment_duration': 1826,
+                                            'payment_plan': 7, //Unlimited
                                             'amount': 99.99 * 100
                                         };
                                         jQuery(".upgrade-form").modal("hide");
