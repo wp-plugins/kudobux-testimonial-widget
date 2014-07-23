@@ -5037,7 +5037,7 @@ a.list-group-item-danger.active:focus {
 .well-sm {
   padding: 9px;
   border-radius: 3px;
-}
+} 
 .close {
   float: right;
   font-size: 21px;
@@ -5063,10 +5063,10 @@ button.close {
   background: transparent;
   border: 0;
 }
-.modal-open {
+.main-wrapper .modal-open {
   overflow: hidden;
 }
-.modal {
+.main-wrapper .modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -5079,7 +5079,7 @@ button.close {
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
-.modal.fade .modal-dialog {
+.main-wrapper .modal.fade .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
      -moz-transition:    -moz-transform .3s ease-out;
        -o-transition:      -o-transform .3s ease-out;
@@ -5088,17 +5088,17 @@ button.close {
       -ms-transform: translate(0, -25%);
           transform: translate(0, -25%);
 }
-.modal.in .modal-dialog {
+.main-wrapper  .modal.in .modal-dialog {
   -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
           transform: translate(0, 0);
 }
-.modal-dialog {
+.main-wrapper .modal-dialog {
   position: relative;
   width: auto;
   margin: 10px;
 }
-.modal-content {
+.main-wrapper .modal-content {
   position: relative;
   background-color: #fff;
   background-clip: padding-box;
@@ -5109,7 +5109,7 @@ button.close {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 }
-.modal-backdrop {
+.main-wrapper .modal-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -5118,44 +5118,44 @@ button.close {
   z-index: 1040;
   background-color: #000;
 }
-.modal-backdrop.fade {
+.main-wrapper .modal-backdrop.fade {
   filter: alpha(opacity=0);
   opacity: 0;
 }
-.modal-backdrop.in {
+.main-wrapper .modal-backdrop.in {
   filter: alpha(opacity=50);
   opacity: .5;
 }
-.modal-header {
+.main-wrapper .modal-header {
   min-height: 16.42857143px;
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
 }
-.modal-header .close {
+.main-wrapper .modal-header .close {
   margin-top: -2px;
 }
-.modal-title {
+.main-wrapper .modal-title {
   margin: 0;
   line-height: 1.42857143;
 }
-.modal-body {
+.main-wrapper .modal-body {
   position: relative;
   padding: 20px;
 }
-.modal-footer {
+.main-wrapper .modal-footer {
   padding: 19px 20px 20px;
   margin-top: 15px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }
-.modal-footer .btn + .btn {
+.main-wrapper .modal-footer .btn + .btn {
   margin-bottom: 0;
   margin-left: 5px;
 }
-.modal-footer .btn-group .btn + .btn {
+.main-wrapper .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;
 }
-.modal-footer .btn-block + .btn-block {
+.main-wrapper .modal-footer .btn-block + .btn-block {
   margin-left: 0;
 }
 @media (min-width: 768px) {
