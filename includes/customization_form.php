@@ -289,7 +289,7 @@
     <div class="clearfix"></div> 
     <div id="widget_status" name="visibility" class="control-group visibility" style="margin-bottom: 15px">
         <label class="control-label pull-left" for="inputWidgetStatus">Widget Status<span class="cust_tips" style='top: 1px;left: 1px;'><span class="fui-alert dash_tooltip" data-toggle="tooltip" data-placement="bottom" data-tooltip-style="light" title="Display or hide widget on your website"></span></span></label>
-        <input type="checkbox" <?php echo $widget_params->show_widget == '1' ? "checked" : "" ?> data-toggle="switch" id="widget_status_input"  value="<?php echo $widget_params->show_widget ?>" />
+        <input type="checkbox" style="margin-left: 5px; vertical-align: middle" <?php echo $widget_params->show_widget == '1' ? "checked" : "" ?> data-toggle="switch" id="widget_status_input"  value="<?php echo $widget_params->show_widget ?>"  />
     </div>
     <div class="clearfix"></div> 
     <?php if (isset($_SESSION['user_details']['plan']) && ($_SESSION['user_details']['plan'] >= 1)) { ?>

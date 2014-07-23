@@ -13,8 +13,8 @@ $kdwp = new Kudobuzzwp();
 $user_account = $kdwp->get_user($kd_uid);
 
 if(isset($user_account->success) && $user_account->success == 0){
-    
-    die("<div class='alert alert-danger' style='margin-top: 30px; width: 450px;'><h3>Error!</h3>Error message: UID (".$kd_uid.") is invalid. Please contact hello@kudobuzz.com for support.</div>");
+    include( plugin_dir_path(__FILE__) . 'new-user-form.php'); exit();
+    //die("<div class='alert alert-danger' style='margin-top: 30px; width: 450px;'><h3>Error!</h3>Error message: UID (".$kd_uid.") is invalid. Please contact hello@kudobuzz.com for support.</div>");
 }
 
 $user_id = $user_account->user_id;

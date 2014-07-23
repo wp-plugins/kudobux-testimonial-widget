@@ -4,7 +4,7 @@
   Plugin Name: Kudobuzz
   Plugin URI: https://kudobuzz.com
   Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Collect reviews from your visits. Kudubuzz makes your website more customer-centric while improving your SEO.
-  Version: 2.0.1
+  Version: 2.0.2
   Author: Kudobuzz
   Author URI: https://kudobuzz.com
   License: GPL
@@ -22,6 +22,15 @@ require_once plugin_dir_path(__FILE__) . 'kudobuzzwp.php';
 $kwp = new Kudobuzzwp();
 //Check if the user has
 $kd_uid = get_option('kudobuzz_uid');
+
+//Try to get user details, if not successful, then redirect the user to the signup page
+/*$user_account = $kwp->get_user($kd_uid);
+
+if(isset($user_account->success) && $user_account->success == 0){
+	header("location: qwer"); exit();
+	//wp_redirect('admin.php?page=Signup');
+	exit();
+}*/
 
 
 
@@ -57,7 +66,7 @@ function kudobuzz_plugin_redirect() {
             $admin_email = get_settings('admin_email');
 
             $user_details = json_decode($kwp->run_curl(API_DOMAIN . "user/get_user?email=" . $admin_email . "&include_entities=1", "GET"));
-
+            
             $live_uid = $user_details->uid;
             $account_name = $user_details->account_name;
             $url = $user_details->url;
@@ -163,47 +172,49 @@ function wpd_add_kudobuzz_javascript_files() {
     
     wp_enqueue_script("jquery");
 
-    //Bootstrap
-    wp_enqueue_script('bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap.min.js', dirname(__FILE__)));
+    if(is_admin()){
+    	//Bootstrap
+		wp_enqueue_script('bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap.min.js', dirname(__FILE__)));
 
-    //Jany Bootstrap
-    wp_enqueue_script('jany-bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/jasny-bootstrap.min.js', dirname(__FILE__)));
+		//Jany Bootstrap
+		wp_enqueue_script('jany-bootstrap-js', plugins_url('kudobux-testimonial-widget/assets/js/jasny-bootstrap.min.js', dirname(__FILE__)));
 
-    //Bootbox
-    wp_enqueue_script('bootbox-js', plugins_url('kudobux-testimonial-widget/assets/js/bootbox.min.js', dirname(__FILE__)));
+		//Bootbox
+		wp_enqueue_script('bootbox-js', plugins_url('kudobux-testimonial-widget/assets/js/bootbox.min.js', dirname(__FILE__)));
 
-    //Nano scroller
-    wp_enqueue_script('nano-scroller-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.nanoscroller.js', dirname(__FILE__)));
+		//Nano scroller
+		wp_enqueue_script('nano-scroller-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.nanoscroller.js', dirname(__FILE__)));
 
-    //Rateit
-    wp_enqueue_script('rateit-js', plugins_url('kudobux-testimonial-widget/assets/rateit/jquery.rateit.min.js', dirname(__FILE__)));
+		//Rateit
+		wp_enqueue_script('rateit-js', plugins_url('kudobux-testimonial-widget/assets/rateit/jquery.rateit.min.js', dirname(__FILE__)));
 
-    //Bootstrap file upload
-    wp_enqueue_script('bootstrap-file-upload-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-fileupload.min.js', dirname(__FILE__)));
+		//Bootstrap file upload
+		wp_enqueue_script('bootstrap-file-upload-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-fileupload.min.js', dirname(__FILE__)));
 
-    //Jquery form
-    wp_enqueue_script('jquery-form-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.form.js', dirname(__FILE__)));
+		//Jquery form
+		wp_enqueue_script('jquery-form-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.form.js', dirname(__FILE__)));
 
-    //Jquery form
-    wp_enqueue_script('user-update-js', plugins_url('kudobux-testimonial-widget/assets/js/user-update.js', dirname(__FILE__)));
+		//Jquery form
+		wp_enqueue_script('user-update-js', plugins_url('kudobux-testimonial-widget/assets/js/user-update.js', dirname(__FILE__)));
 
-    //Flat ui radio
-    wp_enqueue_script('flatui-radio-js', plugins_url('kudobux-testimonial-widget/assets/js/flatui-radio.js', dirname(__FILE__)));
+		//Flat ui radio
+		wp_enqueue_script('flatui-radio-js', plugins_url('kudobux-testimonial-widget/assets/js/flatui-radio.js', dirname(__FILE__)));
+		
+		//Flat ui checkbox
+		wp_enqueue_script('flatui-checkbox-js', plugins_url('kudobux-testimonial-widget/assets/js/flatui-checkbox.js', dirname(__FILE__)));
 
-    //Flat ui checkbox
-    wp_enqueue_script('flatui-checkbox-js', plugins_url('kudobux-testimonial-widget/assets/js/flatui-checkbox.js', dirname(__FILE__)));
+		//Mini color
+		wp_enqueue_script('mini-color-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.minicolors.js', dirname(__FILE__)));
 
-    //Mini color
-    wp_enqueue_script('mini-color-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery.minicolors.js', dirname(__FILE__)));
+		//bootstrap-switch
+		wp_enqueue_script('bootstrap-switch-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-switch.js', dirname(__FILE__)));
 
-    //bootstrap-switch
-    wp_enqueue_script('bootstrap-switch-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-switch.js', dirname(__FILE__)));
+		//bootstrap-switch
+		wp_enqueue_script('bootstrap-tooltip-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-tooltip.js', dirname(__FILE__)));
 
-    //bootstrap-switch
-    wp_enqueue_script('bootstrap-tooltip-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-tooltip.js', dirname(__FILE__)));
-
-    //manage_wdg
-    wp_enqueue_script('manage_wdg-js', plugins_url('kudobux-testimonial-widget/assets/js/manage_wdg.js', dirname(__FILE__)));
+		//manage_wdg
+		wp_enqueue_script('manage_wdg-js', plugins_url('kudobux-testimonial-widget/assets/js/manage_wdg.js', dirname(__FILE__)));
+    }
 }
 
 add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_javascript_files');
@@ -213,37 +224,39 @@ add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_javascript_files');
  */
 
 function wpd_add_kudobuzz_css_files() {
-    //Main css file
-    wp_register_style('main-css', plugins_url('kudobux-testimonial-widget/assets/css/main.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('main-css');
+    if(is_admin()){
+    	//Main css file
+		wp_register_style('main-css', plugins_url('kudobux-testimonial-widget/assets/css/main.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('main-css');
 
-    //bootstrap css file
-    wp_register_style('bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('bootstrap-css');
+		//bootstrap css file
+		wp_register_style('bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('bootstrap-css');
 
-    //Jany bootstrap css file
-    wp_register_style('jany-bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/jasny-bootstrap.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('jany-bootstrap-css');
+		//Jany bootstrap css file
+		wp_register_style('jany-bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/jasny-bootstrap.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('jany-bootstrap-css');
 
-    //Nano scroller
-    wp_register_style('nanoscroller-css', plugins_url('kudobux-testimonial-widget/assets/css/nanoscroller.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('nanoscroller-css');
+		//Nano scroller
+		wp_register_style('nanoscroller-css', plugins_url('kudobux-testimonial-widget/assets/css/nanoscroller.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('nanoscroller-css');
 
-    //Rateit
-    wp_register_style('rateit-css', plugins_url('kudobux-testimonial-widget/assets/rateit/rateit.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('rateit-css');
+		//Rateit
+		wp_register_style('rateit-css', plugins_url('kudobux-testimonial-widget/assets/rateit/rateit.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('rateit-css');
 
-    //Rateit
-    wp_register_style('bootstrap-file-upload', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap-fileupload.min.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('bootstrap-file-upload');
+		//Rateit
+		wp_register_style('bootstrap-file-upload', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap-fileupload.min.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('bootstrap-file-upload');
 
-    //Rateit
-    wp_register_style('flat-ui', plugins_url('kudobux-testimonial-widget/assets/css/flat-ui.min.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('flat-ui');
+		//Rateit
+		wp_register_style('flat-ui', plugins_url('kudobux-testimonial-widget/assets/css/flat-ui.min.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('flat-ui');
 
-    //Mini color
-    wp_register_style('mini-color', plugins_url('kudobux-testimonial-widget/assets/css/jquery.minicolors.css', dirname(__FILE__)), false, '1.0.0');
-    wp_enqueue_style('mini-color');
+		//Mini color
+		wp_register_style('mini-color', plugins_url('kudobux-testimonial-widget/assets/css/jquery.minicolors.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('mini-color');
+    }
 }
 
 add_action('admin_enqueue_scripts', 'wpd_add_kudobuzz_css_files');

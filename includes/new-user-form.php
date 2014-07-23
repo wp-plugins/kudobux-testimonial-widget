@@ -48,9 +48,9 @@
 
                         <!-- Account name -->
                         <div class="container">
-                            <div class="form-group" style="width: 352px;">
+                            <div class="form-group" style="width: 555px;">
                                 <label for="account-name">Site Name</label>
-                                <div class="form-control input-sm" style="color: #000; font-weight: bold;">
+                                <div class="form-control input-sm" style="color: #000; font-weight: bold; width: 350px">
                                     https://kudobuzz.com/<input type="text" id="account-name" placeholder="site_name" class="no-border" maxlength="30" style="width:195px;">
                                 </div>
                                 <br><span class="feedback" style="width: 225px; font-weight: normal"></span>

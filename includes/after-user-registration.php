@@ -29,6 +29,14 @@ update_option('kudobuzz_uid', $uid);
 
 ?>
 
+<style>
+	ul {
+		padding-left: 35px;
+	}
+	ul li {
+		font-size: 13px !important
+	}
+</style>
 <div class="main-wrapper">
     <div class="main-app-wrapper">
         <div id="title-div">
@@ -39,7 +47,7 @@ update_option('kudobuzz_uid', $uid);
             <div style="margin: 0px auto 10px auto; width: 820px; overflow: hidden;">
                 
                 <div  style="padding: 0px 20px; margin: 30px auto">
-					<h3>
+					<h5>
                     <p class="main-title" style="margin-top: 45px; font-size: 30px; color: #585858">Registration Completed Successfully</p>
                     <p>We have sent you an email. Please follow the simple steps below to get started.</p>
                     <ul class="ul-with-bullet">
@@ -52,7 +60,7 @@ update_option('kudobuzz_uid', $uid);
                     </ul>
                     <p>If you need any help reach us at [ hello@kudobuzz.com ]</p>
                     <a style="margin-top: 30px" href="<?php echo get_admin_url() ?>admin.php?page=ModerateReviews" class="btn btn-info btn-lg">Start Publishing Your Testimonials Now</a>
-					</h3>
+					</h5>
                 </div>
             </div>
         </div>
