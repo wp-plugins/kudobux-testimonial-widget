@@ -1046,7 +1046,7 @@
                                 10 Social Reviews
                             </div>
                             <div id="feature"  style="border: 0">
-                                Unlimited Custom Reviwes
+                                Unlimited Custom Reviews
                             </div>
                         </div>
                         <div class="btn-div">
@@ -1084,16 +1084,16 @@
                             </div>
                             <div id="feature"  style="border: 0; width: 205px; margin: 0 auto">
 
-                                <div class="pull-left">
-                                    <label class="radio checked">
-                                        <input type="radio" name="pro-price" value="monthly" data-toggle="radio" checked="">
+                                <div class="pull-left" style="margin-right: 10px">
+                                    <label class="">
+                                        <input type="radio" name="pro-price" value="monthly" checked="true">
                                         Monthly
                                     </label>
                                 </div>
 
                                 <div class="pull-left">                         
-                                    <label class="radio">
-                                        <input type="radio" name="pro-price" value="yearly" data-toggle="radio">
+                                    <label class="">
+                                        <input type="radio" name="pro-price" value="yearly">
                                         Yearly
                                     </label>
                                 </div>

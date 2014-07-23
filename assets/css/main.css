@@ -344,7 +344,7 @@ body .upgrade-form .modal-dialog {
 }
 
 .plan-div {
-    width: 250px; float: left; border: 1px solid #EDEDED; min-height: 420px;
+    width: 248px; float: left; border: 1px solid #EDEDED; min-height: 420px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
