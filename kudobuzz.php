@@ -4,7 +4,7 @@
   Plugin Name: Kudobuzz
   Plugin URI: https://kudobuzz.com
   Description: Kudobuzz is a simple widget that displays selected positive social buzz, or “kudos”, on your website. Collect reviews from your visits. Kudubuzz makes your website more customer-centric while improving your SEO.
-  Version: 2.0.2
+  Version: 2.0.1
   Author: Kudobuzz
   Author URI: https://kudobuzz.com
   License: GPL
@@ -539,6 +539,11 @@ if (isset($uid2) && $uid2 !== FALSE && !empty($uid2)) {
 
     add_action('wp_head', 'add_widget');
 }
+
+function add_rich_snippet_code() {
+    echo '<div itemscope itemtype="http://schema.org/Product"><span itemprop="name">'.get_option('site_review_domain').'</span><div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">Rated <span itemprop="ratingValue">'.get_option('site_review_rating').'</span>/5 based on <span itemprop="reviewCount">'.get_option('site_review_count').'</span> reviews</div>';
+}
+add_action('wp_footer', 'add_rich_snippet_code');
 
 /**
  * Set code full page

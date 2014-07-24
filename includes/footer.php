@@ -365,6 +365,7 @@
         }
 
         var targetFrame = jQuery('#parent-iframe')[0];
+        console.log("sending message");
         targetFrame.contentWindow.postMessage('tw-<?php echo $user_id ?>-<?php echo $account_id ?>-<?php echo $email ?>', '<?php echo API_DOMAIN ?>');
     });
     

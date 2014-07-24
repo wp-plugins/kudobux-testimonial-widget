@@ -24,6 +24,56 @@ $account_name = $user_account->account->account_name;
 $cname = $user_account->account->cname;
 $plan = $user_account->user->plan;
 
+//Update the site review data
+$site_review_data_url = API_DOMAIN.'api/kudos/site-review-data?uid='.$kd_uid;
+$site_review_data = json_decode($kdwp->run_curl($site_review_data_url, "GET", NULL));
+
+$site_review_url = get_option('site_review_url');
+$site_review_domain = get_option('site_review_domain');
+$site_review_logo = get_option('site_review_logo');
+$site_review_rating = get_option('site_review_rating');
+$site_review_count = get_option('site_review_count');
+    
+//site_review_url
+if(isset($site_review_url)){
+	update_option('site_review_url', $site_review_data->url);
+}
+else{
+	add_option('site_review_url', $site_review_data->url);
+}
+
+//site_review_domain
+if(isset($site_review_domain)){
+	update_option('site_review_domain', $site_review_data->domain);
+}
+else{
+	add_option('site_review_domain', $site_review_data->domain);
+}
+
+//site_review_logo
+if(isset($site_review_logo)){
+	update_option('site_review_logo', $site_review_data->site_logo);
+}
+else{
+	add_option('site_review_logo', $site_review_data->site_logo);
+}
+
+//site_review_rating
+if(isset($site_review_rating)){
+	update_option('site_review_rating', $site_review_data->site_review_rating);
+}
+else{
+	add_option('site_review_rating', $site_review_data->site_review_rating);
+}
+
+//site_review_count
+if(isset($site_review_count)){
+	update_option('site_review_count', $site_review_data->site_review_count);
+}
+else{
+	add_option('site_review_count', $site_review_data->site_review_count);
+}
+
 //Get connected social accounts
 $social_accounts = json_decode($kdwp->get_social_accounts($kd_uid));
 
