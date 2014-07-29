@@ -25,7 +25,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                     <div style="width: 87%; margin-left: 150px;">
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs tab-ul" role="tablist" id="myTab">
+                        <ul class="nav nav-tabs tab-ul" role="tablist" id="myTab" style="overflow: hidden" >
                             <li class="active"><a href="#suggested" role="tab" data-toggle="tab">Incoming Reviews</a></li>
                             <li><a href="#all" role="tab" data-toggle="tab">All Reviews</a></li>
                             <li><a href="#published" role="tab" data-toggle="tab">Published Reviews</a></li>
@@ -52,9 +52,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                                         </thead>
                                     </table>
                                     <div class="nano feed_list_scroll"  style="height: 385px; ">
-                                        <div class="nano-content feeds-div">
-
-                                        </div>
+                                        <div class="nano-content feeds-div"></div>
                                     </div>
                                 </div>
                             </div>
@@ -72,9 +70,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                                         </thead>
                                     </table>
                                     <div class="nano feed_list_scroll" style="height: 385px; ">
-                                        <div class="nano-content feeds-div">
-
-                                        </div>
+                                        <div class="nano-content feeds-div"></div>
                                     </div>
                                 </div>
                             </div>

@@ -541,7 +541,7 @@ if (isset($uid2) && $uid2 !== FALSE && !empty($uid2)) {
 }
 
 function add_rich_snippet_code() {
-    echo '<div itemscope itemtype="http://schema.org/Product"><span itemprop="name">'.get_option('site_review_domain').'</span><div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">Rated <span itemprop="ratingValue">'.get_option('site_review_rating').'</span>/5 based on <span itemprop="reviewCount">'.get_option('site_review_count').'</span> reviews</div>';
+    echo '<div style="position: absolute !important;top: -9999px !important;left: -9999px !important;" itemscope itemtype="http://schema.org/Product"><span itemprop="name">'.get_option('site_review_domain').'</span><div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">Rated <span itemprop="ratingValue">'.get_option('site_review_rating').'</span>/5 based on <span itemprop="reviewCount">'.get_option('site_review_count').'</span> reviews</div>';
 }
 add_action('wp_footer', 'add_rich_snippet_code');
 
