@@ -35,3 +35,5 @@
     </a>
 </div>
 
+<?php include 'payment-modal.php';?>
+
