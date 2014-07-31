@@ -21,9 +21,9 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                 <div class="content-div-wrapper">
 
-                    <?php include_once 'other-left-panel-links.php'; ?>
+                    <?php //include_once 'other-left-panel-links.php'; ?>
 
-                    <div style="width: 87%; margin-left: 180px; padding-top: 20px">
+                    <div style="width: 87%; margin-left: 20px; padding-top: 20px" class="content-87">
                         <h4>Setup your SEO minisite.</h4>
                         
                         <?php

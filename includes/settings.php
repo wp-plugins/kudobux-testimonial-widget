@@ -29,7 +29,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                     <?php include_once 'settings-links.php'; ?>
 
-                    <div style="width: 87%; margin-left: 180px; padding-top: 20px; overflow: hidden">
+                    <div style="width: 87%; margin-left: 180px; padding-top: 20px; overflow: hidden" class="content-87">
                         <h4>Settings</h4>
 
                         <div class="pull-left" style="width: 45%; margin-right: 30px; margin-bottom: 30px">

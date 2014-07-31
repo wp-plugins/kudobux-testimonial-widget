@@ -44,7 +44,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                     <?php include_once 'customisation-links.php'; ?>
 
-                    <div style="width: 82%; margin-left: 180px; padding-top: 20px; overflow: hidden">
+                    <div style="width: 82%; margin-left: 180px; padding-top: 20px; overflow: hidden" class="content-82">
                         <!--<h4>Customize Themes</h4>-->
 
                         <?php include_once 'customization_form.php' ?>

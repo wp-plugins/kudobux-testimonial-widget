@@ -23,6 +23,7 @@
     var total_accounts =<?php echo $total_connected ?>;
     var plan = '<?php echo $plan ?>';
     var total_kudos = <?php echo $total_kudos ?>;
+    var total_custom_kudos = <?php echo $total_custom_kudos?>;
 
     jQuery(document).on("click", ".left-panel a", function() {
 
@@ -164,6 +165,8 @@
             'uid': '<?php echo $kd_uid ?>',
             'total_connected' : jQuery("#total_connected").val()
         };
+        
+        //console.log(jQuery("#feeds-category").val()); return false;
 
         suggested_page_num = 1;
         all_page_num = 1;
@@ -404,22 +407,7 @@
      * Publish feed
      */
     jQuery(document).on("click", ".publish", function() {
-
-        if (plan === '0' && total_kudos >= 10) {
-
-            bootbox.dialog({
-                message: "<p>You can add only 10 social reviews with the free plan.</p><p>You may upgrade to a paid plan in other to add more.</p><p><input type='button' value='UPGRADE NOW!' class='btn btn-primary show-upgrade-modal'></p>",
-                title: "Upgrade",
-                buttons: {
-                    success: {
-                        label: "Ok",
-                        className: "btn-default"
-                    }
-                }
-            });
-            return false;
-        }
-
+    
         var entity_id = jQuery(this).closest("tr").attr("id");
         var channel = jQuery(this).closest("tr").find("#channel").val();
 
@@ -430,6 +418,16 @@
         var rating = jQuery(this).closest("tr").find(".rating-value").val();
 
         var $this_id = jQuery(this).closest("tr").attr("id");
+        
+        if (channel ==3 && plan === '0' && total_custom_kudos >= 10) { //Custom kudo
+			prompt_for_upgrade();
+            return false;
+        }
+        else if(channel !=3 && plan === '0' && total_kudos >= 10 ){
+        	prompt_for_upgrade();
+        	return false;	
+        }
+        
 
         var mydata = {
             action: "post_publish_action",
@@ -443,7 +441,16 @@
         };
 
         jQuery("#" + $this_id).find(".publish").html("Publishing...");
-
+		if(channel == 3){ //custom review
+			total_custom_kudos++;
+        	console.log('total_custom_kudos: '+total_custom_kudos);
+		}
+		else{ //Social review
+			total_kudos++;
+        	console.log('total social kudos: '+total_kudos);
+		}
+		
+		
         jQuery.ajax({
             type: "POST",
             url: ajaxurl,
@@ -459,15 +466,27 @@
                 jQuery("#" + $this_id).find(".feed-statu").html("Published");
                 jQuery("#" + $this_id).find(".feed-statu").removeClass("label-danger").addClass("label-success");
                 jQuery("#" + $this_id).find(".publish").html("Unpublish");
-
-
-                total_kudos++;
-                console.log(total_kudos);
-
             }
         });
 
     });
+    
+    /* 
+     * Prompt for upgrade
+     */
+     function prompt_for_upgrade(){
+     	
+		 bootbox.dialog({
+			 message: "<p>You can add only 10 social reviews with the free plan.</p><p>You may upgrade to a paid plan in other to add more.</p><p><input type='button' value='UPGRADE NOW!' class='btn btn-primary show-upgrade-modal'></p>",
+			 title: "Upgrade",
+			 buttons: {
+				 success: {
+					 label: "Ok",
+					 className: "btn-default"
+				 }
+			 }
+		 });
+     }
 
     /*
      * Unpublish feeds   
@@ -491,33 +510,57 @@
             var user_id = jQuery("#user_id").val();
             var message = "Are you sure?";
             var params = {"user_id": user_id, "entity_id": entityid, 'channel_id': channel_id};
-
-            bootbox.confirm(message, function(result) {
-                if (result) {
-                    console.log("#" + type + "-" + id);
-                    jQuery("#published_tb_feed #" + type + "-" + id).fadeOut();
-                    jQuery(".published_status-" + type + "-" + id).html('not published');
-                    jQuery(".feed" + type + "-" + id).removeClass("just_published");
-                    jQuery("." + type + "-" + id).removeClass("kudo_added");
-
-                    jQuery("#" + entityid).find(".unpublish").html("Unpublishing...");
-
-                    jQuery.post("<?php echo API_DOMAIN ?>kudos/delete", params, function(data) {
-
-                        total_kudos--;
-                        console.log(total_kudos);
-
-                        jQuery("#" + entityid).find(".unpublish").addClass("hide");
-                        jQuery("#" + entityid).find(".unpublish").html("Unpublish");
-                        jQuery("#" + entityid).find(".publish").removeClass("hide");
-
-                        jQuery("#" + entityid).find(".feed-statu").html("Unpublished");
-                        jQuery("#" + entityid).find(".feed-statu").removeClass("label-success").addClass("label-danger");
-                    });
-                }
-            });
-
+			
+			bootbox.dialog({
+				message: message,
+				className : 'delete_kudos_modal',
+				title: "Delete Testimonial?",
+				buttons: {
+				  danger: {
+					label: "Delete",
+					className: "btn-danger",
+					callback: function() {
+					  delete_kudos(id, type, entityid, channel_id, params);
+					}
+				  },
+				  main: {
+					label: "Close",
+					className: "btn-default",
+					callback: function() {
+					  jQuery(".delete_kudos_modal").modal("hide");
+					}
+				  }
+				}
+			  });
         }
+    }
+    
+    function delete_kudos(id, type, entityid, channel_id, params){
+    	console.log("#" + type + "-" + id);
+		  jQuery("#published_tb_feed #" + type + "-" + id).fadeOut();
+		  jQuery(".published_status-" + type + "-" + id).html('not published');
+		  jQuery(".feed" + type + "-" + id).removeClass("just_published");
+		  jQuery("." + type + "-" + id).removeClass("kudo_added");
+
+		  jQuery("#" + entityid).find(".unpublish").html("Unpublishing...");
+
+		  jQuery.post("<?php echo API_DOMAIN ?>kudos/delete", params, function(data) {
+			  jQuery("#" + entityid).find(".unpublish").addClass("hide");
+			  jQuery("#" + entityid).find(".unpublish").html("Unpublish");
+			  jQuery("#" + entityid).find(".publish").removeClass("hide");
+
+			  jQuery("#" + entityid).find(".feed-statu").html("Unpublished");
+			  jQuery("#" + entityid).find(".feed-statu").removeClass("label-success").addClass("label-danger");
+		   
+			  if(channel_id == 3){ //custom review
+				  total_custom_kudos--;
+				  console.log('total_custom_kudos: '+total_custom_kudos);
+			  }
+			  else{ //Social review
+				  total_kudos--;
+				  console.log('total social kudos: '+total_kudos);
+			  }
+		  });
     }
 
     /*

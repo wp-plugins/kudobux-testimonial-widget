@@ -23,7 +23,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                     <?php include_once 'left-panel-links.php'; ?>
 
-                    <div style="width: 87%; margin-left: 150px;">
+                    <div style="width: 87%; margin-left: 150px;" class="content-87">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs tab-ul" role="tablist" id="myTab" style="overflow: hidden" >
                             <li class="active"><a href="#suggested" role="tab" data-toggle="tab">Incoming Reviews</a></li>

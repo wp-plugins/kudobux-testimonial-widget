@@ -343,6 +343,11 @@ body .upgrade-form .modal-dialog {
     width: 835px;
 }
 
+body .delete_kudos_modal .modal-dialog {
+	width: 400px;
+	margin-top: 120px
+}
+
 .plan-div {
     width: 248px; float: left; border: 1px solid #EDEDED; min-height: 420px;
     -webkit-border-radius: 5px;

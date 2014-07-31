@@ -96,6 +96,8 @@ $total_connected = count($fb_num_accounts) + count($tw_num_accounts) + count($in
 
 $total_connected = (int) $total_connected;
 //Kudos
+ //$result = json_decode($kdwp->run_curl(API_DOMAIN . 'api/kudos/count?account_id=' . $account_id, "GET"));
  $result = json_decode($kdwp->run_curl(API_DOMAIN . 'api/kudos/count?account_id=' . $account_id, "GET"));
+ $total_kudos = (int) $result[1]->count;
  
- $total_kudos = $result[0]->total_kudos;
+ $total_custom_kudos = (int) $result[0]->count;
