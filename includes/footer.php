@@ -1,5 +1,5 @@
 <div id="copyright-div">
-    &copy; 2014 Kudobuzz
+    &copy; 2014 Kudobuzz <?php var_dump($total_kudos);?>
 </div>
 </div>
 </div>

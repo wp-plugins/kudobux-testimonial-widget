@@ -18,19 +18,19 @@
 
 </div>
 <div class="pull-right" style="padding: 5px 50px 0 0; text-transform: uppercase;">
-    <a href="<?php echo get_admin_url() ?>admin.php?page=ModerateReviews" style="<?php echo $_GET['page'] == 'ModerateReviews'?'color: #e87e04':''?>">
+    <a href="<?php echo get_admin_url() ?>admin.php?page=ModerateReviews" style="<?php echo $_GET['page'] == 'ModerateReviews'?'color: #e87e04 !important':''?>">
         Moderate Reviews
     </a>
     <span style="margin: 0 5px;">|</span>
-    <a href="<?php echo get_admin_url() ?>admin.php?page=CustomizeTheme" style="<?php echo $_GET['page'] == 'CustomizeTheme'?'color: #e87e04':''?>">
+    <a href="<?php echo get_admin_url() ?>admin.php?page=CustomizeTheme" style="<?php echo ($_GET['page'] == 'CustomizeTheme' || $_GET['page'] == 'FullPageWidget') ?'color: #e87e04 !important':''?>">
         Customize Theme
     </a>
     <span style="margin: 0 5px;">|</span>
-    <a href="<?php echo get_admin_url() ?>admin.php?page=Seo" style="<?php echo $_GET['page'] == 'Seo'?'color: #e87e04':''?>">
+    <a href="<?php echo get_admin_url() ?>admin.php?page=Seo" style="<?php echo $_GET['page'] == 'Seo'?'color: #e87e04 !important':''?>">
         SEO
     </a>
     <span style="margin: 0 5px;">|</span>
-    <a href="<?php echo get_admin_url() ?>admin.php?page=Settings" style="<?php echo $_GET['page'] == 'Settings'?'color: #e87e04':''?>">
+    <a href="<?php echo get_admin_url() ?>admin.php?page=Settings" style="<?php echo ($_GET['page'] == 'Settings' || $_GET['page']=='Translation') ?'color: #e87e04 !important':''?>">
         Settings
     </a>
 </div>

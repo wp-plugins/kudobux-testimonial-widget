@@ -33,7 +33,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                     <?php include_once 'customisation-links.php'; ?>
 
-                    <div style="width: 84%; margin-left: 180px; padding-top: 20px; overflow: hidden">
+                    <div style="width: 84%; margin-left: 180px; padding-top: 20px;">
                         <!--<h4>Customize Themes</h4>-->
 
                         <div style="margin: 0 auto; width: 300px; overflow: hidden">
@@ -53,14 +53,15 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                         </div>
                         <div class="upper_section">
 
-                            <div class="upper_section_innner" style="overflow: hidden">
+                            <div class="upper_section_innner" style="">
 
                                 <div style="width: 500px; margin: 0 auto" class="full-page-wdg">
 
                                     <form id="product-review-frm" method="post">
                                         <input type="hidden" name="account_id" id="account_id" value="<?php echo $account_id; ?>" />
 
-                                        <div class="form-group" style="position: relative !important">
+										<div class="pull-left">
+                                        <div class="form-grou" style="position: relative !important;margin-bottom:10px;">
 
                                             <label class="control-label" for="inputBackgroundColor">Background color</label> <br>
                                             <div class="input-prepend ft_color" style="width: 122px;">
@@ -68,33 +69,6 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                                             </div>
                                         </div>
                                         <div style="clear: both"></div>
-
-                                        <div class="form-group" style="position: relative !important">
-
-                                            <div style="float: left;">
-                                                <label class="control-label" for="inputTextColor">Text color</label><br>
-                                            <div class="input-prepend ft_color" style="width: 122px;">
-                                                <input type="text" id="review_text_color" class="small kwdgt_color input-sm" name="text_font_color"  style="width: 50% !important;" value="<?php echo $widget_settings->review_text_color; ?>" />
-                                            </div>
-                                            </div>
-
-                                            <div style="float: left;">
-                                                <label class="control-label" for="inputTextColor">Name Text Color</label><br>
-                                            <div class="input-prepend ft_color" style="width: 122px;">
-                                                <input type="text" id="name_text_color" class="small kwdgt_color input-sm" name="text_font_color" style="width: 50% !important;" value="<?php echo $widget_settings->name_text_color; ?>" />
-                                            </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group hide" style="position: relative !important">
-
-                                            <label class="control-label" for="inputTimeToSend">Max Width</label>
-                                            <div class="input-prepend ft_color" style="width: 122px;">
-                                                <span class="add-on fm_append_small" style="line-height: 30px !important; font-size: 14px; padding: 5px 10px">px</span>
-                                                <input type="text" class="small aln fm_input_small input-sm" name="widget_width" id="max_width" style="width: 45px !important;" value='<?php echo $widget_settings->max_width; ?>' />
-                                            </div>
-                                        </div>
-
                                         <div class="form-group" style="position: relative !important">
 
                                             <label class="control-label" for="inputTimeToSend">Write Review Text  Link </label>                             
@@ -104,6 +78,33 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                                             } echo $widget_settings->review_link_text;
                                             ?>">
                                         </div>
+										</div>
+										<div class="pull-right">
+                                        <div class="form-grou" style="position: relative !important">
+
+                                            <div style="float: left;margin-bottom:10px;">
+                                                <label class="control-label" for="inputTextColor">Text color</label><br>
+                                            <div class="input-prepend ft_color" style="width: 122px;">
+                                                <input type="text" id="review_text_color" class="small kwdgt_color input-sm" name="text_font_color"  style="width: 50% !important;" value="<?php echo $widget_settings->review_text_color; ?>" />
+                                            </div>
+                                            </div>
+											<div style="clear: both"></div>
+                                            <div style="float: left;">
+                                                <label class="control-label" for="inputTextColor">Name Text Color</label><br>
+                                            <div class="input-prepend ft_color" style="width: 122px;">
+                                                <input type="text" id="name_text_color" class="small kwdgt_color input-sm" name="text_font_color" style="width: 50% !important;" value="<?php echo $widget_settings->name_text_color; ?>" />
+                                            </div>
+                                            </div>
+                                        </div>
+										</div>
+                                        <div class="form-group hide" style="position: relative !important">
+
+                                            <label class="control-label" for="inputTimeToSend">Max Width</label>
+                                            <div class="input-prepend ft_color" style="width: 122px;">
+                                                <span class="add-on fm_append_small" style="line-height: 30px !important; font-size: 14px; padding: 5px 10px">px</span>
+                                                <input type="text" class="small aln fm_input_small input-sm" name="widget_width" id="max_width" style="width: 45px !important;" value='<?php echo $widget_settings->max_width; ?>' />
+                                            </div>
+                                        </div> 
                                     </form>
                                 </div>
 
@@ -118,7 +119,6 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                             <h4 style="width: 93%; margin: 0 auto 25px auto; font-size: 20px;border-bottom: 1px solid #f0f1f5;padding-bottom: 5px;">Preview</h4>
                             <div id="pdr_rev_preview" style="height: 100%;">
                                 <input type="hidden"  id="iframe_url" value="<?php echo API_DOMAIN; ?>reviews/one_page_widget?uid=<?php echo $kd_uid; ?>&widget_id=<?php echo $widget_settings->widget_type_id; ?>&review_text_color=<?php echo $widget_settings->review_text_color; ?>&background_color=<?php echo $widget_settings->background_color; ?>&image_background_color=<?php echo $widget_settings->image_background_color; ?>&name_text_color=<?php echo $widget_settings->name_text_color; ?>&review_link_text=<?php echo $widget_settings->review_link_text; ?>" />
-
                             </div> 
                         </div> 
                     </div>
@@ -173,6 +173,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                     arr["type"] = "review_link_text";
                     arr["review_link_text"] = this.value;
                 }
+                
                 win.contentWindow.postMessage(arr, template_url);
 
             });
@@ -196,7 +197,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
             var one_paged_frame = jQuery('#kudobuzz_one_page_kudo');
             var review_link_text = jQuery('#review_link_text').val();
             var url = "<?php echo API_DOMAIN; ?>reviews/one_page_widget?uid=<?php echo $kd_uid; ?>&preview=1" + "&widget_id=" + id_wdg + "&review_text_color=" + review_text_color + "&background_color=" + background_color + "&image_background_color=" + image_background_color + "&name_text_color=" + name_text_color + "&review_link_text=" + review_link_text;
-            one_paged_frame.attr("src", url);
+            one_paged_frame.attr("src", url); //reviews/one_page_widget
             jQuery('#kudobuzz_one_page_kudo').load(function() {
                 var template_url = jQuery("#iframe_url").val();
                 var win = jQuery("#kudobuzz_one_page_kudo")[0];
@@ -233,7 +234,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
             jQuery('#save-btn').hide();
             jQuery('#frm2_feed').fadeIn();
             var uid = jQuery('#uid').val();
-
+			console.log(wdg_params); return false;
             var values = {
                 'wdg_params': wdg_params,
                 'account_id':<?php echo $account_id; ?>,

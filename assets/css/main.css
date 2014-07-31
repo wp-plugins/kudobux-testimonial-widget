@@ -15,9 +15,10 @@ html, body {
     height: 100% !important;
 }
 body{
-    background: #fefefe;
+    background: #fff;
     font-size: 13px !important;
     /*background: #7F7F7F !important*/
+    color:#7f8c9a !important;
 }
 .wrap {
     margin-bottom: 20px;
@@ -135,7 +136,7 @@ img.logo {
 #title-div {
     padding: 0px 0 10px 0px;
     font-weight: bold;
-    border-bottom: 2px solid #ECECEC;
+    /*border-bottom: 2px solid #ECECEC;*/
     margin-bottom: 0px;
     width: 100%; overflow: hidden
 }
@@ -145,12 +146,14 @@ img.logo {
     text-align: right
 }
 .main-app-content {
-    background: #F8F8F8;
+    background: #fff;
     min-height: 445px;
+    border: 1px solid #f0f1f5;
+    padding-top: 15px;
 }
 .left-panel {
-    width: 160px; height: 100%; position: absolute; z-index: 99; background: #F3F3F3; top: 60px;
-    border-top: 1px solid #CCC
+    width: 160px; height: 100%; position: absolute; z-index: 99; top: 34px;
+    border: 1px solid #f0f1f5;border-width: 1px 1px 0px 0px;
 }
 .left-panel a {
     display: block; height: 42px; line-height: 42px;  border-bottom: 2px solid #ECECEC; padding-left: 10px;
@@ -163,7 +166,7 @@ img.logo {
 .left-panel a.kdb-active {
     display: block; height: 42px; line-height: 42px;  border-bottom: 2px solid #ECECEC; padding-left: 10px;
     text-decoration: none !important;
-    background: #CCC;
+    background: #f3f4f5;
 }
 .content-div-wrapper {
     margin: 0px auto 10px auto; width: 100%; overflow: hidden; position: relative; min-height: 635px
@@ -195,7 +198,7 @@ img.avatar {
 }
 .tab-ul {
     padding-left: 20px !important;
-    margin-top: 25px
+    margin-top: 0px
 }
 .tab-content {
     position: relative
@@ -267,8 +270,8 @@ img.from_user_img {
 }
 .percent {
     position: absolute;
-    bottom: 20px;
-    right: 0
+    bottom: 15px;
+    right: 0;
 }
 .progress {
     margin: 25px 0 0 0
@@ -289,9 +292,9 @@ img.from_user_img {
     line-height: 22px;
     text-decoration: none;
     text-shadow: none;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -343,11 +346,6 @@ body .upgrade-form .modal-dialog {
     width: 835px;
 }
 
-body .delete_kudos_modal .modal-dialog {
-	width: 400px;
-	margin-top: 120px
-}
-
 .plan-div {
     width: 248px; float: left; border: 1px solid #EDEDED; min-height: 420px;
     -webkit-border-radius: 5px;
@@ -374,7 +372,7 @@ body .delete_kudos_modal .modal-dialog {
     -moz-border-radius-topright: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    text-align: center; padding: 7px 0; background: #657E3B; color: #fff; border-bottom: 1px solid #546832; font-size: 15px
+    text-align: center; padding: 7px 0; background: #d35400; color: #fff; border-bottom: 1px solid #d35400; font-size: 15px
 }
 .pro-plan-div {
 }
@@ -387,7 +385,11 @@ body .delete_kudos_modal .modal-dialog {
     background: #969696;
 }
 .pro-plan-div #plan-price {
-    background: #7F9856
+    background: #e67e22;
+    color:#fff !important;
+}
+#plan-price span{
+     color:#fff !important;
 }
 #price-tag {
     font-size: 60px;
@@ -401,7 +403,7 @@ body .delete_kudos_modal .modal-dialog {
 }
 .plan-div #feature {
     padding: 10px 0px;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid #f0f1f5;
     text-align: center;
     width: 100%; 
     overflow: hidden
@@ -412,7 +414,7 @@ body .delete_kudos_modal .modal-dialog {
 }
 .btn-div {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 .plan-div #feature label.radio {
     margin: 0 !important;
@@ -424,4 +426,102 @@ ul.ul-with-bullet {
 }
 .feeds-div {
     border: 0 !important
+}
+#title-div .pull-left{
+color: #d35400;
+font-weight: bold;
+padding-top: 0px;
+font-size: 20px;
+}
+.main-wrapper a, .main-wrapper h4, .main-wrapper .h4, .main-wrapper p, .content-div-wrapper ul li{
+    color:#7f8c9a !important;
+}
+.main-wrapper a:hover{
+    color:#e87e04 !important;
+    text-decoration: none  !important;
+}
+.main-wrapper .btn-warning{
+    color:#e87e04 !important;
+    background:#fff !important;
+    border-color:#e87e04 !important;
+    padding:6px 12px !important;
+    
+}
+.main-wrapper .btn-warning:hover{
+    color:#fff !important;
+    background:#e87e04 !important;
+    border-color:#e87e04 !important;
+}
+#title-div .pull-right:first-child{
+    width:385px !important;
+}
+.main-wrapper .btn-success, .main-wrapper .btn-success:hover{
+    color:#fff !important;
+}
+.main-wrapper .pull-right span,.main-wrapper h5, .main-wrapper .h5{
+    color:#7f8c9a !important;
+}
+.main-wrapper .nav-tabs > li.active > a{
+    background: #f3f4f5;
+}
+.main-wrapper .btn-info, .social-btn.btn-primary, #save-btn, .btn.btn-primary{
+    background: #e87e04 !important;
+    border-color: #e87e04 !important;
+    color:#fff !important;
+}
+.main-wrapper .btn-info:hover, #save-btn:hover, .social-btn.btn-primary:hover, .btn.btn-primary:hover{
+    background: #d35400 !important;
+    border-color: #d35400 !important;
+     color:#fff !important;
+}
+.main-wrapper h5, .main-wrapper .h5{
+    border-bottom: 1px solid #f0f1f5 !important;
+}
+.main-wrapper .thumbnail{
+    padding:0px !important;
+}
+.fileupload .thumbnail>img{
+    margin-top: -5px !important;
+}
+.main-wrapper .progress{
+    border-radius: 30px !important;
+}
+.percent{
+    right:7px !important;
+}
+.main-wrapper .form-horizontal .form-group{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.settings_main{
+    padding:0px;
+}
+.main_sect{
+    width:86%;
+    margin-left:160px;
+}
+.main-wrapper .checkbox .icons .second-icon, .main-wrapper .radio .icons .second-icon{
+    opacity: 1 !important;
+}
+.content-87 input, .btn.btn-sm.btn-info{
+    width: auto !important;
+}
+.other-links-div{
+    width: 385px !important;
+}
+.content-87{
+    padding-top: 0px !important;
+}
+.minicolors-swatch-color{
+    border-radius: 6px 0 0 6px;
+    border:1px solid transparent;
+}
+#feature .pull-left label input{
+    margin-top: -1px;
+}
+#professional{
+    margin-bottom: 10px;
+}
+input[type=checkbox]:focus{
+    
 }
