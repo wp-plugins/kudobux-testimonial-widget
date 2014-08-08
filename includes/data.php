@@ -80,7 +80,7 @@ $social_accounts = json_decode($kdwp->get_social_accounts($kd_uid));
 //Check the number of connected accounts
 $connected_accounts_url = API_DOMAIN . 'social_connected_accounts?user_id=' . $user_id . '&account_id=' . $account_id;
 
-$connected_accounts = $kdwp->run_curl($connected_accounts_url, "GET", NULL);
+$connected_accounts = json_decode($kdwp->run_curl($connected_accounts_url, "GET", NULL));
 
 //number of connected facebook accounts
 $fb_num_accounts = $connected_accounts->facebook_accounts;
@@ -95,6 +95,7 @@ $ins_num_accounts = $connected_accounts->instagram_accounts;
 $total_connected = count($fb_num_accounts) + count($tw_num_accounts) + count($ins_num_accounts);
 
 $total_connected = (int) $total_connected;
+
 //Kudos
  //$result = json_decode($kdwp->run_curl(API_DOMAIN . 'api/kudos/count?account_id=' . $account_id, "GET"));
  $result = json_decode($kdwp->run_curl(API_DOMAIN . 'api/kudos/count?account_id=' . $account_id, "GET"));

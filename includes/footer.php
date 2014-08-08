@@ -628,7 +628,7 @@
                     if (!isEmpty(tw_accounts)) {
                         str += '<div style="width: 100%; overflow: hidden;">';
                         jQuery.each(tw_accounts, function(t, tw) {
-                            str += '<div class="social-account-wrapper"><span class="delete-icon-span hide"><img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/close-sm.png" id="' + tw.screen_name + '" class="delete-account-icon" /></span><img data-toggle="tooltip" data-placement="top" title="@' + tw.screen_name + '" class="img-rounded img-thumbnail custom-img-thumbnail social-account-img" style="width: 100%" id="' + tw.id + '" src="' + tw.profile_image_url + '" /></div>';
+                            str += '<div class="social-account-wrapper" id="tw-'+tw.screen_name+'"><span class="delete-icon-span hide" id="delete_tw"><img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/close-sm.png" id="' + tw.screen_name + '" class="delete-account-icon" /></span><img data-toggle="tooltip" data-placement="top" title="' + tw.screen_name + '" class="img-rounded img-thumbnail custom-img-thumbnail social-account-img" style="width: 100%" id="' + tw.id + '" src="' + tw.profile_image_url + '" /></div>';
                         });
                         str += '</div>';
                         str += '</p>';
@@ -651,7 +651,7 @@
 
                         str += '<div style="width: 100%; overflow: hidden;">';
                         jQuery.each(fb_accounts, function(t, fb) {
-                            str += '<div class="social-account-wrapper"><span class="delete-icon-span hide"><img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/close-sm.png" id="' + fb.social_profile_id + '" class="delete-account-icon" /></span><img data-toggle="tooltip" data-placement="top" title="' + fb.name + '" class="img-rounded img-thumbnail custom-img-thumbnail social-account-img" style="width: 100%" id="' + fb.social_profile_id + '" src="https://graph.facebook.com/' + fb.social_profile_id + '/picture?redirect=true&type=large" /></div>';
+                            str += '<div class="social-account-wrapper" id="fb-'+fb.social_profile_id+'"><span class="delete-icon-span hide" id="delete_fb"><img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/close-sm.png" id="' + fb.social_profile_id + '" class="delete-account-icon" /></span><img data-toggle="tooltip" data-placement="top" title="' + fb.name + '" class="img-rounded img-thumbnail custom-img-thumbnail social-account-img" style="width: 100%" id="' + fb.social_profile_id + '" src="https://graph.facebook.com/' + fb.social_profile_id + '/picture?redirect=true&type=large" /></div>';
                         });
                         str += '</div>';
 
@@ -705,10 +705,10 @@
             }
 
             //Delete account
-            jQuery(document).on("click", ".delete-account-icon", function() {
+            /*jQuery(document).on("click", ".delete-account-icon", function() {
 
                 delete_tw(this.id);
-            });
+            });*/
 
             //Show accounts
             function show_social_accounts(str) {
@@ -1059,4 +1059,38 @@
                     }
                 });
             }
+            
+            
+            //Delete facebook account
+		jQuery(document).on("click", "#delete_fb", function() {
+			var page_id = jQuery(this).closest(".social-account-wrapper").find("img.social-account-img").attr("id");
+			delete_fb(jQuery(this).closest(".social-account-wrapper").find("img.social-account-img").attr("title").trim(), page_id);
+		});
+		function delete_fb(name, page_id){
+			var user_id = <?php echo $user_id ?>;
+			var account_id = <?php echo $account_id ?>;
+			jQuery.post('<?php echo MAIN_HOST ?>facebook/delete_page', {'name': name, 'user_id': user_id, 'account_id': account_id}, function(data) {
+				jQuery("#fb-" + page_id).fadeOut();
+				total_accounts--;
+			});
+		}
+		
+		
+		//Delete twitter account
+		jQuery(document).on("click", "#delete_tw", function() {
+			var screen_name = jQuery(this).closest(".social-account-wrapper").find("img.social-account-img").attr("title").trim();
+			delete_tw(screen_name);
+		});
+		
+		function delete_tw(screen_name){
+			
+			var url = '<?php echo MAIN_HOST ?>twitter/delete_account';
+			var user_id = <?php echo $user_id ?>;
+			var account_id = <?php echo $account_id ?>;
+
+			jQuery.post(url, {'name': screen_name, 'user_id': user_id, 'account_id': account_id}, function(data) {
+				jQuery("#tw-" + screen_name).fadeOut();
+				total_accounts--;
+			});
+		}
 </script>
