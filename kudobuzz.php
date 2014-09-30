@@ -23,16 +23,6 @@ $kwp = new Kudobuzzwp();
 //Check if the user has
 $kd_uid = get_option('kudobuzz_uid');
 
-//Try to get user details, if not successful, then redirect the user to the signup page
-/*$user_account = $kwp->get_user($kd_uid);
-
-if(isset($user_account->success) && $user_account->success == 0){
-	header("location: qwer"); exit();
-	//wp_redirect('admin.php?page=Signup');
-	exit();
-}*/
-
-
 
 /* * ******************************
  * When user activate the plugin
@@ -43,12 +33,6 @@ register_activation_hook(__FILE__, 'activate_kudobuzz_plugin');
 add_action('admin_init', 'kudobuzz_plugin_redirect');
 
 function kudobuzz_plugin_redirect() {
-    
-    //Unset sessions
-//    unset($_SESSION['live-uid']);
-//    unset($_SESSION['account-name']);
-//    unset($_SESSION['url']);
-//    unset($_SESSION['email']);
     
     if (get_option('kudobuzz_activation_redirect', false)) {
         delete_option('kudobuzz_activation_redirect');
@@ -103,7 +87,7 @@ function kudobuzz_plugin_redirect() {
 function activate_kudobuzz_plugin() {
     add_option('kudobuzz_fullpage_widget', '<div id="kudobuzz-fullpage-widget"></div>');
     add_option('kudobuzz_slider_widget', '<div id="kudobuzz-slider-widget"></div>');
-    add_option('kudobuzz_contact_widget', '<div id="kudobuzz-contact-widget"></div>');
+    add_option('kudobuzz_review', '<div id="kudobuzz-review-widget" data-type="simple-widget-form"></div>');
 
     add_option('kudobuzz_login_url', MAIN_HOST . 'login');
     add_option('kudobuzz_test_url', MAIN_HOST . 'test');
@@ -133,7 +117,7 @@ function deactivate_kudobuzz_plugin() {
     delete_option('kudobuzz_activation_redirect');
     delete_option('kudobuzz_fullpage_widget');
     delete_option('kudobuzz_slider_widget');
-    delete_option('kudobuzz_contact_widget');
+    delete_option('kudobuzz_review');
     delete_option('slider_widget_added');
     delete_option('full_page_widget_added');
 
@@ -564,6 +548,17 @@ add_shortcode("kudobuzz-slider", "set_slider_shortcode");
 function set_slider_shortcode($atts) {
     $kudobuzz_slider_tag = "";
     $kudobuzz_slider_tag .= get_option("kudobuzz_slider_widget");
+    return $kudobuzz_slider_tag;
+}
+
+/**
+ * Set code slider
+ */
+add_shortcode("kudobuzz-review", "set_contact_page_shortcode");
+
+function set_contact_page_shortcode($atts) {
+    $kudobuzz_slider_tag = "";
+    $kudobuzz_slider_tag .= get_option("kudobuzz_review");
     return $kudobuzz_slider_tag;
 }
 
