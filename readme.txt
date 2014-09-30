@@ -1,22 +1,23 @@
 === Kudobuzz Testimonial Widget ===
 Contributors: Kudobuzz
 Donate link: https://kudobuzz.com
-Tags: Testimonials,Kudos,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobag,Kudobux,Kudobuzz,Site Reviews,Reviews,Social Reviews
+Tags: Testimonials,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobuzz,Site Reviews,Reviews,Social Reviews,Testimonial plugin,Review plugin,Website review
 Requires at least: 3.0.1
 Tested up to: 4.0
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple widget that displays selected positive social buzz, or custom “kudos” & product or site reviews on your website.
+Simple testimonial widget that displays selected positive social buzz, or custom “kudos” & product or site reviews on your wordpress website.
 
 == Description ==
 
+
 <h2>=Beta=</h2>
-<p>Kudobuzz Testimonial Widget plugin allows you to display social testimonials  or selected reviews on your website.</p> 
+<p>Kudobuzz Testimonial Widget plugin allows you to display <b>social testimonials</b>  or selected reviews on your website.</p> 
 <p>Kudobuzz grabs all the positive and great things people are saying about you on social media(Facebook,Twitter,Blogs,G+,Emails...),
 filters them and display it on your website with an easy to customize clean widget. You can also collect reviews from your site visitors.</p>
-<p>With Kudobuzz you always get upto date testimonials on your website, this will wow your web visitors and improve your SEO drastically.</p>
+<p>With Kudobuzz you always get upto date <b>testimonials</b> on your website, this will wow your web visitors and improve your SEO drastically.</p>
 
 = Main Features =
 1. Collecting testimonials from
@@ -71,6 +72,10 @@ We will always alert you via email or your dashboard when there are new updates 
 - Just do a normal upgrade.
 
 == Changelog ==
+= 2.0.7 =
+- Added a review form
+- Added an icon
+
 = 2.0.6 =
 - Css issue fixed
 

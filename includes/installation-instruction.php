@@ -13,4 +13,11 @@
       <p><li> 3. Save and visit the page to see your testimonials showing </li></p>
       <p><li> 4. If you don't see any testimonials, don't worry head over to the Moderate Reviews area and publish some reviews.</li></p>
      <p></ul></p>
+     
+     <p>To setup a review form page;</p>
+    <p><ul>
+      <p><li> 1. Create a page or post in your Wordpress admin area </li></p>
+      <p><li> 2. Copy and paste this short code on the page <b><h2>[kudobuzz-review]</h2></b></li></p>
+      <p><li> 3. Save and visit the page to see your review form where customers can start sending you reviews </li></p>
+     <p></ul></p>
 </div>
