@@ -86,7 +86,7 @@
                             <input type="hidden" id="hidden-pricing" value="4.99" />
                             <input type="hidden" id="hidden-pricing-desc" value="1 Month Professional Plan" />
                             <input type="hidden" id="hidden-pricing-duration" value="30" />
-                            <input type="hidden" id="hidden-pricing-plan" value="1" />
+                            <input type="hidden" id="hidden-pricing-plan" value="3" />
                             <input type="hidden" id="hidden-plan-id" value="100" />
 
                             <script>

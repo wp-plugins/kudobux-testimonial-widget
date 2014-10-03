@@ -943,7 +943,7 @@
                     jQuery("#hidden-pricing").val(4.99);
                     jQuery("#hidden-pricing-desc").val("1 Month Professional Plan");
                     jQuery("#hidden-pricing-duration").val(30);
-                    jQuery("#hidden-pricing-plan").val(1);
+                    jQuery("#hidden-pricing-plan").val(3);
                     jQuery("#hidden-plan-id").val("100");
                 }
                 else if(plan === 'yearly'){
@@ -951,7 +951,7 @@
                     jQuery("#hidden-pricing").val(3.99*12);
                     jQuery("#hidden-pricing-desc").val("1 Year Professional Plan");
                     jQuery("#hidden-pricing-duration").val(365);
-                    jQuery("#hidden-pricing-plan").val(2);
+                    jQuery("#hidden-pricing-plan").val(4);
                     jQuery("#hidden-plan-id").val("200");
                 }
             });
