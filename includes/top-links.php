@@ -1,5 +1,7 @@
-<div class="pull-right other-links-div" style="width: 355px; overflow: hidden; border: 1px solid transparent">
-
+<div class="pull-right other-links-div" style="width: 400px !important; overflow: hidden; border: 1px solid transparent">
+    <div style="margin-right: 20px; text-align: right; margin-bottom: 10px;">
+        <a href="https://kudobuzz.com/login-dashboard?uid=<?php echo $user_id?>" target="_blank">Open Kudobuzz outside Wordpress</a>
+    </div>
     <a href="javascript:;" class="btn btn-xs btn-warning social-accounts-btn" id="social-accounts-btn">Add Social Account</a>
     <span style="margin: 0 5px"></span>
     <a href="<?php echo get_admin_url() ?>admin.php?page=AddCustomReview" class="btn btn-xs btn-warning">Add Custom Reviews</a>

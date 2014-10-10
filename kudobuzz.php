@@ -634,6 +634,7 @@ function post_publish_action() {
     $from_user_img = $_POST['from_user_img'];
     $from_twitter_message = $_POST['from_twitter_message'];
     $created_at = $_POST['created_at'];
+    $rating = $_POST["rating"];
 
     $params = array(
         'uid' => $uid,
@@ -642,7 +643,8 @@ function post_publish_action() {
         'from_user_name' => $from_user_name,
         'from_user_img' => $from_user_img,
         'from_twitter_message' => $from_twitter_message,
-        'created_at' => $created_at
+        'created_at' => $created_at,
+        "rating"=>$rating
     );
     //print_r($params); exit();
     $result = $kdwp->publish_feed($params);

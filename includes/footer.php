@@ -416,7 +416,7 @@
         var from_twitter_message = jQuery(this).closest("tr").find(".from_twitter_message").html();
         var created_at = jQuery(this).closest("tr").find(".created_at").html();
         var rating = jQuery(this).closest("tr").find(".rating-value").val();
-
+       
         var $this_id = jQuery(this).closest("tr").attr("id");
         
         if (channel ==3 && plan === '0' && total_custom_kudos >= 10) { //Custom kudo
@@ -437,7 +437,8 @@
             'from_user_name': from_user_name.trim(),
             'from_user_img': from_user_img,
             'from_twitter_message': from_twitter_message.trim(),
-            'created_at': created_at
+            'created_at': created_at,
+            "rating":rating
         };
 
         jQuery("#" + $this_id).find(".publish").html("Publishing...");
