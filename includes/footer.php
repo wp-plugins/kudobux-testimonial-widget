@@ -515,10 +515,10 @@
 			bootbox.dialog({
 				message: message,
 				className : 'delete_kudos_modal',
-				title: "Delete Testimonial?",
+				title: "Unpublish Testimonial?",
 				buttons: {
 				  danger: {
-					label: "Delete",
+					label: "Unpublish",
 					className: "btn-danger",
 					callback: function() {
 					  delete_kudos(id, type, entityid, channel_id, params);

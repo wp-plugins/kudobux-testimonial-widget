@@ -72,6 +72,10 @@ We will always alert you via email or your dashboard when there are new updates 
 - Just do a normal upgrade.
 
 == Changelog ==
+= 2.0.9 =
+- Star Rating Issue Fixed
+
+
 = 2.0.8 =
 - Adding a dashboard link
 
