@@ -87,9 +87,10 @@
                             <input type="hidden" id="hidden-pricing-desc" value="1 Month Professional Plan" />
                             <input type="hidden" id="hidden-pricing-duration" value="30" />
                             <input type="hidden" id="hidden-pricing-plan" value="3" />
-                            <input type="hidden" id="hidden-plan-id" value="100" />
-
+                            <input type="hidden" id="hidden-plan-id" value="<?php echo MONTHLY_CODE?>" />
+                            
                             <script>
+                                
                                 var handler = StripeCheckout.configure({
                                     key: '<?php echo STRIPE_PUBLISHABLE_KEY ?>',
                                     image: '../wp-content/plugins/kudobux-testimonial-widget/assets/img/kudobuzz-logo.png',
@@ -100,8 +101,10 @@
                                             'payment_duration': jQuery("#hidden-pricing-duration").val(),
                                             'payment_plan': jQuery("#hidden-pricing-plan").val(),
                                             'amount': jQuery("#hidden-pricing").val() * 100,
-                                            'plan_id': jQuery("#hidden-plan-id").val()
+                                            'plan_id': jQuery("#hidden-plan-id").val(),
+                                            "email" : '<?php echo $email?>'
                                         };
+                                        //console.log(params); return false;
                                         jQuery(".upgrade-form").modal("hide");
                                         bootbox.dialog({
                                             message: '<div class="upgrade-modal-div"><div style="text-align: center; padding: 20px 0"><img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/loader-big.gif" /></div></div>',
@@ -114,7 +117,7 @@
                                             type: 'POST',
                                             data: params,
                                             success: function(result) {
-
+                                                console.log(result); 
                                                 jQuery(".small-modal .modal-title").html('<img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/ok.png" style="margin-right: 5px;" />Success');
                                                 jQuery(".upgrade-modal-div").html("<h3>Success!</h3><p>Your account has been successfully upgraded. Please click the button below to complete the process.</p><a href='javascript:;' onclick='location.reload();' class='btn btn-primary'>Done</a>");
                                             }

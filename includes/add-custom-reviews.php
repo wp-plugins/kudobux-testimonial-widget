@@ -17,7 +17,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
 
                 <?php include_once 'top-links.php'; ?>
             </div>
-            <div class="main-app-content" style="height: 500px; margin-bottom: 10px; overflow: hidden; width: 100%">
+            <div class="main-app-content" style="min-height: 500px; margin-bottom: 10px; overflow: hidden; width: 100%">
 
                 <div class="content-div-wrapper">
 
@@ -33,16 +33,31 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                                         <img src="../wp-content/plugins/kudobux-testimonial-widget/assets/img/user_placeholder.gif" style="margin-top: -10px;"></div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="width: 50px; height: 50px; line-height: 50px;"></div>
                                     <span class="btn btn-file image_btn_cover">
-                                        <span class="fileupload-new add_image" >Select image</span>
+                                        <span class="fileupload-new add_image btn btn-sm btn-info" >Select image</span>
                                         <span class="fileupload-exists change_image">Change</span>
                                         <input type="file" name="myimage" id="myimage" style="padding:20px 0px"></span>
                                     <span style="color: #999;">(Recommended jpg, jpeg, gif or png)</span>
                                     <a href="#" class=" fileupload-exists remove_image" data-dismiss="fileupload">Remove</a>
                                 </div>
                             </div> 
+                            
+                            <div class="single-input-div form-group">
+                                <input type="text" id="cs_kudos_date" class="input-sm form-input" name="cs_kudos_date" autocomplete="off" placeholder="Date" >
+                                  <script type="text/javascript">
+                                      jQuery(function() {
+                                        jQuery( "#cs_kudos_date" ).datepicker();
+                                      });
+                                    </script>
+                            </div>
+                            
                             <div class="single-input-div form-group" style="clear: both;">
                                 <!--<h5>Name</h5>-->
                                 <input class="form-control" id="name" name="name"type="text" required="" placeholder="Name">
+                            </div>
+                            
+                            <div class="single-input-div form-group">
+                                <!--<h5>Title</h5>-->
+                                <input class="form-control" id="title_input" name="title" type="text" placeholder="Title">
                             </div>
                             <div class="single-input-div form-group" style="position: relative">
                                 <!--<h5>Rate</h5>-->
@@ -51,10 +66,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                                 <span style="color: red; float: right" id="required-rating" class="hide">Rating is required!</span>
                                 <div style="clear: both"></div>
                             </div>
-                            <div class="single-input-div form-group">
-                                <!--<h5>Website</h5>-->
-                                <input class="form-control" id="website" name="website" type="text" placeholder="Website">
-                            </div>
+                            
                             <div class="single-input-div form-group">
                                 <!--<h5>Testimonial</h5>-->
                                 <textarea class="form-control"  id="kb-message" required="" name="message" placeholder="Compose your review" style="height: 120px;"></textarea>
@@ -88,15 +100,21 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                 var fake_path_to_img;
                 var name;
                 var message;
+                var title;
                 var rating;
                 var my_rating = '';
 
                 var name_is_valid = 0;
                 var rating_is_valid = 0;
                 var message_is_valid = 0;
+                var title_is_valid = 0;
 
                 jQuery('.rateit').live('rated', function(event, value) {
                     jQuery("#rating_place_hoder").val(value);
+                });
+                
+                jQuery(document).on("keyup", "#cs_kudos_date", function(e){
+                    e.preventDefault();
                 });
 
                 //Add new custom review
@@ -106,6 +124,7 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                     fake_path_to_img = jQuery('#myimage').val();
                     name = jQuery('#name').val();
                     message = jQuery('#kb-message').val();
+                    title = jQuery("#title_input").val();
                     rating = jQuery('#k_rating').rateit('value');
                     my_rating = jQuery("#rating_place_hoder").val();
 
@@ -118,6 +137,16 @@ if (isset($kd_uid) && $kd_uid != NULL) {
                     else {
                         jQuery('#name').css({'border': '1px solid #CCC'});
                         name_is_valid = 1;
+                    }
+                    
+                    if(title == ''){
+                        jQuery('#title_input').css({'border': '1px solid red'});
+                        title_is_valid = 0;
+                        return false;
+                    }
+                    else {
+                        jQuery('#title_input').css({'border': '1px solid #CCC'});
+                        title_is_valid = 1;
                     }
 
                     if (rating == 0) {

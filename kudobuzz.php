@@ -4,7 +4,7 @@
   Plugin Name: Kudobuzz
   Plugin URI: https://kudobuzz.com
   Description: Kudobuzz is a simple testimonail widget that displays selected positive social buzz, or “kudos”, on your website. Collect reviews from your website or social visitors. Kudubuzz makes your website more customer-centric while improving your SEO.
-  Version: 2.0.9
+  Version: 3.0
   Author: Kudobuzz
   Author URI: https://kudobuzz.com
   License: GPL
@@ -198,6 +198,12 @@ function wpd_add_kudobuzz_javascript_files() {
 
 		//manage_wdg
 		wp_enqueue_script('manage_wdg-js', plugins_url('kudobux-testimonial-widget/assets/js/manage_wdg.js', dirname(__FILE__)));
+		
+		//Datetime picker
+		//wp_enqueue_script('datetimepicker-js', plugins_url('kudobux-testimonial-widget/assets/js/bootstrap-datetimepicker.min.js', dirname(__FILE__)));
+		
+		//jQuery UI
+		wp_enqueue_script('kd-jquery-ui-js', plugins_url('kudobux-testimonial-widget/assets/js/jquery-ui.js', dirname(__FILE__)));
     }
 }
 
@@ -214,7 +220,7 @@ function wpd_add_kudobuzz_css_files() {
 		wp_enqueue_style('main-css');
 
 		//bootstrap css file
-		wp_register_style('bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap.css', dirname(__FILE__)), false, '1.0.0');
+		wp_register_style('bootstrap-css', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap.css', dirname(__FILE__)), false, '3.0.1');
 		wp_enqueue_style('bootstrap-css');
 
 		//Jany bootstrap css file
@@ -240,6 +246,14 @@ function wpd_add_kudobuzz_css_files() {
 		//Mini color
 		wp_register_style('mini-color', plugins_url('kudobux-testimonial-widget/assets/css/jquery.minicolors.css', dirname(__FILE__)), false, '1.0.0');
 		wp_enqueue_style('mini-color');
+		
+		//Datetime picker
+		//wp_register_style('kd-datetime-picker', plugins_url('kudobux-testimonial-widget/assets/css/bootstrap-datetimepicker.min.css', dirname(__FILE__)), false, '1.0.0');
+		//wp_enqueue_style('kd-datetime-picker');
+		
+		//Jquery Ui
+		wp_register_style('kd-jquery-ui', plugins_url('http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css', dirname(__FILE__)), false, '1.0.0');
+		wp_enqueue_style('kd-jquery-ui');
     }
 }
 

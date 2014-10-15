@@ -3474,14 +3474,14 @@ input.search-query {
 }
 .ui-datepicker .ui-datepicker-prev {
     left: 0;
-    border-right: 2px solid #5fd0ba;
+    border-right: 2px solid transparent;
     -webkit-border-radius: 6px 0 0 0;
     -moz-border-radius: 6px 0 0 0;
     border-radius: 6px 0 0 0;
 }
 .ui-datepicker .ui-datepicker-next {
     right: 0;
-    border-left: 2px solid #5fd0ba;
+    border-left: 2px solid transparent;
     -webkit-border-radius: 0 6px 0 0;
     -moz-border-radius: 0 6px 0 0;
     border-radius: 0 6px 0 0;

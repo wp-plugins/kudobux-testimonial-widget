@@ -1,5 +1,5 @@
 <div id="copyright-div">
-    &copy; 2014 Kudobuzz <?php var_dump($total_kudos);?>
+    &copy; 2014 Kudobuzz
 </div>
 </div>
 </div>
@@ -419,7 +419,7 @@
        
         var $this_id = jQuery(this).closest("tr").attr("id");
         
-        if (channel ==3 && plan === '0' && total_custom_kudos >= 10) { //Custom kudo
+        if (channel ==3 && plan === '0' && total_custom_kudos >= 1000) { //Custom kudo
 			prompt_for_upgrade();
             return false;
         }
@@ -945,7 +945,7 @@
                     jQuery("#hidden-pricing-desc").val("1 Month Professional Plan");
                     jQuery("#hidden-pricing-duration").val(30);
                     jQuery("#hidden-pricing-plan").val(3);
-                    jQuery("#hidden-plan-id").val("100");
+                    jQuery("#hidden-plan-id").val(<?php echo MONTHLY_CODE?>);
                 }
                 else if(plan === 'yearly'){
                     jQuery(this).closest(".plan-div").find("#price-tag").html("3.99");
@@ -953,7 +953,7 @@
                     jQuery("#hidden-pricing-desc").val("1 Year Professional Plan");
                     jQuery("#hidden-pricing-duration").val(365);
                     jQuery("#hidden-pricing-plan").val(4);
-                    jQuery("#hidden-plan-id").val("200");
+                    jQuery("#hidden-plan-id").val(<?php echo YEARLY_CODE?>);
                 }
             });
 
