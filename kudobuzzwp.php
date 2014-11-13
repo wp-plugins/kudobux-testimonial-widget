@@ -11,7 +11,6 @@
  *
  * @author selomamouzou
  */
-ini_set("display_errors", 1);
 
 class Kudobuzzwp {
     /*
@@ -143,7 +142,7 @@ class Kudobuzzwp {
     function get_user_with_pass($email, $password){
         
         $url = API_DOMAIN . "user/get_user?email=".$email."&password=".$password."&include_entities=1";
-        
+        console.log($url);
         return json_decode($this->run_curl($url, "GET"));
     }
 
