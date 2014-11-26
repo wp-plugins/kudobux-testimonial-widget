@@ -41,7 +41,7 @@ function kudobuzz_plugin_redirect() {
         $possible_existing_uid = get_option('kudobuzz_uid');
         
 
-        if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE && !empty($possible_existing_uid)) {
+        if (isset($possible_existing_uid) && $possible_existing_uid !== FALSE ) {
 
             require_once plugin_dir_path(__FILE__) . 'kudobuzzwp.php';
             $kwp = new Kudobuzzwp();
@@ -49,8 +49,10 @@ function kudobuzz_plugin_redirect() {
             //Cross check if the UID live is equal to the UID on localhost
             $admin_email = get_settings('admin_email');
 
-            $user_details = json_decode($kwp->run_curl(API_DOMAIN . "user/get_user?email=" . $admin_email . "&include_entities=1", "GET"));
-            
+            $curl_url = API_DOMAIN . "user/get_user?email=" . urlencode($admin_email) . "&include_entities=1";
+
+            $user_details = json_decode($kwp->run_curl($curl_url, "GET"));
+             
             $live_uid = $user_details->uid;
             $account_name = $user_details->account_name;
             $url = $user_details->url;
@@ -69,8 +71,6 @@ function kudobuzz_plugin_redirect() {
             else{
                  wp_redirect('admin.php?page=Returning-user');
             }
-
-             
             exit();
         } else {
             //CREATE A NEW EMPTY uid
