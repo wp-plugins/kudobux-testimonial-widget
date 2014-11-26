@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 //Main host
-define("MAIN_HOST", "http://kudobuzz.com/");
-define( 'API_DOMAIN', 'http://kudobuzz.com/');
+define("MAIN_HOST", "https://kudobuzz.com/");
+define( 'API_DOMAIN', 'https://kudobuzz.com/');
 define( 'PLUGIN_DIR', dirname(__FILE__).'/' );
-define( 'IFRAME_PARENT_DOMAIN', 'http://kudobuzz.com/');
+define( 'IFRAME_PARENT_DOMAIN', 'https://kudobuzz.com/');
 define('STRIPE_PUBLISHABLE_KEY', "pk_live_LwfybwV7b4JQz62gcJy2lWDY");

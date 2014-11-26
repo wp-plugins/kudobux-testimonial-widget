@@ -6,5 +6,5 @@
  * and open the template in the editor.
  */
 //Main host
-define("MAIN_HOST", "http://kudobuzz.com/");
+define("MAIN_HOST", "https://kudobuzz.com/");
 
