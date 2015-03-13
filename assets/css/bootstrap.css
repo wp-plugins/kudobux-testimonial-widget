@@ -5968,7 +5968,7 @@ button.close {
 .pull-left {
   float: left !important;
 }
-.hide {
+.main-app-wrapper .hide {
   display: none !important;
 }
 .show {
