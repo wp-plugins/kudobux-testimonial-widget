@@ -889,15 +889,15 @@ body {
   color: #333333;*/
   /*background-color: #ffffff;*/
 }
-.main-wrapper input,
-.main-wrapper button,
-.main-wrapper select,
-.main-wrapper textarea {
+.social_accounts_modal .input, .main-wrapper input,
+.social_accounts_modal button, .main-wrapper button,
+.social_accounts_modal select, .main-wrapper select,
+.social_accounts_modal textarea, .main-wrapper textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
-.main-wrapper a {
+.social_accounts_modal a, .main-wrapper a {
   color: #428bca;
   text-decoration: none;
 }
@@ -914,7 +914,7 @@ body {
 .main-wrapper figure {
   margin: 0;
 }
-.main-wrapper img {
+.social_accounts_modal img, .main-wrapper img {
   vertical-align: middle;
 }
 .main-wrapper .img-responsive {
@@ -966,12 +966,12 @@ hr {
   overflow: visible;
   clip: auto;
 }
-.main-wrapper h1,
-.main-wrapper h2,
-.main-wrapper h3,
-.main-wrapper h4,
-.main-wrapper h5,
-.main-wrapper h6,
+.social_accounts_modal h1, .main-wrapper h1,
+.social_accounts_modal h2, .main-wrapper h2,
+.social_accounts_modal h1, .main-wrapper h3,
+.social_accounts_modal h4, .main-wrapper h4,
+.social_accounts_modal h5, .main-wrapper h5,
+.social_accounts_modal h6, .main-wrapper h6,
 .main-wrapper .h1,
 .main-wrapper .h2,
 .main-wrapper .h3,
@@ -1011,11 +1011,11 @@ h6 .small,
   line-height: 1;
   color: #777777;
 }
-.main-wrapper h1,
+.social_accounts_modal h1, .main-wrapper h1,
 .main-wrapper .h1,
-.main-wrapper h2,
+.social_accounts_modal h2, .main-wrapper h2,
 .main-wrapper .h2,
-.main-wrapper h3,
+.social_accounts_modal h3, .main-wrapper h3,
 .main-wrapper .h3 {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -1034,11 +1034,11 @@ h3 .small,
 .h3 .small {
   font-size: 65%;
 }
-.main-wrapper h4,
+.social_accounts_modal h4, .main-wrapper h4,
 .main-wrapper .h4,
-.main-wrapper h5,
+.social_accounts_modal h5, .main-wrapper h5,
 .main-wrapper .h5,
-.main-wrapper h6,
+.social_accounts_modal h6, .main-wrapper h6,
 .main-wrapper .h6 {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1083,7 +1083,7 @@ h6 .small,
 }
 .main-wrapper p {
   margin: 0 0 10px;
-}
+}s
 .lead {
   margin-bottom: 20px;
   font-size: 16px;
@@ -1197,8 +1197,8 @@ a.bg-danger:hover {
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee;
 }
-.main-wrapper ul,
-.main-wrapper ol {
+.social_accounts_modal ul, .main-wrapper ul,
+.social_accounts_modal ol, .main-wrapper ol {
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -2034,7 +2034,7 @@ pre code {
     margin-left: 0%;
   }
 }
-.main-wrapper table {
+.social_accounts_modal table, .main-wrapper table {
   background-color: transparent;
 }
 .main-wrapper caption {
@@ -2289,7 +2289,7 @@ table th[class*="col-"] {
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
-.main-wrapper label {
+.social_accounts_modal label, .main-wrapper label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
@@ -2722,7 +2722,7 @@ select[multiple].form-group-lg .form-control {
     padding-top: 6px;
   }
 }
-.main-wrapper .btn {
+.main-wrapper .btn, .social_accounts_modal .btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
