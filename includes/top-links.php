@@ -1,4 +1,4 @@
-<div class="pull-right other-links-div" style="width: 400px !important; overflow: hidden; border: 1px solid transparent">
+<div class="pull-right other-links-div" style="width: 455px !important; overflow: hidden; border: 1px solid transparent">
     <div style="margin-right: 20px; text-align: right; margin-bottom: 10px;">
         <a href="https://kudobuzz.com/login-dashboard?uid=<?php echo $user_id?>" target="_blank" style="color:#e87e04 !important">Do More Customization</a>
     </div>

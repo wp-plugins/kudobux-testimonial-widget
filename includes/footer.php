@@ -718,6 +718,7 @@
                 bootbox.dialog({
                     message: str,
                     title: "Social Accounts",
+                    className: "social_accounts_modal",
                     buttons: {
                         OK: {
                             label: "OK",
