@@ -4,7 +4,7 @@ Donate link: https://kudobuzz.com
 Tags: Testimonials,Social Testimonials,Testimonial Widget,Testimonial,Wp Testimonial,Kudobuzz,Site Reviews,Reviews,Social Reviews,Testimonial plugin,Review plugin,Website review
 Requires at least: 3.0.1
 Tested up to: 4.1.1
-Stable tag: 3.1
+Stable tag: 3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

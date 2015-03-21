@@ -400,9 +400,9 @@ you can use the generic selector below, but it's slower:
 }
 
 .main-wrapper input,
-button,
-select,
-textarea {
+.main-wrapper button,
+.main-wrapper select,
+.main-wrapper textarea {
     font-family: 'Lato', sans-serif;
     font-size: 14px;
 }
@@ -432,12 +432,12 @@ small {
     /* 31px */
 
 }
-blockquote {
+.main-wrapper blockquote {
     position: relative;
     border-left: none;
     padding-left: 19px;
 }
-blockquote:before {
+.main-wrapper blockquote:before {
     position: absolute;
     left: 0;
     width: 3px;
@@ -450,13 +450,13 @@ blockquote:before {
     -moz-border-radius: 2px;
     border-radius: 2px;
 }
-blockquote p {
+.main-wrapper blockquote p {
     font-size: 20.006px;
     line-height: 1.549829;
     font-weight: normal;
     margin-bottom: .4em;
 }
-blockquote small {
+.main-wrapper blockquote small {
     font-size: 18.004px;
     line-height: 1.722169;
     font-style: italic;

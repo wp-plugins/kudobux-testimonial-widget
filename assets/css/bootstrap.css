@@ -79,7 +79,7 @@ sup {
 sub {
   bottom: -0.25em;
 }
-img {
+.main-wrapper img {
   border: 0;
 }
 svg:not(:root) {
