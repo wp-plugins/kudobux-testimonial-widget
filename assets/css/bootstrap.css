@@ -9,145 +9,145 @@ html {
 body {
   margin: 0;
 }
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section,
-summary {
+.main-wrapper article,
+.main-wrapper aside,
+.main-wrapper details,
+.main-wrapper figcaption,
+.main-wrapper figure,
+.main-wrapper footer,
+.main-wrapper header,
+.main-wrapper hgroup,
+.main-wrapper main,
+.main-wrapper nav,
+.main-wrapper section,
+.main-wrapper summary {
   display: block;
 }
-audio,
-canvas,
-progress,
-video {
+.main-wrapper audio,
+.main-wrapper canvas,
+.main-wrapper progress,
+.main-wrapper video {
   display: inline-block;
   vertical-align: baseline;
 }
-audio:not([controls]) {
+.main-wrapper audio:not([controls]) {
   display: none;
   height: 0;
 }
-[hidden],
-template {
+.main-wrapper [hidden],
+.main-wrapper template {
   display: none;
 }
-a {
+.main-wrapper a {
   background: transparent;
 }
-a:active,
-a:hover {
+.main-wrapper a:active,
+.main-wrapper a:hover {
   outline: 0;
 }
-abbr[title] {
+.main-wrapper abbr[title] {
   border-bottom: 1px dotted;
 }
-b,
-strong {
+.main-wrapper b,
+.main-wrapper strong {
   font-weight: bold;
 }
-dfn {
+.main-wrapper dfn {
   font-style: italic;
 }
-h1 {
+.main-wrapper h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
-mark {
+.main-wrapper mark {
   background: #ff0;
   color: #000;
 }
-small {
+.main-wrapper small {
   font-size: 80%;
 }
-sub,
-sup {
+.main-wrapper sub,
+.main-wrapper sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
-sup {
+.main-wrapper sup {
   top: -0.5em;
 }
-sub {
+.main-wrapper sub {
   bottom: -0.25em;
 }
 .main-wrapper img {
   border: 0;
 }
-svg:not(:root) {
+.main-wrapper svg:not(:root) {
   overflow: hidden;
 }
-figure {
+.main-wrapper figure {
   margin: 1em 40px;
 }
-hr {
+.main-wrapper hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
 }
-pre {
+.main-wrapper pre {
   overflow: auto;
 }
-code,
-kbd,
-pre,
-samp {
+.main-wrapper code,
+.main-wrapper kbd,
+.main-wrapper pre,
+.main-wrapper samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-button,
-input,
-optgroup,
-select,
-textarea {
+.main-wrapper button,
+.main-wrapper input,
+.main-wrapper optgroup,
+.main-wrapper select,
+.main-wrapper textarea {
   color: inherit;
   font: inherit;
   margin: 0;
 }
-button {
+.main-wrapper button {
   overflow: visible;
 }
-button,
-select {
+.main-wrapper button,
+.main-wrapper select {
   text-transform: none;
 }
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+.main-wrapper button,
+html .main-wrapper input[type="button"],
+.main-wrapper input[type="reset"],
+.main-wrapper input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
-button[disabled],
+.main-wrapper button[disabled],
 html input[disabled] {
   cursor: default;
 }
-button::-moz-focus-inner,
-input::-moz-focus-inner {
+.main-wrapper button::-moz-focus-inner,
+.main-wrapper input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
-input {
+.main-wrapper input {
   line-height: normal;
 }
-input[type="checkbox"],
-input[type="radio"] {
+.main-wrapper input[type="checkbox"],
+.main-wrapper input[type="radio"] {
   box-sizing: border-box;
   padding: 0;
 }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+.main-wrapper input[type="number"]::-webkit-inner-spin-button,
+.main-wrapper input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
-input[type="search"] {
+.main-wrapper input[type="search"] {
   -webkit-appearance: textfield;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -157,27 +157,27 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
-fieldset {
+.main-wrapper fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
-legend {
+.main-wrapper legend {
   border: 0;
   padding: 0;
 }
-textarea {
+.main-wrapper textarea {
   overflow: auto;
 }
-optgroup {
+.main-wrapper optgroup {
   font-weight: bold;
 }
-table {
+.main-wrapper table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-td,
-th {
+.main-wrapper td,
+.main-wrapper th {
   padding: 0;
 }
 @media print {
@@ -1291,45 +1291,45 @@ abbr[data-original-title] {
   border-left: 0;
   text-align: right;
 }
-.blockquote-reverse footer:before,
-blockquote.pull-right footer:before,
-.blockquote-reverse small:before,
-blockquote.pull-right small:before,
-.blockquote-reverse .small:before,
-blockquote.pull-right .small:before {
+.main-wrapper .blockquote-reverse footer:before,
+.main-wrapper blockquote.pull-right footer:before,
+.main-wrapper .blockquote-reverse small:before,
+.main-wrapper blockquote.pull-right small:before,
+.main-wrapper .blockquote-reverse .small:before,
+.main-wrapper blockquote.pull-right .small:before {
   content: '';
 }
-.blockquote-reverse footer:after,
-blockquote.pull-right footer:after,
-.blockquote-reverse small:after,
-blockquote.pull-right small:after,
-.blockquote-reverse .small:after,
-blockquote.pull-right .small:after {
+.main-wrapper .blockquote-reverse footer:after,
+.main-wrapper blockquote.pull-right footer:after,
+.main-wrapper .blockquote-reverse small:after,
+.main-wrapper blockquote.pull-right small:after,
+.main-wrapper .blockquote-reverse .small:after,
+.main-wrapper blockquote.pull-right .small:after {
   content: '\00A0 \2014';
 }
-blockquote:before,
-blockquote:after {
+.main-wrapper blockquote:before,
+.main-wrapper blockquote:after {
   content: "";
 }
-address {
+.main-wrapper address {
   margin-bottom: 20px;
   font-style: normal;
   line-height: 1.42857143;
 }
-code,
-kbd,
-pre,
-samp {
+.main-wrapper code,
+.main-wrapper kbd,
+.main-wrapper pre,
+.main-wrapper samp {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-code {
+.main-wrapper code {
   padding: 2px 4px;
   font-size: 90%;
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
 }
-kbd {
+.main-wrapper kbd {
   padding: 2px 4px;
   font-size: 90%;
   color: #ffffff;
@@ -2349,7 +2349,7 @@ table th[class*="col-"] {
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-.form-control:focus {
+.main-wrapper .form-control:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
@@ -2554,7 +2554,7 @@ select[multiple].form-group-lg .form-control {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.has-success .form-control:focus {
+.main-wrapper .has-success .form-control:focus {
   border-color: #2b542c;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
@@ -2584,7 +2584,7 @@ select[multiple].form-group-lg .form-control {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.has-warning .form-control:focus {
+.main-wrapper .has-warning .form-control:focus {
   border-color: #66512c;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
@@ -2614,7 +2614,7 @@ select[multiple].form-group-lg .form-control {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.has-error .form-control:focus {
+.main-wrapper .has-error .form-control:focus {
   border-color: #843534;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
@@ -2780,11 +2780,11 @@ fieldset[disabled] .btn {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.btn-default:hover,
-.btn-default:focus,
-.btn-default.focus,
-.btn-default:active,
-.btn-default.active,
+.main-wrapper .btn-default:hover,
+.main-wrapper .btn-default:focus,
+.main-wrapper .btn-default.focus,
+.main-wrapper .btn-default:active,
+.main-wrapper .btn-default.active,
 .open > .dropdown-toggle.btn-default {
   color: #333333;
   background-color: #e6e6e6;
@@ -2798,25 +2798,25 @@ fieldset[disabled] .btn {
 .btn-default.disabled,
 .btn-default[disabled],
 fieldset[disabled] .btn-default,
-.btn-default.disabled:hover,
-.btn-default[disabled]:hover,
-fieldset[disabled] .btn-default:hover,
-.btn-default.disabled:focus,
-.btn-default[disabled]:focus,
-fieldset[disabled] .btn-default:focus,
-.btn-default.disabled.focus,
-.btn-default[disabled].focus,
-fieldset[disabled] .btn-default.focus,
-.btn-default.disabled:active,
-.btn-default[disabled]:active,
-fieldset[disabled] .btn-default:active,
-.btn-default.disabled.active,
-.btn-default[disabled].active,
-fieldset[disabled] .btn-default.active {
+.main-wrapper .btn-default.disabled:hover,
+.main-wrapper .btn-default[disabled]:hover,
+.main-wrapper fieldset[disabled] .btn-default:hover,
+.main-wrapper .btn-default.disabled:focus,
+.main-wrapper .btn-default[disabled]:focus,
+.main-wrapper fieldset[disabled] .btn-default:focus,
+.main-wrapper .btn-default.disabled.focus,
+.main-wrapper .btn-default[disabled].focus,
+.main-wrapper fieldset[disabled] .btn-default.focus,
+.main-wrapper .btn-default.disabled:active,
+.main-wrapper .btn-default[disabled]:active,
+.main-wrapper fieldset[disabled] .btn-default:active,
+.main-wrapper .btn-default.disabled.active,
+.main-wrapper .btn-default[disabled].active,
+.main-wrapper fieldset[disabled] .btn-default.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.btn-default .badge {
+.main-wrapper .btn-default .badge {
   color: #ffffff;
   background-color: #333333;
 }
@@ -2825,11 +2825,11 @@ fieldset[disabled] .btn-default.active {
   background-color: #428bca;
   border-color: #357ebd;
 }
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:active,
-.btn-primary.active,
+.main-wrapper .btn-primary:hover,
+.main-wrapper .btn-primary:focus,
+.main-wrapper .btn-primary.focus,
+.main-wrapper .btn-primary:active,
+.main-wrapper .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #ffffff;
   background-color: #3071a9;
@@ -2840,24 +2840,24 @@ fieldset[disabled] .btn-default.active {
 .open > .dropdown-toggle.btn-primary {
   background-image: none;
 }
-.btn-primary.disabled,
-.btn-primary[disabled],
-fieldset[disabled] .btn-primary,
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
-fieldset[disabled] .btn-primary:hover,
-.btn-primary.disabled:focus,
-.btn-primary[disabled]:focus,
-fieldset[disabled] .btn-primary:focus,
-.btn-primary.disabled.focus,
-.btn-primary[disabled].focus,
-fieldset[disabled] .btn-primary.focus,
-.btn-primary.disabled:active,
-.btn-primary[disabled]:active,
-fieldset[disabled] .btn-primary:active,
-.btn-primary.disabled.active,
-.btn-primary[disabled].active,
-fieldset[disabled] .btn-primary.active {
+.main-wrapper .btn-primary.disabled,
+.main-wrapper .btn-primary[disabled],
+.main-wrapper fieldset[disabled] .btn-primary,
+.main-wrapper .btn-primary.disabled:hover,
+.main-wrapper .btn-primary[disabled]:hover,
+.main-wrapper fieldset[disabled] .btn-primary:hover,
+.main-wrapper .btn-primary.disabled:focus,
+.main-wrapper .btn-primary[disabled]:focus,
+.main-wrapper fieldset[disabled] .btn-primary:focus,
+.main-wrapper .btn-primary.disabled.focus,
+.main-wrapper .btn-primary[disabled].focus,
+.main-wrapper fieldset[disabled] .btn-primary.focus,
+.main-wrapper .btn-primary.disabled:active,
+.main-wrapper .btn-primary[disabled]:active,
+.main-wrapper fieldset[disabled] .btn-primary:active,
+.main-wrapper .btn-primary.disabled.active,
+.main-wrapper .btn-primary[disabled].active,
+.main-wrapper fieldset[disabled] .btn-primary.active {
   background-color: #428bca;
   border-color: #357ebd;
 }

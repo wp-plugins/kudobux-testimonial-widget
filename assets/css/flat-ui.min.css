@@ -375,26 +375,26 @@ you can use the generic selector below, but it's slower:
 /* 29px */
 /* 28px */
 /* 24px */
-.inline-block {
+.main-wrapper .inline-block {
     display: inline-block;
     zoom: 1;
     *display: inline;
 }
-.clearfix {
+.main-wrapper .clearfix {
     *zoom: 1;
 }
-.clearfix:before,
-.clearfix:after {
+.main-wrapper .clearfix:before,
+.main-wrapper .clearfix:after {
     display: table;
     content: "";
 }
-.clearfix:after {
+.main-wrapper .clearfix:after {
     clear: both;
 }
-.drop-ie-gradient {
+.main-wrapper .drop-ie-gradient {
     filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
 }
-.dropdown-arrow-inverse {
+.main-wrapper .dropdown-arrow-inverse {
     border-bottom-color: #34495e !important;
     border-top-color: #34495e !important;
 }
@@ -415,7 +415,7 @@ you can use the generic selector below, but it's slower:
     /* 31px */
 
 }
-.lead {
+.main-wrapper .lead {
     font-size: 28px;
     /* 28px */
 
@@ -424,7 +424,7 @@ you can use the generic selector below, but it's slower:
 
     font-weight: 300;
 }
-small {
+.main-wrapper small {
     font-size: 84%;
     /* 15px */
 
@@ -462,21 +462,21 @@ small {
     font-style: italic;
     color: #34495e;
 }
-blockquote small:before {
+.main-wrapper blockquote small:before {
     content: "";
 }
-.img-rounded {
+.main-wrapper .img-rounded {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-.img-comment {
+.main-wrapper .img-comment {
     font-size: 14.994px;
     line-height: 1.231;
     font-style: italic;
     margin: 24px 0;
 }
-.prettyprint {
+.main-wrapper .prettyprint {
     background-color: transparent;
     border-color: #e7e9ec;
     border-radius: 6px;
@@ -485,59 +485,59 @@ blockquote small:before {
     word-wrap: normal;
     white-space: pre;
 }
-.prettyprint.linenums {
+.main-wrapper .prettyprint.linenums {
     overflow: visible;
     white-space: pre;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
-.text-primary {
+.main-wrapper .text-primary {
     color: #d35400;
 }
-a.text-primary:hover,
-a.text-primary:focus {
+.main-wrapper a.text-primary:hover,
+.main-wrapper a.text-primary:focus {
     color: #15967d;
 }
-.text-success {
+.main-wrapper .text-success {
     color: #2ecc71;
 }
-a.text-success:hover,
-a.text-success:focus {
+.main-wrapper a.text-success:hover,
+.main-wrapper a.text-success:focus {
     color: #25a35a;
 }
-.text-danger {
+.main-wrapper .text-danger {
     color: #e74c3c;
 }
-a.text-danger:hover,
-a.text-danger:focus {
+.main-wrapper a.text-danger:hover,
+.main-wrapper a.text-danger:focus {
     color: #b93d30;
 }
-.text-warning {
+.main-wrapper .text-warning {
     color: #f1c40f;
 }
-a.text-warning:hover,
-a.text-warning:focus {
+.main-wrapper a.text-warning:hover,
+.main-wrapper a.text-warning:focus {
     color: #c19d0c;
 }
-.text-info {
+.main-wrapper .text-info {
     color: #3498db;
 }
-a.text-info:hover,
-a.text-info:focus {
+.main-wrapper a.text-info:hover,
+.main-wrapper a.text-info:focus {
     color: #2a7aaf;
 }
-.text-inverse {
+.main-wrapper .text-inverse {
     color: #ffffff;
 }
-a.text-inverse:hover,
-a.text-inverse:focus {
+.main-wrapper a.text-inverse:hover,
+.main-wrapper a.text-inverse:focus {
     color: #cccccc;
 }
-.muted {
+.main-wrapper .muted {
     color: #bdc3c7;
 }
-a.muted:hover,
-a.muted:focus {
+.main-wrapper a.muted:hover,
+.main-wrapper a.muted:focus {
     color: #979c9f;
 }
 /*.btn,
@@ -755,25 +755,25 @@ a.muted:focus {
 .btn-toolbar .btn.active {
     color: #ffffff;
 }
-.btn-toolbar .btn:first-child {
+.main-wrapper .btn-toolbar .btn:first-child {
     -webkit-border-radius: 6px 0 0 6px;
     -moz-border-radius: 6px 0 0 6px;
     border-radius: 6px 0 0 6px;
 }
-.btn-toolbar .btn:last-child {
+.main-wrapper .btn-toolbar .btn:last-child {
     -webkit-border-radius: 0 6px 6px 0;
     -moz-border-radius: 0 6px 6px 0;
     border-radius: 0 6px 6px 0;
 }
-.btn-toolbar .btn > [class^="fui-"] {
+.main-wrapper .btn-toolbar .btn > [class^="fui-"] {
     font-size: 16px;
     top: 0;
 }
-.btn-tip {
+.main-wrapper .btn-tip {
     font-weight: 300;
     padding-left: 10px;
 }
-.btn-group > .btn {
+.main-wrapper .btn-group > .btn {
     border-radius: 0;
     text-align: center;
 }
@@ -883,7 +883,7 @@ a.muted:focus {
         margin: 9px 0 18px;
     }
 }
-.caret {
+.main-wrapper .caret {
     border-left-width: 6px;
     border-right-width: 6px;
     border-top-width: 8px;
@@ -1572,32 +1572,32 @@ a.muted:focus {
         margin: 0 0 0 10px;
     }
 }
-.select {
+.main-wrapper .select {
     display: inline-block;
     margin-bottom: 10px;
 }
 [class*="span"] > .select[class*="span"] {
     margin-left: 0;
 }
-.select[class*="span"] .btn {
+.main-wrapper .select[class*="span"] .btn {
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.select.select-block {
+.main-wrapper .select.select-block {
     display: block;
     float: none;
     margin-left: 0;
     width: auto;
 }
-.select.select-block .btn {
+.main-wrapper .select.select-block .btn {
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.select .btn {
+.main-wrapper .select .btn {
     width: 220px;
 }
 .select .btn.btn-huge .filter-option {
@@ -1745,40 +1745,40 @@ input[type="color"]:-moz-placeholder,
 .uneditable-input:-moz-placeholder {
     color: #b2bcc5;
 }*/
-textarea::-webkit-input-placeholder,
-input[type="text"]::-webkit-input-placeholder,
-input[type="password"]::-webkit-input-placeholder,
-input[type="datetime"]::-webkit-input-placeholder,
-input[type="datetime-local"]::-webkit-input-placeholder,
-input[type="date"]::-webkit-input-placeholder,
-input[type="month"]::-webkit-input-placeholder,
-input[type="time"]::-webkit-input-placeholder,
-input[type="week"]::-webkit-input-placeholder,
-input[type="number"]::-webkit-input-placeholder,
-input[type="email"]::-webkit-input-placeholder,
-input[type="url"]::-webkit-input-placeholder,
-input[type="search"]::-webkit-input-placeholder,
-input[type="tel"]::-webkit-input-placeholder,
-input[type="color"]::-webkit-input-placeholder,
-.uneditable-input::-webkit-input-placeholder {
+.main-wrapper textarea::-webkit-input-placeholder,
+.main-wrapper input[type="text"]::-webkit-input-placeholder,
+.main-wrapper input[type="password"]::-webkit-input-placeholder,
+.main-wrapper input[type="datetime"]::-webkit-input-placeholder,
+.main-wrapper input[type="datetime-local"]::-webkit-input-placeholder,
+.main-wrapper input[type="date"]::-webkit-input-placeholder,
+.main-wrapper input[type="month"]::-webkit-input-placeholder,
+.main-wrapper input[type="time"]::-webkit-input-placeholder,
+.main-wrapper input[type="week"]::-webkit-input-placeholder,
+.main-wrapper input[type="number"]::-webkit-input-placeholder,
+.main-wrapper input[type="email"]::-webkit-input-placeholder,
+.main-wrapper input[type="url"]::-webkit-input-placeholder,
+.main-wrapper input[type="search"]::-webkit-input-placeholder,
+.main-wrapper input[type="tel"]::-webkit-input-placeholder,
+.main-wrapper input[type="color"]::-webkit-input-placeholder,
+.main-wrapper .uneditable-input::-webkit-input-placeholder {
     color: #b2bcc5;
 }
-textarea.placeholder,
-input[type="text"].placeholder,
-input[type="password"].placeholder,
-input[type="datetime"].placeholder,
-input[type="datetime-local"].placeholder,
-input[type="date"].placeholder,
-input[type="month"].placeholder,
-input[type="time"].placeholder,
-input[type="week"].placeholder,
-input[type="number"].placeholder,
-input[type="email"].placeholder,
-input[type="url"].placeholder,
-input[type="search"].placeholder,
-input[type="tel"].placeholder,
-input[type="color"].placeholder,
-.uneditable-input.placeholder {
+.main-wrapper textarea.placeholder,
+.main-wrapper input[type="text"].placeholder,
+.main-wrapper input[type="password"].placeholder,
+.main-wrapper input[type="datetime"].placeholder,
+.main-wrapper input[type="datetime-local"].placeholder,
+.main-wrapper input[type="date"].placeholder,
+.main-wrapper input[type="month"].placeholder,
+.main-wrapper input[type="time"].placeholder,
+.main-wrapper input[type="week"].placeholder,
+.main-wrapper input[type="number"].placeholder,
+.main-wrapper input[type="email"].placeholder,
+.main-wrapper input[type="url"].placeholder,
+.main-wrapper input[type="search"].placeholder,
+.main-wrapper input[type="tel"].placeholder,
+.main-wrapper input[type="color"].placeholder,
+.main-wrapper .uneditable-input.placeholder {
     color: #b2bcc5;
 }
 @media (max-width: 767px) {
@@ -1826,38 +1826,38 @@ input[type="color"].placeholder,
         height: 120px;
     }
 }
-.control-group.focus textarea,
-.control-group.focus input[type="text"],
-.control-group.focus input[type="password"],
-.control-group.focus input[type="datetime"],
-.control-group.focus input[type="datetime-local"],
-.control-group.focus input[type="date"],
-.control-group.focus input[type="month"],
-.control-group.focus input[type="time"],
-.control-group.focus input[type="week"],
-.control-group.focus input[type="number"],
-.control-group.focus input[type="email"],
-.control-group.focus input[type="url"],
-.control-group.focus input[type="search"],
-.control-group.focus input[type="tel"],
-.control-group.focus input[type="color"],
-.control-group.focus .uneditable-input,
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.uneditable-input:focus {
+.main-wrapper .control-group.focus textarea,
+.main-wrapper .control-group.focus input[type="text"],
+.main-wrapper .control-group.focus input[type="password"],
+.main-wrapper .control-group.focus input[type="datetime"],
+.main-wrapper .control-group.focus input[type="datetime-local"],
+.main-wrapper .control-group.focus input[type="date"],
+.main-wrapper .control-group.focus input[type="month"],
+.main-wrapper .control-group.focus input[type="time"],
+.main-wrapper .control-group.focus input[type="week"],
+.main-wrapper .control-group.focus input[type="number"],
+.main-wrapper .control-group.focus input[type="email"],
+.main-wrapper .control-group.focus input[type="url"],
+.main-wrapper .control-group.focus input[type="search"],
+.main-wrapper .control-group.focus input[type="tel"],
+.main-wrapper .control-group.focus input[type="color"],
+.main-wrapper .control-group.focus .uneditable-input,
+.main-wrapper textarea:focus,
+.main-wrapper input[type="text"]:focus,
+.main-wrapper input[type="password"]:focus,
+.main-wrapper input[type="datetime"]:focus,
+.main-wrapper input[type="datetime-local"]:focus,
+.main-wrapper input[type="date"]:focus,
+.main-wrapper input[type="month"]:focus,
+.main-wrapper input[type="time"]:focus,
+.main-wrapper input[type="week"]:focus,
+.main-wrapper input[type="number"]:focus,
+.main-wrapper input[type="email"]:focus,
+.main-wrapper input[type="url"]:focus,
+.main-wrapper input[type="search"]:focus,
+.main-wrapper input[type="tel"]:focus,
+.main-wrapper input[type="color"]:focus,
+.main-wrapper .uneditable-input:focus {
     border-color: #d35400;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -1882,58 +1882,58 @@ input[type="color"]:focus,
     height: 41px;
     width: 100%;
 }
-textarea.flat,
-input[type="text"].flat,
-input[type="password"].flat,
-input[type="datetime"].flat,
-input[type="datetime-local"].flat,
-input[type="date"].flat,
-input[type="month"].flat,
-input[type="time"].flat,
-input[type="week"].flat,
-input[type="number"].flat,
-input[type="email"].flat,
-input[type="url"].flat,
-input[type="search"].flat,
-input[type="tel"].flat,
-input[type="color"].flat,
-.uneditable-input.flat {
+.main-wrapper textarea.flat,
+.main-wrapper input[type="text"].flat,
+.main-wrapper input[type="password"].flat,
+.main-wrapper input[type="datetime"].flat,
+.main-wrapper input[type="datetime-local"].flat,
+.main-wrapper input[type="date"].flat,
+.main-wrapper input[type="month"].flat,
+.main-wrapper input[type="time"].flat,
+.main-wrapper input[type="week"].flat,
+.main-wrapper input[type="number"].flat,
+.main-wrapper input[type="email"].flat,
+.main-wrapper input[type="url"].flat,
+.main-wrapper input[type="search"].flat,
+.main-wrapper input[type="tel"].flat,
+.main-wrapper input[type="color"].flat,
+.main-wrapper .uneditable-input.flat {
     border-color: transparent;
 }
-textarea.flat:hover,
-input[type="text"].flat:hover,
-input[type="password"].flat:hover,
-input[type="datetime"].flat:hover,
-input[type="datetime-local"].flat:hover,
-input[type="date"].flat:hover,
-input[type="month"].flat:hover,
-input[type="time"].flat:hover,
-input[type="week"].flat:hover,
-input[type="number"].flat:hover,
-input[type="email"].flat:hover,
-input[type="url"].flat:hover,
-input[type="search"].flat:hover,
-input[type="tel"].flat:hover,
-input[type="color"].flat:hover,
-.uneditable-input.flat:hover {
+.main-wrapper textarea.flat:hover,
+.main-wrapper input[type="text"].flat:hover,
+.main-wrapper input[type="password"].flat:hover,
+.main-wrapper input[type="datetime"].flat:hover,
+.main-wrapper input[type="datetime-local"].flat:hover,
+.main-wrapper input[type="date"].flat:hover,
+.main-wrapper input[type="month"].flat:hover,
+.main-wrapper input[type="time"].flat:hover,
+.main-wrapper input[type="week"].flat:hover,
+.main-wrapper input[type="number"].flat:hover,
+.main-wrapper input[type="email"].flat:hover,
+.main-wrapper input[type="url"].flat:hover,
+.main-wrapper input[type="search"].flat:hover,
+.main-wrapper input[type="tel"].flat:hover,
+.main-wrapper input[type="color"].flat:hover,
+.main-wrapper .uneditable-input.flat:hover {
     border-color: #bdc3c7;
 }
-textarea.flat:focus,
-input[type="text"].flat:focus,
-input[type="password"].flat:focus,
-input[type="datetime"].flat:focus,
-input[type="datetime-local"].flat:focus,
-input[type="date"].flat:focus,
-input[type="month"].flat:focus,
-input[type="time"].flat:focus,
-input[type="week"].flat:focus,
-input[type="number"].flat:focus,
-input[type="email"].flat:focus,
-input[type="url"].flat:focus,
-input[type="search"].flat:focus,
-input[type="tel"].flat:focus,
-input[type="color"].flat:focus,
-.uneditable-input.flat:focus {
+.main-wrapper textarea.flat:focus,
+.main-wrapper input[type="text"].flat:focus,
+.main-wrapper input[type="password"].flat:focus,
+.main-wrapper input[type="datetime"].flat:focus,
+.main-wrapper input[type="datetime-local"].flat:focus,
+.main-wrapper input[type="date"].flat:focus,
+.main-wrapper input[type="month"].flat:focus,
+.main-wrapper input[type="time"].flat:focus,
+.main-wrapper input[type="week"].flat:focus,
+.main-wrapper input[type="number"].flat:focus,
+.main-wrapper input[type="email"].flat:focus,
+.main-wrapper input[type="url"].flat:focus,
+.main-wrapper input[type="search"].flat:focus,
+.main-wrapper input[type="tel"].flat:focus,
+.main-wrapper input[type="color"].flat:focus,
+.main-wrapper .uneditable-input.flat:focus {
     border-color: #d35400;
 }
 .control-group.error textarea,
@@ -2499,21 +2499,21 @@ input[type="color"].small,
     color: #d5dbdb;
     background-color: #f4f6f6;
 }
-input[disabled],
-input[readonly],
-textarea[disabled],
-textarea[readonly] {
+.main-wrapper input[disabled],
+.main-wrapper input[readonly],
+.main-wrapper textarea[disabled],
+.main-wrapper textarea[readonly] {
     background-color: #f4f6f6;
     border-color: #d5dbdb;
     color: #d5dbdb;
     cursor: default;
 }
 .main-wrapper input[type=text], .main-wrapper input[type=password],
-textarea,
-.uneditable-input {
+.main-wrapper textarea,
+.main-wrapper .uneditable-input {
     width: 192px;
 }
-textarea {
+.main-wrapper textarea {
     height: auto;
     font-size: 14.994px;
     /* 15px */
@@ -2522,11 +2522,11 @@ textarea {
     padding: 5px 11px;
     text-indent: 0;
 }
-.row-fluid textarea {
+.main-wrapper .row-fluid textarea {
     height: auto;
     width: 100% !important;
 }
-textarea[class*="span"] {
+.main-wrapper textarea[class*="span"] {
     width: 100% !important;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -2729,7 +2729,7 @@ textarea[class*="span"] {
 .input-prepend.input-append .btn-group:first-child {
     margin-left: 0;
 }
-input.search-query {
+.main-wrapper input.search-query {
     padding-right: 6px;
     padding-left: 6px;
     margin-bottom: 0;
