@@ -2861,14 +2861,14 @@ fieldset[disabled] .btn-default,
   background-color: #428bca;
   border-color: #357ebd;
 }
-.btn-primary .badge {
+.main-wrapper .btn-primary .badge {
   color: #428bca;
   background-color: #ffffff;
 }
-.btn-success {
-  color: #ffffff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+.main-wrapper .btn-success {
+  color: #ffffff !important;;
+  background-color: #5cb85c !important;
+  border-color: #4cae4c !important;
 }
 .btn-success:hover,
 .btn-success:focus,
