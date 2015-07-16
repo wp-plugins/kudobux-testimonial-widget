@@ -22,7 +22,11 @@ class Kudobuzzwp {
     }
 
     function run_curl($url, $method, $params = NULL) {
-
+	
+		if( $method == "GET" ){
+			return file_get_contents($url);
+		}
+		
         $ch = curl_init();
 
         //set the url, number of POST vars, POST data
